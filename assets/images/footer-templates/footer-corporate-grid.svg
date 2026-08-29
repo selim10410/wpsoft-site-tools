@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 470 220">
+<rect width="470" height="220" rx="26" fill="#111827"/>
+<circle cx="420" cy="12" r="92" fill="#0ea5e9" opacity=".06"/>
+<rect x="42" y="50" width="72" height="86" rx="14" fill="#fff" opacity="0.06"/><rect x="140" y="50" width="72" height="86" rx="14" fill="#fff" opacity="0.075"/><rect x="238" y="50" width="72" height="86" rx="14" fill="#fff" opacity="0.09"/><rect x="336" y="50" width="72" height="86" rx="14" fill="#fff" opacity="0.105"/><rect x="42" y="156" width="376" height="1" fill="#fff" opacity=".16"/><rect x="42" y="172" width="90" height="8" rx="4" fill="#0ea5e9"/>
+<text x="30" y="205" font-family="Arial" font-size="10" font-weight="700" fill="#94a3b8">Corporate Grid Footer</text>
+</svg>

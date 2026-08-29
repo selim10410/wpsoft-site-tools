@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420">
+<rect width="720" height="420" rx="28" fill="#eef2ff"/>
+<rect x="42" y="38" width="636" height="92" rx="20" fill="#fff" opacity=".96"/>
+<text x="70" y="92" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#2563eb">FAQ</text>
+<rect x="42" y="152" width="300" height="104" rx="18" fill="#fff"/>
+<rect x="362" y="152" width="316" height="104" rx="18" fill="#fff"/>
+<rect x="42" y="276" width="196" height="104" rx="18" fill="#fff"/>
+<rect x="258" y="276" width="196" height="104" rx="18" fill="#fff"/>
+<rect x="474" y="276" width="204" height="104" rx="18" fill="#fff"/>
+<circle cx="72" cy="184" r="12" fill="#2563eb"/>
+<rect x="94" y="176" width="116" height="12" rx="6" fill="#2563eb" opacity=".75"/>
+<circle cx="392" cy="184" r="12" fill="#2563eb"/>
+<rect x="414" y="176" width="140" height="12" rx="6" fill="#2563eb" opacity=".75"/>
+</svg>

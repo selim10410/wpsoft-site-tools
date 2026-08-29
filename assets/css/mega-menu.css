@@ -1,0 +1,747 @@
+
+.wpst-mega-enabled{position:static!important}
+.wpst-mega-enabled>.sub-menu,.wpst-mega-enabled>.wpst-elementor-mega-panel{position:absolute!important;left:50%!important;top:calc(100% + 10px)!important;transform:translateX(-50%) translateY(10px);opacity:0;visibility:hidden;pointer-events:none;transition:.22s ease;z-index:99999!important;background:#fff;border:1px solid #e2e8f0;border-radius:22px;box-shadow:0 24px 70px rgba(15,23,42,.14)}
+.wpst-mega-enabled:hover>.sub-menu,.wpst-mega-enabled:hover>.wpst-elementor-mega-panel,.wpst-mega-enabled.is-wpst-mega-open>.sub-menu,.wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.wpst-mega-mode-columns>.sub-menu{display:grid!important;gap:10px 28px;padding:28px!important;min-width:760px}
+.wpst-mega-cols-2>.sub-menu{grid-template-columns:repeat(2,minmax(0,1fr))}
+.wpst-mega-cols-3>.sub-menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+.wpst-mega-cols-4>.sub-menu{grid-template-columns:repeat(4,minmax(0,1fr))}
+.wpst-mega-width-menu>.sub-menu,.wpst-mega-width-menu>.wpst-elementor-mega-panel{width:680px;max-width:calc(100vw - 32px)}
+.wpst-mega-width-wide>.sub-menu,.wpst-mega-width-wide>.wpst-elementor-mega-panel{width:min(1120px,calc(100vw - 40px))}
+.wpst-mega-width-full>.sub-menu,.wpst-mega-width-full>.wpst-elementor-mega-panel{width:calc(100vw - 30px);max-width:none}
+.wpst-mega-enabled>.sub-menu>li{list-style:none!important;margin:0!important;padding:0!important}.wpst-mega-enabled>.sub-menu>li>a{display:block;padding:11px 12px;border-radius:12px;color:#0f172a!important;text-decoration:none;font-weight:700}.wpst-mega-enabled>.sub-menu>li>a:hover{background:#f8fafc}.wpst-mega-enabled>.sub-menu .sub-menu{position:static!important;display:block!important;opacity:1!important;visibility:visible!important;transform:none!important;box-shadow:none!important;border:0!important;padding:4px 0 0!important;min-width:0!important;background:transparent!important}.wpst-mega-enabled>.sub-menu .sub-menu a{display:block;padding:7px 12px;color:#64748b!important;font-weight:500}.wpst-mega-promo{grid-column:1/-1;padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,#eff6ff,#eef2ff);margin-top:8px}.wpst-mega-promo strong{display:block;color:#0f172a;font-size:16px}.wpst-mega-promo span{display:block;color:#64748b;font-size:13px;margin-top:4px}
+.wpst-elementor-mega-panel{padding:0!important;overflow:hidden}.wpst-elementor-mega-panel>.elementor{width:100%}.wpst-mega-mode-elementor>.sub-menu{display:none!important}
+@media(max-width:900px){
+ .wpst-mega-enabled{position:relative!important}
+ .wpst-mega-enabled>.sub-menu,.wpst-mega-enabled>.wpst-elementor-mega-panel{position:static!important;left:auto!important;top:auto!important;width:auto!important;max-width:none!important;min-width:0!important;transform:none!important;box-shadow:none!important;border-radius:14px;display:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;margin-top:6px}
+ .wpst-mega-enabled.is-wpst-mega-open>.sub-menu,.wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{display:block!important}
+ .wpst-mega-mode-columns.is-wpst-mega-open>.sub-menu{display:grid!important;grid-template-columns:1fr!important;padding:10px!important}
+}
+
+/* v2.0.1: sticky-header safe mega menu positioning */
+@media(min-width:901px){
+ .wpst-mega-enabled>.sub-menu,
+ .wpst-mega-enabled>.wpst-elementor-mega-panel{
+   position:fixed!important;
+   top:var(--wpst-mega-top,70px)!important;
+   left:var(--wpst-mega-left,50%)!important;
+   max-height:calc(100vh - var(--wpst-mega-top,70px) - 18px);
+   overflow:auto;
+   overscroll-behavior:contain;
+   transform:translateX(-50%) translateY(8px)!important;
+ }
+ .wpst-mega-enabled:hover>.sub-menu,
+ .wpst-mega-enabled:hover>.wpst-elementor-mega-panel,
+ .wpst-mega-enabled.is-wpst-mega-open>.sub-menu,
+ .wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{
+   transform:translateX(-50%) translateY(0)!important;
+ }
+ .wpst-mega-enabled.is-wpst-mega-open>.sub-menu,
+ .wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{
+   opacity:1;visibility:visible;pointer-events:auto
+ }
+}
+
+/* WPSoft Mega Menu v2 */
+.wpst-menu-item-icon{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:7px;color:#2563eb;vertical-align:middle}
+.wpst-menu-item-icon svg{width:17px;height:17px;fill:currentColor}
+.wpst-menu-item-label{vertical-align:middle}
+.wpst-menu-badge{display:inline-flex;margin-left:7px;padding:3px 6px;border-radius:999px;background:var(--wpst-badge-color,#2563eb);color:#fff;font-size:8px;font-weight:900;letter-spacing:.04em;vertical-align:middle}
+.wpst-menu-item-description{display:block;padding:0 12px 7px;color:#94a3b8;font-size:11px;line-height:1.4}
+.wpst-menu-item-image{display:block;margin:8px 10px 10px;border-radius:12px;overflow:hidden}
+.wpst-menu-item-image img{display:block;width:100%;height:110px;object-fit:cover}
+.wpst-mega-column-title>a,.wpst-mega-column-title>span>a{font-size:11px!important;text-transform:uppercase;letter-spacing:.08em;color:#64748b!important;font-weight:900!important;background:transparent!important}
+.wpst-mega-column-title+.wpst-menu-item-description{font-size:10px}
+.wpst-mega-shadow-none>.sub-menu,.wpst-mega-shadow-none>.wpst-elementor-mega-panel{box-shadow:none!important}
+.wpst-mega-shadow-soft>.sub-menu,.wpst-mega-shadow-soft>.wpst-elementor-mega-panel{box-shadow:0 20px 55px rgba(15,23,42,.10)!important}
+.wpst-mega-shadow-medium>.sub-menu,.wpst-mega-shadow-medium>.wpst-elementor-mega-panel{box-shadow:0 24px 65px rgba(15,23,42,.15)!important}
+.wpst-mega-shadow-strong>.sub-menu,.wpst-mega-shadow-strong>.wpst-elementor-mega-panel{box-shadow:0 30px 80px rgba(15,23,42,.22)!important}
+
+/* Mobile v2 */
+@media(max-width:900px){
+  .wpst-mega-mobile-accordion>.sub-menu{
+    padding-left:8px!important;
+  }
+  .wpst-mega-enabled>.sub-menu .wpst-menu-item-image img{
+    height:90px;
+  }
+  .wpst-menu-badge{font-size:7px}
+}
+
+/* WPSoft Mega Menu v3 · UX refresh */
+@media(min-width:901px){
+ .wpst-mega-enabled>.sub-menu,.wpst-mega-enabled>.wpst-elementor-mega-panel{
+   border-color:rgba(148,163,184,.22);
+   scrollbar-width:thin;
+   scrollbar-color:#cbd5e1 transparent;
+ }
+ .wpst-mega-mode-columns>.sub-menu{
+   gap:12px 18px;
+ }
+ .wpst-mega-density-compact>.sub-menu{padding:18px!important}
+ .wpst-mega-density-comfortable>.sub-menu{padding:24px!important}
+}
+.wpst-mega-enabled>.sub-menu>li{
+  min-width:0;
+}
+.wpst-mega-items-cards>.sub-menu>li:not(.wpst-mega-promo)>a{
+  position:relative;
+  display:flex!important;
+  align-items:flex-start;
+  min-height:58px;
+  padding:10px 11px!important;
+  border:1px solid transparent;
+  border-radius:13px;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+.wpst-mega-items-cards>.sub-menu>li:not(.wpst-mega-promo)>a:hover,
+.wpst-mega-items-cards>.sub-menu>li:not(.wpst-mega-promo)>a:focus-visible{
+  background:#f8fafc;
+  border-color:#e2e8f0;
+  transform:translateY(-1px);
+}
+.wpst-mega-items-list>.sub-menu>li:not(.wpst-mega-promo)>a{
+  border-radius:9px;
+  padding:9px 8px!important;
+}
+.wpst-mega-items-list>.sub-menu>li:not(.wpst-mega-promo)>a:hover{
+  background:#f8fafc;
+}
+.wpst-mega-items-compact>.sub-menu>li:not(.wpst-mega-promo)>a{
+  min-height:0;
+  padding:6px 7px!important;
+  font-size:12px;
+}
+.wpst-mega-items-compact .wpst-menu-item-description{display:none}
+.wpst-mega-items-cards .wpst-menu-item-icon{
+  flex:0 0 auto;
+  width:34px;height:34px;margin:-2px 10px 0 0;
+  border-radius:10px;
+  background:#eff6ff;
+}
+.wpst-mega-items-cards .wpst-menu-item-icon svg{width:16px;height:16px}
+.wpst-menu-item-label{line-height:1.3}
+.wpst-mega-enabled>.sub-menu>li>a:after{
+  content:"→";
+  margin-left:auto;
+  padding-left:8px;
+  color:#94a3b8;
+  font-size:12px;
+  opacity:0;
+  transform:translateX(-4px);
+  transition:.18s;
+}
+.wpst-mega-items-cards>.sub-menu>li>a:hover:after,
+.wpst-mega-items-list>.sub-menu>li>a:hover:after{opacity:1;transform:none}
+.wpst-menu-item-description{
+  margin-top:-3px;
+  padding:0 10px 7px 54px;
+  color:#94a3b8;
+  font-size:10px;
+}
+.wpst-mega-items-list .wpst-menu-item-description{padding-left:8px}
+.wpst-mega-column-title{
+  margin-top:4px;
+  padding:0 4px 5px;
+}
+.wpst-mega-column-title>a,.wpst-mega-column-title>span>a{
+  padding:4px!important;
+  min-height:0!important;
+}
+.wpst-mega-promo{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:18px;
+  padding:18px 20px!important;
+  border:1px solid #dbeafe;
+  background:linear-gradient(135deg,#eff6ff,#f5f3ff)!important;
+  overflow:hidden;
+}
+.wpst-mega-promo:before{
+  content:"";
+  position:absolute;
+  width:160px;height:160px;
+  right:-65px;top:-80px;
+  border-radius:50%;
+  background:rgba(124,58,237,.08);
+}
+.wpst-mega-promo-copy{position:relative;z-index:1}
+.wpst-mega-promo strong{font-size:14px!important}
+.wpst-mega-promo span{font-size:11px!important;line-height:1.55}
+.wpst-mega-promo a{
+  position:relative;z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:9px 12px;
+  border-radius:10px;
+  background:#0f172a;
+  color:#fff!important;
+  text-decoration:none;
+  font-size:10px;
+  font-weight:850;
+}
+.wpst-mega-mobile-toggle{display:none}
+.wpst-mega-enabled>a[data-wpst-mega="1"]{position:relative}
+.wpst-mega-enabled>a[data-wpst-mega="1"]:focus-visible{
+  outline:2px solid #2563eb;
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* Elementor Mega widgets */
+.wpst-ew-mega-links>h4{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#64748b}
+.wpst-mega-links-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.wpst-ew-mega-links.cols-1 .wpst-mega-links-grid{grid-template-columns:1fr}
+.wpst-ew-mega-links.cols-3 .wpst-mega-links-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.wpst-ew-mega-links a{position:relative;display:flex;align-items:flex-start;gap:10px;min-width:0;padding:10px;border-radius:13px;color:#0f172a;text-decoration:none;transition:.18s}
+.wpst-ew-mega-links.is-cards a{border:1px solid #edf2f7;background:#fff}
+.wpst-ew-mega-links.is-cards a:hover{border-color:#dbeafe;background:#f8fbff;transform:translateY(-1px)}
+.wpst-ew-mega-links.is-list a:hover,.wpst-ew-mega-links.is-compact a:hover{background:#f8fafc}
+.wpst-ew-mega-links.is-compact a{padding:6px 7px}
+.wpst-ew-mega-links a>i{flex:0 0 auto;width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#eef2ff;color:#4f46e5;font-style:normal;font-weight:900}
+.wpst-ew-mega-links.is-compact a>i{width:26px;height:26px;border-radius:8px;font-size:10px}
+.wpst-ew-mega-links a>span{min-width:0;flex:1}.wpst-ew-mega-links a strong,.wpst-ew-mega-links a em{display:block}.wpst-ew-mega-links a strong{font-size:12px}.wpst-ew-mega-links a em{margin-top:3px;color:#94a3b8;font-size:9px;font-style:normal;line-height:1.4}.wpst-ew-mega-links.is-compact a em{display:none}
+.wpst-ew-mega-links a>small{padding:3px 6px;border-radius:999px;background:#eff6ff;color:#2563eb;font-size:7px;font-weight:900}.wpst-ew-mega-links a>b{align-self:center;color:#94a3b8;font-size:10px;opacity:0;transition:.18s}.wpst-ew-mega-links a:hover>b{opacity:1}
+.wpst-ew-mega-promo{position:relative;min-height:220px;border-radius:18px;overflow:hidden;background:#0f172a;color:#fff}
+.wpst-ew-mega-promo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wpst-mega-promo-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,.08),rgba(2,6,23,.86))}
+.wpst-mega-promo-copy{position:absolute;z-index:2;left:18px;right:18px;bottom:18px}.wpst-mega-promo-copy small{font-size:8px;font-weight:900;letter-spacing:.1em;color:#bfdbfe}.wpst-mega-promo-copy h3{margin:5px 0 5px;font-size:20px;color:#fff}.wpst-mega-promo-copy p{margin:0 0 12px;color:#cbd5e1;font-size:10px;line-height:1.5}.wpst-mega-promo-copy a{display:inline-flex;gap:6px;color:#fff;text-decoration:none;font-size:9px;font-weight:850;border-bottom:1px solid rgba(255,255,255,.65);padding-bottom:3px}
+
+@media(max-width:900px){
+ .wpst-mega-enabled{padding-right:38px!important}
+ .wpst-mega-mobile-toggle{
+   position:absolute;
+   display:grid;
+   place-items:center;
+   right:4px;top:4px;
+   width:34px;height:34px;
+   border:0;
+   border-radius:9px;
+   background:#f1f5f9;
+   color:#334155;
+   cursor:pointer;
+   z-index:4;
+ }
+ .wpst-mega-mobile-toggle:after{content:"⌄";font-size:17px;line-height:1;transition:transform .2s}
+ .wpst-mega-enabled.is-wpst-mega-open>.wpst-mega-mobile-toggle:after{transform:rotate(180deg)}
+ .wpst-mega-enabled>.sub-menu,.wpst-mega-enabled>.wpst-elementor-mega-panel{
+   border:1px solid #e2e8f0!important;
+   background:#fff!important;
+ }
+ .wpst-mega-items-cards>.sub-menu>li:not(.wpst-mega-promo)>a{min-height:0}
+ .wpst-mega-promo{grid-template-columns:1fr;padding:14px!important}
+ .wpst-mega-promo a{justify-self:start}
+ .wpst-mega-links-grid,.wpst-ew-mega-links.cols-2 .wpst-mega-links-grid,.wpst-ew-mega-links.cols-3 .wpst-mega-links-grid{grid-template-columns:1fr}
+}
+
+/* v3.1.10: Mega Menu is intentionally desktop-only */
+@media(max-width:900px){
+  .wpst-mega-enabled>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled>.wpst-mega-mobile-toggle{
+    display:none!important;
+  }
+  .wpst-mega-enabled{
+    padding-right:0!important;
+  }
+}
+
+/* v3.1.12 Essentials-inspired Mega Menu templates */
+.wpst-ew-mega-quicknav{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  padding:3px 3px 12px;
+  border-bottom:1px solid #edf2f7;
+}
+.wpst-ew-mega-quicknav a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:34px;
+  padding:0 10px;
+  border:1px solid #e8edf3;
+  border-radius:999px;
+  background:#fff;
+  color:#475569;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:800;
+  transition:.18s;
+}
+.wpst-ew-mega-quicknav a i{
+  display:grid;
+  place-items:center;
+  width:21px;height:21px;
+  border-radius:50%;
+  background:#f1f5f9;
+  color:#2563eb;
+  font-style:normal;
+  font-size:9px;
+}
+.wpst-ew-mega-quicknav a:hover{
+  border-color:#bfdbfe;
+  background:#eff6ff;
+  color:#1d4ed8;
+  transform:translateY(-1px);
+}
+.wpst-ew-mega-banner{
+  position:relative;
+  min-height:260px;
+  height:100%;
+  border-radius:16px;
+  overflow:hidden;
+  background:#0f172a;
+  color:#fff;
+}
+.wpst-ew-mega-banner>img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.wpst-mb-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(2,6,23,.04),rgba(2,6,23,.88));
+}
+.wpst-mb-play{
+  position:absolute;
+  z-index:3;
+  right:14px;
+  top:14px;
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  color:#0f172a!important;
+  text-decoration:none;
+  font-size:11px;
+  box-shadow:0 8px 24px rgba(2,6,23,.18);
+}
+.wpst-mb-copy{
+  position:absolute;
+  z-index:2;
+  left:18px;
+  right:18px;
+  bottom:17px;
+}
+.wpst-mb-copy small{
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.11em;
+  color:#bfdbfe;
+}
+.wpst-mb-copy h3{
+  margin:5px 0 6px;
+  color:#fff;
+  font-size:21px;
+  line-height:1.1;
+}
+.wpst-mb-copy p{
+  margin:0 0 11px;
+  color:#dbeafe;
+  font-size:9px;
+  line-height:1.55;
+}
+.wpst-mb-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:#fff!important;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:850;
+  border-bottom:1px solid rgba(255,255,255,.65);
+  padding-bottom:3px;
+}
+.wpst-elementor-mega-panel{
+  border-radius:18px!important;
+  overflow:hidden;
+}
+.wpst-elementor-mega-panel>.elementor{
+  background:#fff;
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-cards a{
+  background:#fff;
+  border-color:#edf2f7;
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-cards a:hover{
+  background:#f8fbff;
+  border-color:#dbeafe;
+}
+@media(max-width:900px){
+  .wpst-ew-mega-quicknav{display:none!important}
+}
+
+/* v3.1.13 WPSoft Templates Mega Menu premium alignment */
+.wpst-elementor-mega-panel .e-con{min-width:0}
+.wpst-elementor-mega-panel .wpst-ew-mega-quicknav{margin-bottom:2px}
+.wpst-elementor-mega-panel .wpst-ew-mega-links>h4{
+  margin-bottom:12px;color:#64748b;font-size:9px;font-weight:900;letter-spacing:.09em
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-cards .wpst-mega-links-grid{gap:7px}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-cards a{
+  min-height:62px;padding:11px;border-radius:13px
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-cards a>i{
+  width:36px;height:36px;border-radius:11px
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links a strong{font-size:11px;letter-spacing:-.01em}
+.wpst-elementor-mega-panel .wpst-ew-mega-links a em{
+  max-width:220px;font-size:8.5px;line-height:1.45
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-banner{min-height:280px;border-radius:16px}
+.wpst-elementor-mega-panel .wpst-mb-copy h3{max-width:220px;font-size:22px}
+.wpst-elementor-mega-panel .wpst-mb-copy p{max-width:230px}
+@media(min-width:901px){
+  .wpst-elementor-mega-panel{box-shadow:0 22px 55px rgba(15,23,42,.13)!important}
+}
+
+/* v3.1.16 desktop Mega Menu transition refinement */
+@media(min-width:901px){
+  .wpst-mega-enabled>.sub-menu,
+  .wpst-mega-enabled>.wpst-elementor-mega-panel{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateX(-50%) translateY(10px) scale(.992)!important;
+    transform-origin:top center!important;
+    transition:
+      opacity .18s ease,
+      transform .24s cubic-bezier(.2,.75,.25,1),
+      visibility .18s ease!important;
+  }
+  .wpst-mega-enabled:hover>.sub-menu,
+  .wpst-mega-enabled:hover>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled:focus-within>.sub-menu,
+  .wpst-mega-enabled:focus-within>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled.is-wpst-mega-open>.sub-menu,
+  .wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:translateX(-50%) translateY(0) scale(1)!important;
+  }
+}
+
+/* v3.1.28 Mega Menu v3 */
+.wpst-mega-dynamic-panel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:min(1120px,calc(100vw - 40px));padding:18px}
+.wpst-mega-dynamic-card{display:flex;align-items:center;gap:12px;min-height:82px;padding:10px;border:1px solid #e2e8f0;border-radius:14px;background:#fff;color:#0f172a;text-decoration:none;transition:.18s}
+.wpst-mega-dynamic-card:hover{transform:translateY(-2px);border-color:#bfdbfe;box-shadow:0 12px 25px rgba(15,23,42,.07)}
+.wpst-mega-dynamic-image{flex:0 0 62px;width:62px;height:62px;overflow:hidden;border-radius:10px}.wpst-mega-dynamic-image img{width:100%;height:100%;object-fit:cover}
+.wpst-mega-dynamic-card div{min-width:0}.wpst-mega-dynamic-card small,.wpst-mega-dynamic-card strong{display:block}.wpst-mega-dynamic-card small{color:#94a3b8;font-size:10px}.wpst-mega-dynamic-card strong{margin-top:4px;line-height:1.3}
+.wpst-mega-dynamic-icon{flex:0 0 42px;height:42px;display:grid;place-items:center;border-radius:11px;background:#eff6ff;color:#2563eb;font-weight:900}
+.wpst-mega-layout-list .wpst-mega-dynamic-panel{grid-template-columns:repeat(2,minmax(0,1fr))}
+.wpst-mega-layout-tabs .wpst-mega-dynamic-panel{grid-template-columns:repeat(3,minmax(0,1fr));background:linear-gradient(180deg,#fff,#f8fafc)}
+.wpst-mega-panel-sticky>.sub-menu,.wpst-mega-panel-sticky>.wpst-elementor-mega-panel,.wpst-mega-panel-sticky>.wpst-mega-dynamic-panel{position:fixed!important;max-height:calc(100vh - var(--wpst-mega-top,70px) - 18px);overflow:auto}
+.wpst-mega-mode-dynamic>.sub-menu{display:none!important}
+@media(max-width:900px){.wpst-mega-dynamic-panel{display:none!important}}
+
+
+/* WPSoft Mega Menu 2.0 · v3.1.61 */
+@media(min-width:901px){
+ .wpst-mega-cols-5>.sub-menu{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .wpst-mega-cols-6>.sub-menu{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .wpst-mega-animation-fade>.sub-menu,.wpst-mega-animation-fade>.wpst-elementor-mega-panel,.wpst-mega-animation-fade>.wpst-mega-dynamic-panel{transform:translateX(-50%)!important;transition:opacity .18s ease,visibility .18s ease!important}
+ .wpst-mega-animation-slide>.sub-menu,.wpst-mega-animation-slide>.wpst-elementor-mega-panel,.wpst-mega-animation-slide>.wpst-mega-dynamic-panel{transform:translateX(-50%) translateY(10px)!important;transition:opacity .2s ease,visibility .2s ease,transform .2s ease!important}
+ .wpst-mega-animation-slide:hover>.sub-menu,.wpst-mega-animation-slide:hover>.wpst-elementor-mega-panel,.wpst-mega-animation-slide.is-wpst-mega-open>.sub-menu,.wpst-mega-animation-slide.is-wpst-mega-open>.wpst-elementor-mega-panel,.wpst-mega-animation-slide.is-wpst-mega-open>.wpst-mega-dynamic-panel{transform:translateX(-50%) translateY(0)!important}
+ .wpst-mega-animation-scale>.sub-menu,.wpst-mega-animation-scale>.wpst-elementor-mega-panel,.wpst-mega-animation-scale>.wpst-mega-dynamic-panel{transform:translateX(-50%) scale(.975)!important;transform-origin:50% 0;transition:opacity .18s ease,visibility .18s ease,transform .18s ease!important}
+ .wpst-mega-animation-scale:hover>.sub-menu,.wpst-mega-animation-scale:hover>.wpst-elementor-mega-panel,.wpst-mega-animation-scale.is-wpst-mega-open>.sub-menu,.wpst-mega-animation-scale.is-wpst-mega-open>.wpst-elementor-mega-panel,.wpst-mega-animation-scale.is-wpst-mega-open>.wpst-mega-dynamic-panel{transform:translateX(-50%) scale(1)!important}
+ .wpst-mega-animation-none>.sub-menu,.wpst-mega-animation-none>.wpst-elementor-mega-panel,.wpst-mega-animation-none>.wpst-mega-dynamic-panel{transition:none!important;transform:translateX(-50%)!important}
+}
+
+
+/* v3.1.62 · Mega preset polish */
+@media(min-width:901px){
+ .wpst-mega-cols-5>.sub-menu{grid-template-columns:repeat(5,minmax(0,1fr))}
+ .wpst-mega-cols-6>.sub-menu{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .wpst-mega-align-left>.sub-menu,.wpst-mega-align-left>.wpst-elementor-mega-panel{--wpst-mega-shift:0%}
+ .wpst-mega-align-center>.sub-menu,.wpst-mega-align-center>.wpst-elementor-mega-panel{--wpst-mega-shift:-50%}
+ .wpst-mega-align-right>.sub-menu,.wpst-mega-align-right>.wpst-elementor-mega-panel{--wpst-mega-shift:-100%}
+ .wpst-mega-animation-fade>.sub-menu,.wpst-mega-animation-fade>.wpst-elementor-mega-panel{transform:translateX(-50%)!important}
+ .wpst-mega-animation-slide>.sub-menu,.wpst-mega-animation-slide>.wpst-elementor-mega-panel{transform:translateX(-50%) translateY(14px)!important}
+ .wpst-mega-animation-scale>.sub-menu,.wpst-mega-animation-scale>.wpst-elementor-mega-panel{transform:translateX(-50%) scale(.975)!important;transform-origin:top center}
+ .wpst-mega-animation-none>.sub-menu,.wpst-mega-animation-none>.wpst-elementor-mega-panel{transition:none!important}
+ .wpst-mega-enabled:hover>.sub-menu,.wpst-mega-enabled:hover>.wpst-elementor-mega-panel,.wpst-mega-enabled.is-wpst-mega-open>.sub-menu,.wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel{transform:translateX(-50%) translateY(0) scale(1)!important}
+}
+
+
+/* ==========================================================
+   v3.2.46 — Transparent Header Compatibility
+   The mega menu is a separate readable surface, even when the header is transparent.
+   ========================================================== */
+@media(min-width:901px){
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu{
+    background:#fff!important;
+    color:#0f172a!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu>li>a,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu .wpst-menu-item-label{
+    color:#0f172a!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu .wpst-menu-item-description{
+    color:#64748b!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu .wpst-mega-column-title>a,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu .wpst-mega-column-title>span>a{
+    color:#64748b!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-mega-enabled>.sub-menu .sub-menu a{
+    color:#64748b!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-elementor-mega-panel{
+    background:#fff;
+    color:#0f172a!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.82 · Mega Menu Compositions 2.0
+   Each template family intentionally uses a different information architecture.
+   ========================================================== */
+.wpst-elementor-mega-panel .wpst-mega-composition{width:100%;min-width:0}
+.wpst-elementor-mega-panel .wpst-mega-composition .wpst-ew-mega-links a>i svg{width:16px;height:16px;stroke-width:1.8}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-editorial a{
+  padding:12px 0;border-radius:0;border-bottom:1px solid #e5e7eb;background:transparent
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-editorial a>i{background:transparent;width:26px;height:26px}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-icon-list a{
+  display:grid;grid-template-columns:32px minmax(0,1fr);padding:8px 0;border-radius:0;background:transparent
+}
+.wpst-elementor-mega-panel .wpst-ew-mega-links.is-icon-list a>i{width:32px;height:32px}
+.wpst-mega-links-desc-no .wpst-ew-mega-links a em{display:none}
+.wpst-mega-links-badge-no .wpst-ew-mega-links a>small{display:none}
+
+/* Corporate Editorial */
+.wpst-elementor-mega-panel .wpst-mega-corporate{
+  border-top:3px solid #111827
+}
+.wpst-elementor-mega-panel .wpst-mega-corporate .wpst-ew-heading h2{
+  max-width:520px;font-size:clamp(28px,3vw,42px);letter-spacing:-.04em
+}
+.wpst-elementor-mega-panel .wpst-mega-corporate .wpst-ew-mega-links.is-list a{
+  padding-left:0;padding-right:0;border-radius:0;border-bottom:1px solid #eef2f6
+}
+.wpst-elementor-mega-panel .wpst-mega-corporate .wpst-ew-mega-quicknav{
+  border-top:1px solid #eef2f6;border-bottom:0;padding-top:12px;padding-bottom:0
+}
+
+/* Services Matrix */
+.wpst-elementor-mega-panel .wpst-mega-services .wpst-ew-info-strip{
+  border-radius:14px;background:#fff;border-color:#e5e7eb
+}
+.wpst-elementor-mega-panel .wpst-mega-services .wpst-link-grid>a{
+  min-height:122px;align-content:end;border-radius:16px
+}
+.wpst-elementor-mega-panel .wpst-mega-services .wpst-link-grid>a:hover{
+  transform:translateY(-3px)
+}
+
+/* Shop Product Showcase */
+.wpst-elementor-mega-panel .wpst-mega-shop .wpst-ew-mega-promo{min-height:310px}
+.wpst-elementor-mega-panel .wpst-mega-shop .wpst-ew-mega-quicknav{
+  display:grid!important;grid-template-columns:1fr!important;border:0;padding:0
+}
+.wpst-elementor-mega-panel .wpst-mega-shop .wpst-ew-mega-quicknav a{
+  width:100%;justify-content:flex-start;border-radius:12px;min-height:52px;padding:8px 10px
+}
+.wpst-elementor-mega-panel .wpst-mega-shop .wpst-ew-mega-links.is-compact a{
+  border-bottom:1px solid #eef2f6;border-radius:0
+}
+
+/* Travel Visual */
+.wpst-elementor-mega-panel .wpst-mega-travel .wpst-ew-mega-banner{
+  min-height:360px;border-radius:20px
+}
+.wpst-elementor-mega-panel .wpst-mega-travel .wpst-mb-copy{
+  left:26px;right:26px;bottom:24px
+}
+.wpst-elementor-mega-panel .wpst-mega-travel .wpst-mb-copy h3{
+  max-width:420px;font-size:30px
+}
+.wpst-elementor-mega-panel .wpst-mega-travel .wpst-ew-mega-quicknav{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));border:0;padding:0
+}
+.wpst-elementor-mega-panel .wpst-mega-travel .wpst-ew-mega-quicknav a{
+  min-height:58px;border-radius:14px
+}
+
+/* Food Menu Board */
+.wpst-elementor-mega-panel .wpst-mega-food .wpst-price-list article{
+  padding:12px 0;border-color:#ded8cc
+}
+.wpst-elementor-mega-panel .wpst-mega-food .wpst-story-cards{
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+.wpst-elementor-mega-panel .wpst-mega-food .wpst-story-card:nth-child(n+3){display:none}
+.wpst-elementor-mega-panel .wpst-mega-food .wpst-story-media{aspect-ratio:3/2}
+.wpst-elementor-mega-panel .wpst-mega-food .wpst-ew-cta{
+  border-top:1px solid #ded8cc;border-radius:0;background:transparent;box-shadow:none
+}
+
+/* SaaS Resource Hub */
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-content-finder-row{
+  box-shadow:none;border-radius:14px
+}
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-ew-mega-promo{
+  min-height:250px;background:#eef2ff;color:#111827
+}
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-mega-promo-shade{display:none}
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-mega-promo-copy{
+  position:relative;left:auto;right:auto;bottom:auto;padding:22px
+}
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-mega-promo-copy h3{color:#111827}
+.wpst-elementor-mega-panel .wpst-mega-software .wpst-mega-promo-copy p{color:#64748b}
+
+/* Creative Portfolio Canvas */
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-banner{
+  min-height:390px;border-radius:18px
+}
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links>h4,
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links a strong{color:#fff}
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links a em{color:#94a3b8}
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links a{
+  background:transparent;border-bottom:1px solid rgba(255,255,255,.09);border-radius:0
+}
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links a:hover{
+  background:rgba(255,255,255,.05)
+}
+.wpst-elementor-mega-panel .wpst-mega-creative .wpst-ew-mega-links a>i{
+  background:rgba(255,255,255,.08);color:#c4b5fd
+}
+
+/* Minimal Corporate Index */
+.wpst-elementor-mega-panel .wpst-mega-minimal{
+  box-shadow:none
+}
+.wpst-elementor-mega-panel .wpst-mega-minimal .wpst-ew-mega-links>h4{
+  color:#111827;font-size:10px;border-bottom:1px solid #111827;padding-bottom:8px
+}
+.wpst-elementor-mega-panel .wpst-mega-minimal .wpst-ew-mega-links a{
+  padding:9px 0;border-radius:0;background:transparent;border:0
+}
+.wpst-elementor-mega-panel .wpst-mega-minimal .wpst-ew-mega-links a>i{
+  display:none
+}
+.wpst-elementor-mega-panel .wpst-mega-minimal .wpst-ew-mega-links a>b{
+  opacity:1
+}
+
+@media(max-width:900px){
+  .wpst-elementor-mega-panel .wpst-mega-travel .wpst-ew-mega-quicknav,
+  .wpst-elementor-mega-panel .wpst-mega-food .wpst-story-cards{
+    grid-template-columns:1fr
+  }
+}
+
+
+/* ==========================================================
+   Sticky Header + Mega Menu geometry fix
+   Mega panel follows the visible sticky header bottom exactly.
+   ========================================================== */
+@media(min-width:901px){
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.sub-menu,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.wpst-mega-dynamic-panel,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.sub-menu,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-mega-dynamic-panel{
+    position:fixed!important;
+    top:var(--wpst-mega-top,64px)!important;
+    left:var(--wpst-mega-left,50%)!important;
+    margin-top:0!important;
+    max-height:var(--wpst-mega-available-height,calc(100vh - var(--wpst-mega-top,64px) - 12px))!important;
+    overscroll-behavior:contain;
+    z-index:100020!important;
+  }
+
+  /* Sticky panel is an independent viewport surface; header row transforms
+     and boxed/floating padding must not offset it. */
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-dynamic-panel{
+    transform-origin:top center!important;
+  }
+
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.wpst-mega-dynamic-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.sub-menu{
+    transform:translateX(-50%) translateY(0)!important;
+  }
+}
+
+
+/* Sticky mega menu gap/alignment correction */
+@media(min-width:901px){
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.sub-menu,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled>.wpst-mega-dynamic-panel,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.sub-menu,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-scrolled .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-mega-dynamic-panel{
+    margin-top:0!important;
+  }
+
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.sub-menu,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.wpst-elementor-mega-panel,
+  .wpsoft-site-header.is-wpst-sticky-active .wpst-mega-enabled.is-wpst-mega-open>.wpst-mega-dynamic-panel{
+    transform:translateX(-50%) translateY(0)!important;
+  }
+}
+
+
+/* ==========================================================
+   Live Builder + Elementor sticky mega menu final geometry
+   ========================================================== */
+@media(min-width:901px){
+  /* Sticky panels must visually touch the actual header row. */
+  .wpst-mega-enabled.is-wpst-mega-sticky-context>.sub-menu,
+  .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled.is-wpst-mega-sticky-context>.wpst-mega-dynamic-panel{
+    margin-top:0!important;
+    top:var(--wpst-mega-top,64px)!important;
+    left:var(--wpst-mega-left,50%)!important;
+    max-height:var(--wpst-mega-available-height,calc(100vh - var(--wpst-mega-top,64px) - 8px))!important;
+  }
+
+  .wpst-mega-enabled.is-wpst-mega-sticky-context.is-wpst-mega-open>.sub-menu,
+  .wpst-mega-enabled.is-wpst-mega-sticky-context.is-wpst-mega-open>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled.is-wpst-mega-sticky-context.is-wpst-mega-open>.wpst-mega-dynamic-panel{
+    transform:translateX(-50%) translateY(0)!important;
+  }
+
+  /* Live Builder floating/boxed rows can carry their own transforms/padding.
+     JS compensates the viewport delta; do not add another CSS offset here. */
+  .wpst-mega-enabled.is-wpst-mega-live-context>.sub-menu,
+  .wpst-mega-enabled.is-wpst-mega-live-context>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled.is-wpst-mega-live-context>.wpst-mega-dynamic-panel{
+    margin-inline:0!important;
+  }
+
+  /* Elementor Navigation can be inside nested e-con containers. Its panel must
+     remain independent from widget/container alignment values. */
+  .wpst-mega-enabled.is-wpst-mega-elementor-context>.sub-menu,
+  .wpst-mega-enabled.is-wpst-mega-elementor-context>.wpst-elementor-mega-panel,
+  .wpst-mega-enabled.is-wpst-mega-elementor-context>.wpst-mega-dynamic-panel{
+    margin-inline:0!important;
+  }
+}

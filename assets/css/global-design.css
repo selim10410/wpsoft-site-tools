@@ -1,0 +1,458 @@
+/* WPSoft Global Design System v2.3 */
+:root{
+  --wpst-primary:#2563eb;
+  --wpst-secondary:#7c3aed;
+  --wpst-heading:#0f172a;
+  --wpst-text:#334155;
+  --wpst-muted:#64748b;
+  --wpst-surface:#ffffff;
+  --wpst-soft:#f8fafc;
+  --wpst-border:#e2e8f0;
+  --wpst-container:1200px;
+  --wpst-section-space:80px;
+  --wpst-section-space-tablet:60px;
+  --wpst-section-space-mobile:40px;
+  --wpst-gap:24px;
+  --wpst-card-radius:20px;
+  --wpst-button-radius-global:12px;
+  --wpst-button-height:48px;
+  --wpst-shadow:0 10px 32px rgba(15,23,42,.07);
+  --wpst-motion:.28s;
+}
+
+/* Default WPSoft design language. Elementor/widget-specific style controls can override these. */
+[class*="wpst-ew-"]{box-sizing:border-box}
+.wpst-ew-title,
+.wpst-ew-heading h1,.wpst-ew-heading h2,.wpst-ew-heading h3,
+.wpst-ew-card h3,.wpst-ew-iconbox h3,.wpst-ew-feature-items h3,
+.wpst-ew-icon-grid h3,.wpst-ew-icon-list h3,.wpst-ew-number-cards h3,
+.wpst-ew-contact-cards strong,.wpst-ew-gradient-heading h2{
+  color:var(--wpst-heading);
+}
+.wpst-ew-desc,.wpst-ew-card p,.wpst-ew-iconbox p,.wpst-ew-feature-items p,
+.wpst-ew-icon-grid p,.wpst-ew-icon-list p,.wpst-ew-number-cards p,
+.wpst-ew-gradient-heading p{
+  color:var(--wpst-muted);
+}
+
+.wpst-ew-button,
+.wpst-ew-hero-slide a,
+.wpst-ew-info-strip>a{
+  min-height:var(--wpst-button-height);
+  border-radius:var(--wpst-button-radius-global);
+  background:var(--wpst-primary);
+  transition:transform var(--wpst-motion) ease,box-shadow var(--wpst-motion) ease,background var(--wpst-motion) ease;
+}
+
+.wpst-ew-card,
+.wpst-ew-icon-grid article,
+.wpst-ew-icon-list article,
+.wpst-ew-contact-cards article,
+.wpst-ew-feature-items article,
+.wpst-ew-number-cards article,
+.wpst-ew-reveal-cards article,
+.wpst-ew-animated-counter{
+  border-radius:var(--wpst-card-radius);
+  border-color:var(--wpst-border);
+  box-shadow:var(--wpst-shadow);
+}
+
+.wpst-ew-icon,
+.wpst-ew-icon-list-icon{
+  color:var(--wpst-primary);
+}
+.wpst-ew-card-kicker,
+.wpst-ew-feature-head small,
+.wpst-ew-template-type{
+  color:var(--wpst-primary);
+}
+
+.wpst-global-container{width:min(var(--wpst-container),calc(100% - 32px));margin-inline:auto}
+.wpst-global-section{padding-block:var(--wpst-section-space)}
+.wpst-global-grid{gap:var(--wpst-gap)}
+
+@media(max-width:1024px){.wpst-global-section{padding-block:var(--wpst-section-space-tablet)}}
+@media(max-width:767px){.wpst-global-section{padding-block:var(--wpst-section-space-mobile)}}
+
+@media(prefers-reduced-motion:reduce){
+  [class*="wpst-ew-"]{scroll-behavior:auto!important}
+  .wpst-ew-logo-marquee-track,.wpst-ew-marquee-text>div,.wpst-ew-orbit-ring{animation:none!important}
+}
+
+/* v2.4 shared widget responsive/motion standard */
+.elementor-widget[class*="wpst-hover-lift-"]>.elementor-widget-container{
+  transition:transform var(--wpst-motion,.28s) ease,box-shadow var(--wpst-motion,.28s) ease;
+}
+.elementor-widget.wpst-hover-lift-yes:hover>.elementor-widget-container{
+  transform:translateY(-5px);
+  box-shadow:var(--wpst-shadow);
+}
+.elementor-widget.wpst-motion-none>.elementor-widget-container{transition:none!important}
+.elementor-widget.wpst-motion-soft>.elementor-widget-container{transition-duration:.18s!important}
+.elementor-widget.wpst-motion-normal>.elementor-widget-container{transition-duration:.28s!important}
+.elementor-widget.wpst-motion-dynamic>.elementor-widget-container{transition-duration:.42s!important}
+
+@media(max-width:1024px){
+  .wpst-ew-icon-grid,
+  .wpst-ew-badge-grid,
+  .wpst-ew-stats-grid{gap:var(--wpst-gap,24px)}
+}
+@media(max-width:767px){
+  /* Grid column count is controlled by each widget's Elementor responsive control.
+     Global Design must never force these widgets to one column. */
+  .wpst-ew-feature-list{
+    grid-template-columns:1fr;
+    gap:var(--wpst-gap,24px);
+  }
+  .wpst-ew-info-strip{
+    align-items:flex-start;
+  }
+}
+
+/* WPSoft v3.1.1 - Global Typography & Button System */
+[class*="wpst-ew-"],
+.wpsoft-site-header,
+.wpsoft-site-footer{
+  font-family:var(--wpst-font-body,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif);
+  font-size:var(--wpst-font-size,16px);
+  line-height:var(--wpst-body-line,1.65);
+}
+
+[class*="wpst-ew-"] h1,
+[class*="wpst-ew-"] h2,
+[class*="wpst-ew-"] h3,
+[class*="wpst-ew-"] h4,
+.wpsoft-site-header h1,
+.wpsoft-site-header h2,
+.wpsoft-site-header h3,
+.wpsoft-site-header h4,
+.wpsoft-site-footer h1,
+.wpsoft-site-footer h2,
+.wpsoft-site-footer h3,
+.wpsoft-site-footer h4,
+.wpsoft-site-footer h5,
+.wpsoft-site-footer h6,
+[class*="wpst-ew-"] h5,
+[class*="wpst-ew-"] h6{
+  font-family:var(--wpst-font-heading,var(--wpst-font-body));
+  font-weight:var(--wpst-heading-weight,800);
+  line-height:var(--wpst-heading-line,1.1);
+  letter-spacing:var(--wpst-heading-letter,-.02em);
+}
+
+[class*="wpst-ew-"] h1{font-size:var(--wpst-h1,56px)}
+[class*="wpst-ew-"] h2{font-size:var(--wpst-h2,42px)}
+[class*="wpst-ew-"] h3{font-size:var(--wpst-h3,30px)}
+[class*="wpst-ew-"] h4{font-size:var(--wpst-h4,22px)}
+
+.wpst-ew-button,
+.wpst-ew-hero-slide a,
+.wpst-ew-info-strip>a,
+.wpst-q-button,
+.wpst-footer-cta a{
+  font-weight:var(--wpst-button-weight,800);
+  letter-spacing:var(--wpst-button-letter,0);
+  text-transform:var(--wpst-button-transform,none);
+}
+
+@media(max-width:767px){
+  [class*="wpst-ew-"] h1{font-size:clamp(32px,9vw,var(--wpst-h1,56px))}
+  [class*="wpst-ew-"] h2{font-size:clamp(27px,7.5vw,var(--wpst-h2,42px))}
+  [class*="wpst-ew-"] h3{font-size:clamp(22px,6vw,var(--wpst-h3,30px))}
+}
+
+/* WPSoft Design System 2.0 — v3.1.45 */
+:root{
+  --wpst-accent:#0ea5e9;
+  --wpst-success:#16a34a;
+  --wpst-warning:#f59e0b;
+  --wpst-danger:#dc2626;
+  --wpst-container-narrow:860px;
+  --wpst-container-wide:1440px;
+  --wpst-radius-sm:8px;
+  --wpst-radius-md:14px;
+  --wpst-radius-lg:20px;
+  --wpst-radius-xl:30px;
+  --wpst-h5:18px;
+  --wpst-h6:16px;
+  --wpst-button-bg:#2563eb;
+  --wpst-button-text:#fff;
+  --wpst-button-hover-bg:#1d4ed8;
+  --wpst-button-hover-text:#fff;
+  --wpst-button-secondary-bg:#fff;
+  --wpst-button-secondary-text:#0f172a;
+  --wpst-button-secondary-border:#cbd5e1;
+  --wpst-shadow-sm:0 4px 16px rgba(15,23,42,.06);
+  --wpst-shadow-md:0 14px 38px rgba(15,23,42,.10);
+  --wpst-shadow-lg:0 24px 70px rgba(15,23,42,.15);
+}
+[class*="wpst-ew-"] h5{font-size:var(--wpst-h5)}
+[class*="wpst-ew-"] h6{font-size:var(--wpst-h6)}
+.wpst-global-container.is-narrow{max-width:var(--wpst-container-narrow)}
+.wpst-global-container.is-wide{max-width:var(--wpst-container-wide)}
+.wpst-radius-sm{border-radius:var(--wpst-radius-sm)!important}
+.wpst-radius-md{border-radius:var(--wpst-radius-md)!important}
+.wpst-radius-lg{border-radius:var(--wpst-radius-lg)!important}
+.wpst-radius-xl{border-radius:var(--wpst-radius-xl)!important}
+.wpst-shadow-sm{box-shadow:var(--wpst-shadow-sm)!important}
+.wpst-shadow-md{box-shadow:var(--wpst-shadow-md)!important}
+.wpst-shadow-lg{box-shadow:var(--wpst-shadow-lg)!important}
+
+/* WPSoft default primary actions. Elementor-specific selectors are more specific and override these when customized. */
+.wpst-ew-button,
+.wpst-ew-hero-slide a,
+.wpst-ew-info-strip>a,
+.wpst-footer-cta a{
+  background:var(--wpst-button-bg);
+  color:var(--wpst-button-text);
+}
+.wpst-ew-button:hover,
+.wpst-ew-hero-slide a:hover,
+.wpst-ew-info-strip>a:hover,
+.wpst-footer-cta a:hover{
+  background:var(--wpst-button-hover-bg);
+  color:var(--wpst-button-hover-text);
+}
+.wpst-button-secondary{
+  background:var(--wpst-button-secondary-bg)!important;
+  color:var(--wpst-button-secondary-text)!important;
+  border:1px solid var(--wpst-button-secondary-border)!important;
+}
+
+@media(max-width:1024px){
+  [class*="wpst-ew-"] h1{font-size:var(--wpst-h1-tablet,46px)}
+  [class*="wpst-ew-"] h2{font-size:var(--wpst-h2-tablet,36px)}
+  [class*="wpst-ew-"] h3{font-size:var(--wpst-h3-tablet,27px)}
+  [class*="wpst-ew-"] h4{font-size:var(--wpst-h4-tablet,21px)}
+  [class*="wpst-ew-"] h5{font-size:var(--wpst-h5-tablet,18px)}
+  [class*="wpst-ew-"] h6{font-size:var(--wpst-h6-tablet,16px)}
+}
+@media(max-width:767px){
+  [class*="wpst-ew-"] h1{font-size:var(--wpst-h1-mobile,36px)}
+  [class*="wpst-ew-"] h2{font-size:var(--wpst-h2-mobile,30px)}
+  [class*="wpst-ew-"] h3{font-size:var(--wpst-h3-mobile,24px)}
+  [class*="wpst-ew-"] h4{font-size:var(--wpst-h4-mobile,20px)}
+  [class*="wpst-ew-"] h5{font-size:var(--wpst-h5-mobile,17px)}
+  [class*="wpst-ew-"] h6{font-size:var(--wpst-h6-mobile,15px)}
+}
+
+
+/* WPSoft Design System 3.0 — v3.1.65 */
+.wpst-space-xs{gap:var(--wpst-space-xs)!important}
+.wpst-space-sm{gap:var(--wpst-space-sm)!important}
+.wpst-space-md{gap:var(--wpst-space-md)!important}
+.wpst-space-lg{gap:var(--wpst-space-lg)!important}
+.wpst-space-xl{gap:var(--wpst-space-xl)!important}
+.wpst-space-xxl{gap:var(--wpst-space-xxl)!important}
+.wpst-pad-xs{padding:var(--wpst-space-xs)!important}
+.wpst-pad-sm{padding:var(--wpst-space-sm)!important}
+.wpst-pad-md{padding:var(--wpst-space-md)!important}
+.wpst-pad-lg{padding:var(--wpst-space-lg)!important}
+.wpst-pad-xl{padding:var(--wpst-space-xl)!important}
+.wpst-pad-xxl{padding:var(--wpst-space-xxl)!important}
+.wpst-button-secondary{min-height:var(--wpst-button-height);padding-inline:var(--wpst-button-padding-x);border-radius:var(--wpst-button-radius-global);transition:all var(--wpst-motion) ease}
+.wpst-button-secondary:hover{background:var(--wpst-button-secondary-hover-bg)!important;color:var(--wpst-button-secondary-hover-text)!important}
+.wpst-ew-button,.wpst-ew-hero-slide a,.wpst-ew-info-strip>a,.wpst-footer-cta a{padding-inline:var(--wpst-button-padding-x)}
+.wpst-global-container.is-auto{max-width:var(--wpst-container)}
+body.wpst-content-narrow .wpst-global-container{max-width:var(--wpst-container-narrow)}
+body.wpst-content-wide .wpst-global-container{max-width:var(--wpst-container-wide)}
+@media(max-width:1024px){[class*="wpst-ew-"],.wpsoft-site-header,.wpsoft-site-footer{font-size:var(--wpst-font-size-tablet,16px)}}
+@media(max-width:767px){[class*="wpst-ew-"],.wpsoft-site-header,.wpsoft-site-footer{font-size:var(--wpst-font-size-mobile,15px)}}
+
+/* WPSoft Design System 3.1 — Link, Form & Surface
+   v3.2.48: CONTENT-ONLY SCOPE
+   This system intentionally does NOT style WPSoft Header/Footer.
+   Header and Footer own their colors independently.
+*/
+
+/* Global links: only page/widget content, never Header/Footer */
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] a:not(.wpst-ew-button):not(.wpst-q-button),
+.elementor:not(.wpsoft-site-header .elementor):not(.wpsoft-site-footer .elementor)
+[class*="wpst-ew-"] a:not(.wpst-ew-button):not(.wpst-q-button){
+  color:var(--wpst-link,var(--wpst-primary));
+  text-decoration:var(--wpst-link-decoration,none);
+  text-underline-offset:.16em;
+  transition:color var(--wpst-motion,.28s) ease,text-decoration-color var(--wpst-motion,.28s) ease;
+}
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] a:not(.wpst-ew-button):not(.wpst-q-button):hover,
+.elementor:not(.wpsoft-site-header .elementor):not(.wpsoft-site-footer .elementor)
+[class*="wpst-ew-"] a:not(.wpst-ew-button):not(.wpst-q-button):hover{
+  color:var(--wpst-link-hover,var(--wpst-primary));
+  text-decoration:var(--wpst-link-hover-decoration,underline);
+}
+
+/* Global forms: only normal page/widget content */
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] select,
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] textarea{
+  min-height:var(--wpst-input-height,48px);
+  border:var(--wpst-input-border-width,1px) solid var(--wpst-input-border,#cbd5e1);
+  border-radius:var(--wpst-input-radius,10px);
+  background:var(--wpst-input-bg,#fff);
+  color:var(--wpst-input-text,#0f172a);
+  transition:border-color var(--wpst-motion,.28s) ease,box-shadow var(--wpst-motion,.28s) ease,background var(--wpst-motion,.28s) ease;
+}
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] input:focus,
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] select:focus,
+body :where(main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive)
+[class*="wpst-ew-"] textarea:focus{
+  outline:none;
+  border-color:var(--wpst-input-focus,var(--wpst-primary));
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--wpst-input-focus,var(--wpst-primary)) 16%,transparent);
+}
+
+/* Surface helpers remain opt-in utilities only. */
+.wpst-surface{background:var(--wpst-surface)}
+.wpst-surface-alt{background:var(--wpst-surface-alt,var(--wpst-soft))}
+.wpst-surface-dark{background:var(--wpst-surface-dark,#0f172a);color:#fff}
+
+.elementor-widget.wpst-design-source-global>.elementor-widget-container{--wpst-local-source:global}
+.elementor-widget.wpst-design-source-local>.elementor-widget-container{--wpst-local-source:local}
+
+/* WPSoft Responsive Control 2.0 — v3.1.69 */
+@media (min-width:1025px){
+  .elementor-widget.wpst-hide-desktop-yes{display:none!important;}
+}
+@media (min-width:768px) and (max-width:1024px){
+  .elementor-widget.wpst-hide-tablet-yes{display:none!important;}
+}
+@media (max-width:767px){
+  .elementor-widget.wpst-hide-mobile-yes{display:none!important;}
+}
+
+
+/* v3.2.49 — Elementor template priority guard
+   Global Design is a fallback system. Elementor Header/Footer template CSS wins. */
+.wpsoft-site-header .elementor,
+.wpsoft-site-footer .elementor{
+  --wpst-link:initial;
+  --wpst-link-hover:initial;
+  --wpst-input-bg:initial;
+  --wpst-input-text:initial;
+  --wpst-input-border:initial;
+  --wpst-input-focus:initial;
+}
+
+
+/* ==========================================================
+   v3.3.09 · Global Design System 3.2
+   Page background + safer global fallback behavior.
+   ========================================================== */
+
+/* Page background is deliberately opt-in so themes and Elementor documents
+   are not unexpectedly overwritten. Header/Footer keep their own surfaces. */
+body.wpst-global-page-bg-enabled{
+  background:var(--wpst-page-bg,#fff);
+}
+body.wpst-global-page-bg-enabled :where(
+  main,#primary,#content,.site-main,.elementor-location-single,.elementor-location-archive
+){
+  background-color:var(--wpst-page-bg,#fff);
+}
+
+/* Do not paint over explicitly styled Elementor sections/containers. */
+body.wpst-global-page-bg-enabled .elementor-element[style*="background"],
+body.wpst-global-page-bg-enabled .elementor-element[class*="elementor-element-"]{
+  /* Local Elementor background declarations remain authoritative. */
+}
+
+/* Surface dark typography token. */
+.wpst-surface-dark :where(h1,h2,h3,h4,h5,h6,strong){
+  color:var(--wpst-on-dark,#fff);
+}
+.wpst-surface-dark :where(p,li,small){
+  color:color-mix(in srgb,var(--wpst-on-dark,#fff) 72%,transparent);
+}
+
+/* Global controls are fallback values; widget responsive column selectors win. */
+@media(max-width:767px){
+  .wpst-ew-feature-list{
+    min-width:0;
+  }
+}
+
+
+/* ==========================================================
+   v3.3.18.21 · Global Design Page Background Fix
+   Themes frequently paint #page/#content/.site-content white, hiding the
+   body background. Apply the token to the page canvas/wrappers, but never
+   force a background onto individual Elementor sections/containers.
+   ========================================================== */
+html:has(body.wpst-global-page-bg-enabled){
+  background-color:var(--wpst-page-bg,#fff)!important;
+}
+body.wpst-global-page-bg-enabled{
+  background-color:var(--wpst-page-bg,#fff)!important;
+}
+
+/* Common WordPress/theme page canvases. */
+body.wpst-global-page-bg-enabled :is(
+  #page,
+  .site,
+  #content,
+  .site-content,
+  .content-area,
+  #primary,
+  main,
+  .site-main,
+  .main-content,
+  .page-content,
+  .entry-content
+){
+  background-color:var(--wpst-page-bg,#fff)!important;
+}
+
+/* Elementor document/root wrappers should be transparent so the global
+   page canvas can be seen. Individual Elementor elements keep their own
+   configured backgrounds. */
+body.wpst-global-page-bg-enabled :is(
+  .elementor-page,
+  .elementor-location-single,
+  .elementor-location-archive,
+  .elementor-location-main
+){
+  background-color:var(--wpst-page-bg,#fff)!important;
+}
+
+/* Do not override local Elementor surface decisions. */
+body.wpst-global-page-bg-enabled .elementor-element{
+  background-color:initial;
+}
+body.wpst-global-page-bg-enabled .elementor-element.elementor-element-edit-mode,
+body.wpst-global-page-bg-enabled .elementor-element[style*="background"]{
+  background-color:revert-layer;
+}
+
+/* Header/Footer remain independent surfaces. */
+body.wpst-global-page-bg-enabled :is(.wpsoft-site-header,.wpsoft-site-footer){
+  background-color:var(--wpst-bg,transparent);
+}
+
+
+/* v3.3.2 · Large desktop global container scaling */
+@media(min-width:1600px){
+  .wpst-global-container:not(.is-narrow){
+    width:min(calc(100% - 96px),max(var(--wpst-container,1200px),calc(100vw - 240px)));
+    max-width:1720px;
+  }
+  .wpst-global-container.is-wide{
+    width:min(calc(100% - 96px),1720px);
+    max-width:1720px;
+  }
+}
+@media(min-width:2200px){
+  .wpst-global-container:not(.is-narrow){
+    max-width:1920px;
+  }
+  .wpst-global-container.is-wide{
+    width:min(calc(100% - 128px),1920px);
+    max-width:1920px;
+  }
+}

@@ -1,0 +1,20 @@
+/*
+WPSoft CSS Architecture 3.0
+This directory defines ownership boundaries for future CSS cleanup.
+
+Layer order:
+01 tokens        : global design variables only
+02 base          : shared WPSoft element defaults
+03 layout        : container/grid/responsive structure
+04 components    : reusable cards/buttons/forms/navigation
+05 widgets       : widget-specific rules
+06 states        : hover/active/open/sticky/transparent
+07 utilities     : small opt-in helpers
+
+Rules:
+- Never use bare descendant selectors like `.component span` for semantic UI parts.
+- Prefer explicit classes.
+- Elementor local styles have priority over WPSoft global fallback tokens.
+- !important is reserved for third-party compatibility or explicit state escape hatches.
+- Mobile fixes belong to the owning component/widget, not a global catch-all block.
+*/

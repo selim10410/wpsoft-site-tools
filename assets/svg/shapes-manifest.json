@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "count": 16,
+  "shapes": {
+    "blob-soft": {
+      "label": "Blob Soft",
+      "file": "shapes/blob-soft.svg"
+    },
+    "blob-wide": {
+      "label": "Blob Wide",
+      "file": "shapes/blob-wide.svg"
+    },
+    "wave": {
+      "label": "Wave",
+      "file": "shapes/wave.svg"
+    },
+    "wave-double": {
+      "label": "Wave Double",
+      "file": "shapes/wave-double.svg"
+    },
+    "dots": {
+      "label": "Dots",
+      "file": "shapes/dots.svg"
+    },
+    "grid": {
+      "label": "Grid",
+      "file": "shapes/grid.svg"
+    },
+    "rings": {
+      "label": "Rings",
+      "file": "shapes/rings.svg"
+    },
+    "orbit": {
+      "label": "Orbit",
+      "file": "shapes/orbit.svg"
+    },
+    "corner-lines": {
+      "label": "Corner Lines",
+      "file": "shapes/corner-lines.svg"
+    },
+    "diagonal-lines": {
+      "label": "Diagonal Lines",
+      "file": "shapes/diagonal-lines.svg"
+    },
+    "cross-grid": {
+      "label": "Cross Grid",
+      "file": "shapes/cross-grid.svg"
+    },
+    "spotlight": {
+      "label": "Spotlight",
+      "file": "shapes/spotlight.svg"
+    },
+    "arc": {
+      "label": "Arc",
+      "file": "shapes/arc.svg"
+    },
+    "stairs": {
+      "label": "Stairs",
+      "file": "shapes/stairs.svg"
+    },
+    "frame": {
+      "label": "Frame",
+      "file": "shapes/frame.svg"
+    },
+    "burst": {
+      "label": "Burst",
+      "file": "shapes/burst.svg"
+    }
+  }
+}

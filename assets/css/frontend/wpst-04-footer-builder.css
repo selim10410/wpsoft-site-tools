@@ -1,0 +1,62 @@
+/* WPSoft Site Tools v3.2.71 · Footer Builder cleanup stage */
+/* WPSoft Site Tools v3.2.68 · Frontend module: 04-footer-builder */
+/* Footer Builder 2.0 — row based architecture */
+.wpsoft-site-footer .wpst-footer-shell{width:100%}
+.wpsoft-site-footer .wpst-footer-row{width:100%;background:var(--wpst-row-bg,var(--wpst-bg,#111827));color:var(--wpst-row-color,var(--wpst-color,#fff));border-top:var(--wpst-row-border-w,0) solid var(--wpst-row-border,transparent)}
+.wpsoft-site-footer .wpst-footer-row-inner{width:min(calc(100% - 32px),var(--wpst-row-container,var(--wpst-width,1200px)));min-height:var(--wpst-row-h-desktop,72px);margin:0 auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);align-items:center;gap:28px;padding:18px 0;}
+.wpsoft-site-footer .wpst-footer-row.is-full-width .wpst-footer-row-inner{width:calc(100% - 32px);max-width:none}
+.wpsoft-site-footer .wpst-footer-zone{display:flex;align-items:flex-start;gap:18px;min-width:0;flex-wrap:wrap}
+.wpsoft-site-footer .wpst-footer-zone-left{justify-content:flex-start}.wpsoft-site-footer .wpst-footer-zone-center{justify-content:center;text-align:center}.wpsoft-site-footer .wpst-footer-zone-right{justify-content:flex-end;text-align:right}
+.wpsoft-site-footer .wpst-footer-zone .wpst-q-nav{position:static!important;display:block!important;width:auto!important;padding:0!important;border:0!important;box-shadow:none!important;background:transparent!important;color:inherit!important}
+.wpsoft-site-footer .wpst-footer-zone .wpst-q-menu{display:flex;flex-direction:column;align-items:inherit;gap:8px}
+.wpsoft-site-footer .wpst-footer-zone .wpst-q-menu a{padding:0;background:transparent!important}
+@media (max-width:1024px){.wpsoft-site-footer .wpst-footer-row.wpst-hide-tablet{display:none!important}.wpsoft-site-footer .wpst-footer-row-inner{min-height:var(--wpst-row-h-tablet,var(--wpst-row-h-desktop,72px));gap:20px;}}
+@media (min-width:1025px){.wpsoft-site-footer .wpst-footer-row.wpst-hide-desktop{display:none!important}}
+@media (max-width:767px){.wpsoft-site-footer .wpst-footer-row.wpst-hide-mobile{display:none!important}.wpsoft-site-footer .wpst-footer-row-inner{min-height:var(--wpst-row-h-mobile,64px);display:grid;grid-template-columns:1fr!important;gap:18px;padding:22px 0;}.wpsoft-site-footer .wpst-footer-zone,.wpsoft-site-footer .wpst-footer-zone-left,.wpsoft-site-footer .wpst-footer-zone-center,.wpsoft-site-footer .wpst-footer-zone-right{width:100%;justify-content:flex-start;text-align:left;align-items:flex-start}.wpsoft-site-footer[data-wpst-mobile-align="center"] .wpst-footer-zone{justify-content:center;text-align:center;align-items:center}.wpsoft-site-footer[data-wpst-mobile-columns="2"] .wpst-footer-row-inner{grid-template-columns:repeat(2,minmax(0,1fr))!important}.wpsoft-site-footer[data-wpst-mobile-columns="2"] .wpst-footer-zone{width:auto}}
+@media (max-width:480px){.wpsoft-site-footer[data-wpst-mobile-columns="2"] .wpst-footer-row-inner{grid-template-columns:1fr!important}.wpsoft-site-footer[data-wpst-mobile-columns="2"] .wpst-footer-zone{width:100%}}
+
+/* Footer Builder 2.1 — presets, newsletter, contact, payments, mobile accordion */
+.wpsoft-site-footer[data-wpst-footer-preset="minimal"] .wpst-footer-row{background:#fff;color:#0f172a;border-color:#e5e7eb}
+.wpsoft-site-footer[data-wpst-footer-preset="minimal"] .wpst-footer-bottom{background:#fff;color:#475569}
+.wpsoft-site-footer[data-wpst-footer-preset="corporate"] .wpst-footer-row-main{background:#0f172a;color:#fff}
+.wpsoft-site-footer[data-wpst-footer-preset="corporate"] .wpst-footer-row-top{background:#1e293b;color:#fff}
+.wpsoft-site-footer[data-wpst-footer-preset="dark"]{background:#050816;color:#fff}.wpsoft-site-footer[data-wpst-footer-preset="dark"] .wpst-footer-row{background:#050816;color:#fff;border-color:#1e293b}
+.wpsoft-site-footer[data-wpst-footer-preset="glass"]{background:linear-gradient(145deg,#0f172a,#111827);color:#fff}.wpsoft-site-footer[data-wpst-footer-preset="glass"] .wpst-footer-row{background:rgba(255,255,255,.045);color:#fff;backdrop-filter:blur(18px);border-color:rgba(255,255,255,.12)}
+.wpsoft-site-footer[data-wpst-footer-preset="shop"] .wpst-footer-row-top{background:#f8fafc;color:#0f172a}.wpsoft-site-footer[data-wpst-footer-preset="shop"] .wpst-footer-row-main{background:#fff;color:#0f172a}.wpsoft-site-footer[data-wpst-footer-preset="shop"] .wpst-footer-row-bottom{background:#f8fafc;color:#475569}
+.wpst-footer-extra-inner{width:min(var(--wpst-width,1200px),calc(100% - 32px));margin:auto}
+.wpst-footer-newsletter-pro{padding:28px var(--wpst-pad,28px);background:#0f172a;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
+.wpst-footer-newsletter-pro .wpst-footer-extra-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.wpst-footer-newsletter-copy strong,.wpst-footer-newsletter-copy span{display:block}.wpst-footer-newsletter-copy strong{font-size:clamp(22px,3vw,34px);line-height:1.1}.wpst-footer-newsletter-copy span{margin-top:8px;opacity:.7;font-size:13px}
+.wpsoft-site-footer .wpst-footer-newsletter-form{display:flex;gap:10px;min-width:min(100%,460px)}.wpst-footer-newsletter-form input{flex:1;min-width:0;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:0 15px;background:rgba(255,255,255,.08);color:#fff}.wpst-footer-newsletter-form input::placeholder{color:rgba(255,255,255,.55)}.wpsoft-site-footer .wpst-footer-newsletter-form button{height:48px;border:0;border-radius:12px;padding:0 18px;background:#fff;color:#0f172a;font-weight:800;cursor:pointer}
+.wpst-footer-utility{padding:18px var(--wpst-pad,28px);background:#0b1220;color:#dbeafe;border-top:1px solid rgba(255,255,255,.08)}.wpst-footer-utility .wpst-footer-extra-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wpsoft-site-footer .wpst-footer-contact-mini{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.wpsoft-site-footer .wpst-footer-contact-mini>a,.wpsoft-site-footer .wpst-footer-contact-mini>div{display:grid;gap:2px;color:inherit;text-decoration:none}.wpsoft-site-footer .wpst-footer-contact-mini span,.wpsoft-site-footer .wpst-footer-payments>span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;opacity:.55}.wpsoft-site-footer .wpst-footer-contact-mini b{font-size:12px}
+.wpsoft-site-footer .wpst-footer-payments{display:flex;align-items:center;gap:12px}.wpsoft-site-footer .wpst-footer-payments>div{display:flex;gap:7px;flex-wrap:wrap}.wpsoft-site-footer .wpst-footer-payments i{font-style:normal;font-size:10px;font-weight:900;letter-spacing:.02em;padding:6px 8px;border:1px solid rgba(255,255,255,.16);border-radius:8px;background:rgba(255,255,255,.06)}
+.wpsoft-site-footer .wpst-footer-accordion-toggle{display:none}
+@media(max-width:767px){
+ .wpst-footer-newsletter-pro .wpst-footer-extra-inner,.wpst-footer-utility .wpst-footer-extra-inner{display:block}.wpsoft-site-footer .wpst-footer-newsletter-form{margin-top:18px;min-width:0}.wpsoft-site-footer .wpst-footer-contact-mini{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wpsoft-site-footer .wpst-footer-payments{margin-top:18px;align-items:flex-start;display:block}.wpsoft-site-footer .wpst-footer-payments>div{margin-top:8px}
+ .wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-row-inner{display:block!important}.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone{display:block;width:100%;border-bottom:1px solid rgba(127,127,127,.2)}
+ .wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpsoft-site-footer .wpst-footer-accordion-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;border:0;background:transparent;color:inherit;padding:15px 0;font:inherit;font-weight:800;text-align:left;cursor:pointer}.wpst-footer-accordion-toggle:after{content:'+';font-size:20px;line-height:1}.wpst-footer-zone.is-open>.wpst-footer-accordion-toggle:after{content:'−'}
+ .wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone>*:not(.wpst-footer-accordion-toggle){display:none!important}.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone.is-open>*:not(.wpst-footer-accordion-toggle){display:flex!important}.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone.is-open>.wpst-q-logo,.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone.is-open>.wpst-q-text,.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone.is-open>.wpst-q-html,.wpsoft-site-footer[data-wpst-mobile-accordion="1"] .wpst-footer-zone.is-open>.wpst-q-copyright{display:block!important}
+}
+@media(max-width:520px){.wpsoft-site-footer .wpst-footer-newsletter-form{display:block}.wpsoft-site-footer .wpst-footer-newsletter-form button{width:100%;margin-top:9px}.wpsoft-site-footer .wpst-footer-contact-mini{grid-template-columns:1fr}}
+
+
+
+
+/* v3.3.1 · Inspector > Footer Satırları appearance authority */
+.wpsoft-site-footer .wpst-footer-row{
+  background-color:var(--wpst-row-bg,transparent)!important;
+  color:var(--wpst-row-color,inherit)!important;
+  border-top-color:var(--wpst-row-border,transparent)!important;
+  border-top-width:var(--wpst-row-border-w,0)!important;
+  border-top-style:solid!important;
+}
+.wpsoft-site-footer .wpst-footer-row :is(
+  .wpst-q-text,
+  .wpst-q-html,
+  .wpst-q-social,
+  .wpst-q-menu a,
+  .wpst-q-copyright
+){
+  color:var(--wpst-row-color,inherit)!important;
+}

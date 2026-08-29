@@ -1,0 +1,126 @@
+/* WPSoft Motion System 1.0 · v3.3.05
+   Centralized entrance, hover, stagger, parallax and device-aware motion.
+*/
+:root{
+  --wpst-motion-ease:cubic-bezier(.22,.72,.2,1);
+  --wpst-motion-duration:700ms;
+  --wpst-motion-delay:0ms;
+  --wpst-motion-distance:28px;
+  --wpst-stagger-delay:90ms;
+}
+
+/* Motion intensity presets */
+.wpst-motion-soft{--wpst-motion-distance:18px;--wpst-motion-duration:760ms}
+.wpst-motion-normal{--wpst-motion-distance:28px;--wpst-motion-duration:700ms}
+.wpst-motion-dynamic{--wpst-motion-distance:42px;--wpst-motion-duration:620ms}
+.wpst-motion-none{--wpst-motion-distance:0px;--wpst-motion-duration:0ms}
+
+/* Easing */
+.wpst-ease-smooth{--wpst-motion-ease:cubic-bezier(.22,.72,.2,1)}
+.wpst-ease-ease{--wpst-motion-ease:ease}
+.wpst-ease-snappy{--wpst-motion-ease:cubic-bezier(.2,.85,.25,1)}
+.wpst-ease-spring{--wpst-motion-ease:cubic-bezier(.16,1.18,.3,1)}
+.wpst-ease-linear{--wpst-motion-ease:linear}
+
+/* Entrances */
+[class*="wpst-entry-"]:not(.wpst-entry-none){
+  opacity:0;
+  will-change:opacity,transform,filter,clip-path;
+  transition:
+    opacity var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    transform var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    filter var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    clip-path var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay);
+}
+.wpst-entry-fade{transform:none}
+.wpst-entry-fade-up{transform:translate3d(0,var(--wpst-motion-distance),0)}
+.wpst-entry-fade-down{transform:translate3d(0,calc(var(--wpst-motion-distance) * -1),0)}
+.wpst-entry-fade-left{transform:translate3d(var(--wpst-motion-distance),0,0)}
+.wpst-entry-fade-right{transform:translate3d(calc(var(--wpst-motion-distance) * -1),0,0)}
+.wpst-entry-scale{transform:scale(.94)}
+.wpst-entry-zoom{transform:scale(.9) translate3d(0,calc(var(--wpst-motion-distance) * .35),0)}
+.wpst-entry-blur{filter:blur(12px);transform:translate3d(0,calc(var(--wpst-motion-distance) * .35),0)}
+.wpst-entry-rotate-soft{transform:translate3d(0,calc(var(--wpst-motion-distance) * .45),0) rotate(2.5deg);transform-origin:50% 100%}
+.wpst-entry-clip-up{clip-path:inset(100% 0 0 0);transform:translate3d(0,calc(var(--wpst-motion-distance) * .25),0)}
+.wpst-entry-reveal-left{clip-path:inset(0 100% 0 0);transform:translate3d(calc(var(--wpst-motion-distance) * .45),0,0)}
+.wpst-entry-reveal-right{clip-path:inset(0 0 0 100%);transform:translate3d(calc(var(--wpst-motion-distance) * -.45),0,0)}
+.wpst-entry-flip-soft{transform:perspective(900px) rotateX(8deg) translate3d(0,calc(var(--wpst-motion-distance) * .35),0);transform-origin:50% 100%}
+
+.is-wpst-motion-visible{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  clip-path:inset(0 0 0 0)!important;
+}
+
+/* Stagger */
+.wpst-stagger-yes .wpst-motion-stagger-item{
+  opacity:0;
+  will-change:opacity,transform,filter;
+  transition:
+    opacity var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-stagger-item-delay,0ms),
+    transform var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-stagger-item-delay,0ms),
+    filter var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-stagger-item-delay,0ms);
+}
+.wpst-stagger-style-fade-up .wpst-motion-stagger-item{transform:translate3d(0,18px,0)}
+.wpst-stagger-style-scale .wpst-motion-stagger-item{transform:scale(.96)}
+.wpst-stagger-style-blur .wpst-motion-stagger-item{filter:blur(8px);transform:translate3d(0,8px,0)}
+.wpst-stagger-yes.is-wpst-motion-visible .wpst-motion-stagger-item,
+.wpst-motion-stagger-item.is-wpst-stagger-visible{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+}
+
+/* Hover motion */
+@media(hover:hover) and (pointer:fine){
+  .wpst-hover-motion-lift>.elementor-widget-container{transition:transform .25s ease,box-shadow .25s ease}
+  .wpst-hover-motion-lift:hover>.elementor-widget-container{transform:translateY(-6px)}
+  .wpst-hover-motion-scale>.elementor-widget-container{transition:transform .25s ease}
+  .wpst-hover-motion-scale:hover>.elementor-widget-container{transform:scale(1.025)}
+  .wpst-hover-motion-tilt>.elementor-widget-container{transition:transform .22s ease}
+  .wpst-hover-motion-tilt:hover>.elementor-widget-container{transform:perspective(900px) rotateX(1.5deg) rotateY(-1.5deg) translateY(-2px)}
+  .wpst-hover-motion-glow>.elementor-widget-container{transition:box-shadow .25s ease,transform .25s ease}
+  .wpst-hover-motion-glow:hover>.elementor-widget-container{box-shadow:0 18px 48px rgba(15,23,42,.12)}
+  .wpst-hover-motion-press>.elementor-widget-container{transition:transform .16s ease}
+  .wpst-hover-motion-press:active>.elementor-widget-container{transform:scale(.985)}
+}
+
+/* Parallax / mouse follow */
+.wpst-parallax-yes>.elementor-widget-container{transform:translate3d(0,var(--wpst-parallax-y,0),0)}
+.wpst-mouse-follow-yes>.elementor-widget-container{
+  transform:perspective(900px) rotateX(calc(var(--wpst-my,0) * -3deg)) rotateY(calc(var(--wpst-mx,0) * 3deg));
+  transition:transform .15s ease;
+}
+
+/* Device disable controls */
+@media(min-width:1025px){
+  .wpst-motion-disable-desktop-yes{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .wpst-motion-disable-desktop-yes .wpst-motion-stagger-item{opacity:1!important;transform:none!important;filter:none!important}
+}
+@media(min-width:768px) and (max-width:1024px){
+  .wpst-motion-disable-tablet-yes{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .wpst-motion-disable-tablet-yes .wpst-motion-stagger-item{opacity:1!important;transform:none!important;filter:none!important}
+}
+@media(max-width:767px){
+  .wpst-motion-disable-mobile-yes{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+  .wpst-motion-disable-mobile-yes .wpst-motion-stagger-item{opacity:1!important;transform:none!important;filter:none!important}
+}
+
+/* Accessibility always wins */
+@media(prefers-reduced-motion:reduce){
+  [class*="wpst-entry-"],
+  [class*="wpst-entry-"] *,
+  .wpst-parallax-yes,
+  .wpst-parallax-yes *,
+  .wpst-mouse-follow-yes,
+  .wpst-mouse-follow-yes *,
+  [class*="wpst-hover-motion-"]>.elementor-widget-container{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    clip-path:none!important;
+    transition:none!important;
+    animation:none!important;
+  }
+}

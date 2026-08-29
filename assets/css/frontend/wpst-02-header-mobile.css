@@ -1,0 +1,811 @@
+/* WPSoft Site Tools v3.2.69 · Header/Mobile cleanup stage */
+/* WPSoft Site Tools v3.2.68 · Frontend module: 02-header-mobile */
+/* WPSoft v3.1.10 - Modern mobile navigation */
+.wpsoft-site-header .wpst-mobile-toggle{
+  width:44px!important;
+  height:44px!important;
+  padding:0!important;
+  display:none;
+  align-items:center!important;
+  justify-content:center!important;
+  flex-direction:column!important;
+  gap:5px!important;
+  border:1px solid rgba(148,163,184,.22)!important;
+  border-radius:13px!important;
+  background:#fff!important;
+  color:#0f172a!important;
+  box-shadow:0 6px 18px rgba(15,23,42,.06)!important;
+  cursor:pointer!important;
+  transition:background .2s ease,border-color .2s ease,box-shadow .2s ease!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle{display:flex!important}
+.wpsoft-site-header .wpst-mobile-toggle:hover{
+  background:#f8fafc!important;
+  border-color:#cbd5e1!important;
+  box-shadow:0 8px 22px rgba(15,23,42,.09)!important;
+}
+.wpsoft-site-header .wpst-mobile-toggle span{display:block!important;width:20px!important;margin:0!important;border:0!important;border-radius:999px!important;color:inherit!important;transform-origin:center!important;transition:transform .22s ease,opacity .18s ease,width .22s ease!important;}
+/* Explicitly neutralize theme/plugin red hamburger decorations. */
+.wpsoft-site-header .wpst-mobile-toggle span:before,
+.wpsoft-site-header .wpst-mobile-toggle span:after,
+.wpsoft-site-header .wpst-mobile-toggle:before,
+.wpsoft-site-header .wpst-mobile-toggle:after{
+  content:none!important;
+  display:none!important;
+  background:transparent!important;
+}
+.wpsoft-site-header .wpst-mobile-toggle.is-active span:nth-child(1){
+  transform:translateY(7px) rotate(45deg)!important;
+}
+.wpsoft-site-header .wpst-mobile-toggle.is-active span:nth-child(2){
+  opacity:0!important;
+  width:0!important;
+}
+.wpsoft-site-header .wpst-mobile-toggle.is-active span:nth-child(3){
+  transform:translateY(-7px) rotate(-45deg)!important;
+}
+
+.wpsoft-site-header .wpst-mobile-drawer{width:min(88vw,380px)!important;max-width:380px!important;background:#fff!important;}
+.wpsoft-site-header .wpst-mobile-drawer-head{min-height:70px!important;}
+.wpsoft-site-header .wpst-mobile-drawer-head strong{letter-spacing:-.02em!important;}
+.wpsoft-site-header .wpst-mobile-close{width:38px!important;height:38px!important;border-radius:11px!important;font-size:23px!important;transition:.2s!important;}
+.wpst-mobile-close:hover{
+  background:#f1f5f9!important;
+  color:#0f172a!important;
+}
+.wpsoft-site-header .wpst-mobile-nav{padding:10px 16px 18px!important;}
+.wpsoft-site-header .wpst-mobile-menu{gap:2px!important;}
+.wpsoft-site-header .wpst-mobile-menu>li{border-bottom:1px solid #f1f5f9!important;}
+.wpst-mobile-menu>li:last-child{
+  border-bottom:0!important;
+}
+.wpst-mobile-menu li>a{
+  min-height:50px!important;
+  padding:9px 42px 9px 10px!important;
+  border-radius:10px!important;
+  color:#0f172a!important;
+  font-size:14px!important;
+  font-weight:720!important;
+  letter-spacing:-.01em!important;
+}
+.wpst-mobile-menu li>a:hover,
+.wpst-mobile-menu li>a:focus-visible{
+  background:#f8fafc!important;
+  color:#0f172a!important;
+  outline:0!important;
+}
+
+/* Neutral submenu control – no red theme icons. */
+.wpst-mobile-submenu-toggle{
+  top:6px!important;
+  right:3px!important;
+  width:38px!important;
+  height:38px!important;
+  border:1px solid #e8edf3!important;
+  border-radius:10px!important;
+  background:#f8fafc!important;
+  color:#64748b!important;
+  box-shadow:none!important;
+}
+.wpst-mobile-submenu-toggle:hover{
+  background:#f1f5f9!important;
+  color:#0f172a!important;
+}
+.wpst-mobile-submenu-toggle span{color:inherit!important;font-size:16px!important;line-height:1!important;}
+
+/* Mobile uses the normal WordPress submenu only.
+   Desktop Mega Menu panels/decorations must never appear inside the drawer. */
+.wpst-mobile-drawer .wpst-elementor-mega-panel,
+.wpst-mobile-drawer .wpst-mega-promo,
+.wpst-mobile-drawer .wpst-mega-mobile-toggle,
+.wpst-mobile-drawer .wpst-menu-item-icon,
+.wpst-mobile-drawer .wpst-menu-item-badge,
+.wpst-mobile-drawer .wpst-menu-item-description{
+  display:none!important;
+}
+.wpst-mobile-drawer .wpst-mobile-menu .sub-menu,
+.wpst-mobile-drawer .wpst-mobile-menu .children{
+  margin:0 0 7px!important;
+  padding:4px 0 5px 12px!important;
+  border-left:1px solid #e2e8f0!important;
+}
+.wpst-mobile-drawer .wpst-mobile-menu .sub-menu li,
+.wpst-mobile-drawer .wpst-mobile-menu .children li{
+  border:0!important;
+}
+.wpst-mobile-drawer .wpst-mobile-menu .sub-menu a,
+.wpst-mobile-drawer .wpst-mobile-menu .children a{
+  min-height:39px!important;
+  padding:7px 9px!important;
+  border-radius:9px!important;
+  color:#64748b!important;
+  font-size:12px!important;
+  font-weight:650!important;
+}
+.wpst-mobile-drawer .wpst-mobile-menu .sub-menu a:hover,
+.wpst-mobile-drawer .wpst-mobile-menu .children a:hover{
+  background:#f8fafc!important;
+  color:#0f172a!important;
+}
+.wpst-mobile-nav-cta{
+  margin:5px 16px 22px!important;
+  min-height:50px!important;
+  border-radius:12px!important;
+  box-shadow:0 8px 20px color-mix(in srgb,var(--wpst-primary,#2563eb) 18%,transparent)!important;
+}
+
+/* Desktop Mega Menu remains desktop-only.
+   Mobile state follows the configured Header breakpoint via JS class. */
+.wpsoft-site-header.is-wpst-mobile .wpst-mega-mobile-toggle,
+.wpsoft-site-header.is-wpst-mobile .wpst-elementor-mega-panel{
+  display:none!important;
+}
+
+/* WPSoft v3.1.16 - Header navigation & mobile controls */
+
+/* Header surface */
+.wpsoft-site-header .wpst-quick-inner{
+  transition:padding .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.wpsoft-site-header.is-wpst-scrolled .wpst-quick-inner{--wpst-header-link-bg:rgba(148,163,184,.08);}
+
+/* Desktop primary navigation */
+@media(min-width:901px){
+  .wpsoft-site-header .wpst-q-nav{
+    overflow:visible!important;
+  }
+  .wpsoft-site-header .wpst-q-menu{display:flex;align-items:center;gap:4px;}
+  .wpsoft-site-header .wpst-q-menu>li{
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+  .wpsoft-site-header .wpst-q-menu>li>a{display:flex;align-items:center;min-height:42px;padding:0 12px!important;border-radius:11px;color:inherit;text-decoration:none;font-size:13px;font-weight:720;letter-spacing:-.01em;}
+  .wpsoft-site-header .wpst-q-menu>li>a:before{
+    content:"";
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:6px;
+    height:2px;
+    border-radius:999px;
+    background:var(--wpst-primary,#2563eb);
+    transform:scaleX(0);
+    transform-origin:center;
+    opacity:0;
+    transition:transform .24s cubic-bezier(.2,.75,.25,1),opacity .2s ease;
+  }
+  .wpsoft-site-header .wpst-q-menu>li>a:hover,
+  .wpsoft-site-header .wpst-q-menu>li>a:focus-visible{
+    background:var(--wpst-header-link-bg,rgba(148,163,184,.08));
+    color:var(--wpst-primary,#2563eb);
+    outline:0;
+  }
+  .wpsoft-site-header .wpst-q-menu>li>a:hover:before,
+  .wpsoft-site-header .wpst-q-menu>li>a:focus-visible:before,
+  .wpsoft-site-header .wpst-q-menu>li.current-menu-item>a:before,
+  .wpsoft-site-header .wpst-q-menu>li.current_page_item>a:before,
+  .wpsoft-site-header .wpst-q-menu>li.current-menu-ancestor>a:before{
+    transform:scaleX(1);
+    opacity:1;
+  }
+  .wpsoft-site-header .wpst-q-menu>li.current-menu-item>a,
+  .wpsoft-site-header .wpst-q-menu>li.current_page_item>a,
+  .wpsoft-site-header .wpst-q-menu>li.current-menu-ancestor>a{
+    color:var(--wpst-primary,#2563eb);
+  }
+
+  /* Submenu indicator for normal dropdowns */
+  .wpsoft-site-header .wpst-q-menu>li.menu-item-has-children:not(.wpst-mega-enabled)>a:after,
+  .wpsoft-site-header .wpst-q-menu>li.page_item_has_children:not(.wpst-mega-enabled)>a:after{
+    content:"";
+    width:7px;
+    height:7px;
+    margin-left:7px;
+    border-right:1.5px solid currentColor;
+    border-bottom:1.5px solid currentColor;
+    transform:rotate(45deg) translateY(-2px);
+    transform-origin:center;
+    opacity:.6;
+    transition:transform .2s ease,opacity .2s ease;
+  }
+  .wpsoft-site-header .wpst-q-menu>li.menu-item-has-children:not(.wpst-mega-enabled):hover>a:after,
+  .wpsoft-site-header .wpst-q-menu>li.menu-item-has-children:not(.wpst-mega-enabled):focus-within>a:after,
+  .wpsoft-site-header .wpst-q-menu>li.page_item_has_children:not(.wpst-mega-enabled):hover>a:after,
+  .wpsoft-site-header .wpst-q-menu>li.page_item_has_children:not(.wpst-mega-enabled):focus-within>a:after{
+    transform:rotate(225deg) translate(-1px,-1px);
+    opacity:1;
+  }
+
+  /* Normal desktop dropdowns */
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.children{
+    display:block!important;
+    position:absolute!important;
+    z-index:99990!important;
+    top:calc(100% + 10px)!important;
+    left:0!important;
+    width:230px!important;
+    min-width:230px!important;
+    margin:0!important;
+    padding:8px!important;
+    border:1px solid rgba(148,163,184,.20)!important;
+    border-radius:15px!important;
+    background:#fff!important;
+    color:#0f172a!important;
+    box-shadow:0 20px 48px rgba(15,23,42,.12)!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:translateY(8px) scale(.985)!important;
+    transform-origin:top left!important;
+    transition:opacity .18s ease,transform .22s cubic-bezier(.2,.75,.25,1),visibility .18s ease!important;
+  }
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled):hover>.sub-menu,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled):focus-within>.sub-menu,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled):hover>.children,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled):focus-within>.children{
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transform:translateY(0) scale(1)!important;
+  }
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu li,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.children li{
+    width:100%;
+    margin:0!important;
+  }
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.children a{
+    display:flex!important;
+    align-items:center;
+    min-height:40px;
+    padding:8px 10px!important;
+    border-radius:9px!important;
+    color:#334155!important;
+    text-decoration:none;
+    font-size:12px!important;
+    font-weight:650!important;
+    transition:background .17s ease,color .17s ease,padding .17s ease;
+  }
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a:hover,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a:focus-visible,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.children a:hover,
+  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.children a:focus-visible{
+    background:#f8fafc!important;
+    color:var(--wpst-primary,#2563eb)!important;
+    padding-left:13px!important;
+    outline:0;
+  }
+
+  /* Desktop CTA */
+  .wpsoft-site-header .wpst-q-button{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    padding:0 16px!important;
+    border-radius:12px!important;
+    overflow:hidden;
+    box-shadow:0 8px 20px color-mix(in srgb,var(--wpst-button-bg,#2563eb) 20%,transparent);
+    transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important;
+  }
+  .wpsoft-site-header .wpst-q-button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px color-mix(in srgb,var(--wpst-button-bg,#2563eb) 28%,transparent);
+    filter:saturate(1.05);
+  }
+}
+
+/* Mobile hamburger */
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle{
+  width:46px!important;
+  height:46px!important;
+  flex:0 0 46px!important;
+  border:1px solid #e2e8f0!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,#fff,#f8fafc)!important;
+  color:#0f172a!important;
+  box-shadow:0 8px 22px rgba(15,23,42,.07)!important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle:hover,
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle:focus-visible{
+  transform:translateY(-1px);
+  border-color:#cbd5e1!important;
+  box-shadow:0 10px 26px rgba(15,23,42,.10)!important;
+  outline:0;
+}
+.wpsoft-site-header .wpst-mobile-toggle span{width:21px!important;height:2px!important;background:currentColor!important;}
+.wpsoft-site-header .wpst-mobile-toggle.is-active{
+  background:#0f172a!important;
+  color:#fff!important;
+  border-color:#0f172a!important;
+}
+
+/* Mobile drawer */
+.wpsoft-site-header .wpst-mobile-drawer{
+  width:min(90vw,400px)!important;
+  max-width:400px!important;
+  background:#fff!important;
+  box-shadow:-24px 0 70px rgba(15,23,42,.18)!important;
+  transition:transform .32s cubic-bezier(.22,.72,.23,1),visibility .32s!important;
+}
+.wpst-mobile-drawer[data-side="left"]{
+  box-shadow:24px 0 70px rgba(15,23,42,.18)!important;
+}
+.wpst-mobile-overlay{
+  background:rgba(2,6,23,.55)!important;
+  backdrop-filter:blur(5px)!important;
+}
+.wpsoft-site-header .wpst-mobile-drawer-head{min-height:74px!important;padding:15px 18px!important;border-bottom:1px solid #edf2f7!important;background:rgba(255,255,255,.96)!important;backdrop-filter:blur(16px)!important;}
+.wpsoft-site-header .wpst-mobile-drawer-head strong{font-size:17px!important;font-weight:850!important;letter-spacing:-.025em;}
+.wpsoft-site-header .wpst-mobile-close{width:40px!important;height:40px!important;display:grid!important;place-items:center!important;padding:0!important;border:1px solid #e2e8f0!important;border-radius:12px!important;background:#f8fafc!important;color:#334155!important;transition:background .18s ease,color .18s ease,transform .18s ease!important;}
+.wpst-mobile-close:hover,
+.wpst-mobile-close:focus-visible{
+  background:#0f172a!important;
+  color:#fff!important;
+  transform:rotate(3deg);
+  outline:0;
+}
+.wpst-mobile-close svg{
+  display:block;
+  width:20px;
+  height:20px;
+  fill:currentColor;
+}
+
+.wpsoft-site-header .wpst-mobile-nav{padding:12px 16px 18px!important;}
+.wpsoft-site-header .wpst-mobile-menu{gap:4px!important;}
+.wpsoft-site-header .wpst-mobile-menu>li{border-bottom:0!important;}
+.wpst-mobile-menu>li>a{
+  min-height:50px!important;
+  padding:9px 48px 9px 12px!important;
+  border:1px solid transparent;
+  border-radius:12px!important;
+  color:#0f172a!important;
+  font-size:14px!important;
+  font-weight:760!important;
+  letter-spacing:-.01em;
+  transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease!important;
+}
+.wpst-mobile-menu>li>a:hover,
+.wpst-mobile-menu>li>a:focus-visible{
+  background:#f8fafc!important;
+  border-color:#edf2f7!important;
+  color:var(--wpst-primary,#2563eb)!important;
+  transform:translateX(2px);
+  outline:0;
+}
+.wpst-mobile-menu>li.current-menu-item>a,
+.wpst-mobile-menu>li.current_page_item>a,
+.wpst-mobile-menu>li.current-menu-ancestor>a{
+  background:#eff6ff!important;
+  border-color:#dbeafe!important;
+  color:#1d4ed8!important;
+}
+
+/* Modern submenu control */
+.wpst-mobile-submenu-toggle{
+  top:6px!important;
+  right:4px!important;
+  width:38px!important;
+  height:38px!important;
+  padding:0!important;
+  border:1px solid #e8edf3!important;
+  border-radius:11px!important;
+  background:#fff!important;
+  color:#64748b!important;
+  box-shadow:0 3px 10px rgba(15,23,42,.03)!important;
+  transition:background .18s ease,border-color .18s ease,color .18s ease,transform .18s ease!important;
+}
+.wpst-mobile-submenu-toggle:hover,
+.wpst-mobile-submenu-toggle:focus-visible{
+  background:#eff6ff!important;
+  border-color:#dbeafe!important;
+  color:#2563eb!important;
+  outline:0;
+}
+.wpst-mobile-submenu-toggle span{display:grid!important;place-items:center!important;width:100%;height:100%;transition:transform .22s cubic-bezier(.2,.75,.25,1)!important;}
+.wpst-mobile-submenu-toggle svg{
+  width:18px;
+  height:18px;
+  display:block;
+  fill:currentColor;
+}
+.wpst-mobile-menu li.is-submenu-open>.wpst-mobile-submenu-toggle{
+  background:#eff6ff!important;
+  border-color:#bfdbfe!important;
+  color:#2563eb!important;
+}
+.wpst-mobile-menu li.is-submenu-open>.wpst-mobile-submenu-toggle span{
+  transform:rotate(180deg)!important;
+}
+
+/* Smooth accordion content */
+.wpst-mobile-menu .sub-menu,
+.wpst-mobile-menu .children{
+  margin:2px 0 6px!important;
+  padding:5px 0 7px 13px!important;
+  border-left:1px solid #e2e8f0!important;
+}
+.wpst-mobile-menu .sub-menu a,
+.wpst-mobile-menu .children a{
+  min-height:40px!important;
+  padding:7px 10px!important;
+  border-radius:9px!important;
+  color:#64748b!important;
+  font-size:12.5px!important;
+  font-weight:640!important;
+  transition:background .17s ease,color .17s ease,padding .17s ease!important;
+}
+.wpst-mobile-menu .sub-menu a:hover,
+.wpst-mobile-menu .sub-menu a:focus-visible,
+.wpst-mobile-menu .children a:hover,
+.wpst-mobile-menu .children a:focus-visible{
+  background:#f8fafc!important;
+  color:#0f172a!important;
+  padding-left:13px!important;
+  outline:0;
+}
+
+/* Mobile CTA */
+.wpsoft-site-header .wpst-mobile-drawer .wpst-mobile-nav-cta{
+  position:sticky!important;
+  bottom:14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  min-height:52px!important;
+  margin:8px 16px 18px!important;
+  padding:0 14px 0 17px!important;
+  border:1px solid color-mix(in srgb,var(--wpst-button-bg,#2563eb) 78%,#000 0%)!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,var(--wpst-button-bg,#2563eb),color-mix(in srgb,var(--wpst-button-bg,#2563eb) 78%,#7c3aed))!important;
+  color:#fff!important;
+  box-shadow:0 12px 28px color-mix(in srgb,var(--wpst-button-bg,#2563eb) 25%,transparent)!important;
+  font-size:13px!important;
+  font-weight:850!important;
+  letter-spacing:-.01em;
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+.wpsoft-site-header .wpst-mobile-drawer .wpst-mobile-nav-cta:hover,
+.wpsoft-site-header .wpst-mobile-drawer .wpst-mobile-nav-cta:focus-visible{
+  transform:translateY(-2px)!important;
+  box-shadow:0 16px 34px color-mix(in srgb,var(--wpst-button-bg,#2563eb) 32%,transparent)!important;
+  outline:0;
+}
+.wpst-mobile-cta-icon{
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:rgba(255,255,255,.14);
+}
+.wpst-mobile-cta-icon svg{
+  width:17px;
+  height:17px;
+  fill:currentColor;
+}
+
+/* Reduced motion accessibility */
+@media(prefers-reduced-motion:reduce){
+  .wpsoft-site-header *,
+  .wpst-mobile-drawer *,
+  .wpst-mobile-overlay{
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+  }
+}
+
+/* v3.1.28 Header Builder v3 */
+.wpsoft-site-header{transition:transform .28s cubic-bezier(.2,.75,.25,1),background .25s ease,box-shadow .25s ease}
+.wpsoft-site-header.is-wpst-hidden-scroll{transform:translateY(-110%)!important}
+.wpsoft-site-header.is-wpst-scrolled .wpst-quick-inner{transition:min-height .25s,padding .25s,background .25s;}
+.wpsoft-site-header.is-wpst-scrolled .wpst-q-logo img{transition:max-height .25s,width .25s}
+.wpst-q-action{position:relative;width:42px;height:42px;display:inline-grid;place-items:center;border:1px solid #e2e8f0;border-radius:12px;background:#fff;color:#0f172a;text-decoration:none;cursor:pointer}
+.wpst-q-action svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8}
+.wpst-q-cart>span{position:absolute;right:-4px;top:-5px;min-width:18px;height:18px;padding:0 4px;display:grid;place-items:center;border-radius:999px;background:#ef4444;color:#fff;font-size:9px;font-weight:900}
+.wpst-search-popup{position:fixed;z-index:100050;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:13vh 20px;background:rgba(2,6,23,.68);backdrop-filter:blur(10px);opacity:0;visibility:hidden;pointer-events:none;transition:.22s}
+.wpst-search-popup.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.wpst-search-popup form{width:min(720px,100%);display:flex;padding:10px;border-radius:18px;background:#fff;box-shadow:0 30px 90px rgba(0,0,0,.22)}
+.wpst-search-popup input{flex:1;min-width:0;border:0!important;outline:0!important;padding:13px 16px;font-size:18px}
+.wpst-search-popup form button{border:0;border-radius:12px;padding:0 22px;background:#0f172a;color:#fff;font-weight:800}
+.wpst-search-close{position:absolute;right:28px;top:28px;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:#111827;font-size:25px;cursor:pointer}
+.wpsoft-site-header .wpst-mobile-bottom-actions{display:none;}
+@media(max-width:900px){
+ .wpsoft-site-header .wpst-mobile-bottom-actions{position:fixed;z-index:99990;left:14px;right:14px;bottom:14px;display:flex;justify-content:center;gap:8px;padding:8px;border:1px solid #e2e8f0;border-radius:16px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);box-shadow:0 18px 50px rgba(15,23,42,.16);}
+ .wpst-mobile-bottom-actions a,.wpst-mobile-bottom-actions button{width:46px;height:42px;display:grid;place-items:center;border:0;border-radius:11px;background:#f8fafc;color:#0f172a;text-decoration:none;font-size:18px}
+}
+
+/* v3.1.48 Header Builder 3.0 */
+.wpsoft-site-header{
+  --wpst-header-height:78px;
+  --wpst-header-scrolled-height:64px;
+  --wpst-header-menu-gap:28px;
+  --wpst-header-scroll-bg:#fff;
+  --wpst-header-scroll-color:#111827;
+  --wpst-header-transparent-color:#fff;
+  --wpst-mobile-drawer-width:390px;
+}
+.wpsoft-site-header .wpst-quick-inner{min-height:var(--wpst-header-height);transition:min-height .28s ease,padding .28s ease,background .28s ease,color .28s ease;}
+.wpsoft-site-header.is-wpst-scrolled .wpst-quick-inner{min-height:var(--wpst-header-scrolled-height);}
+.wpsoft-site-header.is-wpst-scrolled{background:var(--wpst-header-scroll-bg)!important;color:var(--wpst-header-scroll-color)!important}
+.wpsoft-site-header.is-wpst-scrolled .wpst-q-menu>li>a{color:var(--wpst-header-scroll-color)!important}
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled){color:var(--wpst-header-transparent-color)!important}
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-q-menu>li>a{color:var(--wpst-header-transparent-color)!important}
+.wpsoft-site-header .wpst-q-menu{gap:var(--wpst-header-menu-gap)!important;}
+.wpsoft-site-header .wpst-q-menu>li>a{position:relative;transition:color .2s ease,background .2s ease,transform .2s ease;}
+.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>li>a:after{content:"";position:absolute;left:12px;right:12px;bottom:5px;height:2px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .22s ease}
+.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>li>a:hover:after,.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>.current-menu-item>a:after{transform:scaleX(1);transform-origin:left}
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>li>a:hover,.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>.current-menu-item>a{background:color-mix(in srgb,currentColor 9%,transparent);border-radius:999px}
+.wpsoft-site-header[data-wpst-menu-hover="fade"] .wpst-q-menu:hover>li>a{opacity:.5}.wpsoft-site-header[data-wpst-menu-hover="fade"] .wpst-q-menu>li>a:hover{opacity:1}
+.wpsoft-site-header[data-wpst-menu-hover="slide"] .wpst-q-menu>li>a:hover{transform:translateY(-2px)}
+
+.wpst-announcement{background:var(--wpst-announcement-bg,var(--wpst-primary,#2563eb))!important;color:var(--wpst-announcement-color,#fff)!important}
+.wpst-announcement .wpst-bar-inner{position:relative;padding-right:35px}
+.wpst-announcement-close{position:absolute;right:0;top:50%;transform:translateY(-50%);width:28px;height:28px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(255,255,255,.13);color:inherit;font-size:19px;cursor:pointer}
+.wpst-announcement-close:hover{background:rgba(255,255,255,.22)}
+
+.wpsoft-site-header .wpst-mobile-drawer{width:min(92vw,var(--wpst-mobile-drawer-width))!important;max-width:var(--wpst-mobile-drawer-width)!important;}
+.wpst-mobile-contact{margin:4px 20px 24px;padding:16px;border:1px solid #e2e8f0;border-radius:16px;background:#f8fafc}
+.wpst-mobile-contact strong{display:block;margin-bottom:9px;color:#0f172a;font-size:13px}.wpst-mobile-contact-links{display:grid;gap:6px}.wpst-mobile-contact a{display:flex;align-items:center;gap:8px;min-height:38px;padding:7px 9px;border-radius:10px;background:#fff;color:#334155!important;text-decoration:none!important;font-size:12px;font-weight:700}.wpst-mobile-contact a:hover{background:#eff6ff;color:#1d4ed8!important}
+.wpst-mobile-contact a span{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#eff6ff;color:#2563eb}
+
+/* Header style presets preserve builder columns and alter presentation only */
+.wpsoft-site-header[data-wpst-preset="corporate"] .wpst-q-button{border-radius:8px!important}
+.wpsoft-site-header[data-wpst-preset="saas"] .wpst-quick-inner{margin:10px auto;width:min(calc(100% - 24px),var(--wpst-container));border:1px solid rgba(148,163,184,.2);border-radius:20px;background:color-mix(in srgb,var(--wpst-bg,#fff) 88%,transparent);backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(15,23,42,.07)}
+.wpsoft-site-header[data-wpst-preset="luxury"] .wpst-q-menu>li>a{letter-spacing:.04em;text-transform:uppercase;font-size:.9em}.wpsoft-site-header[data-wpst-preset="luxury"] .wpst-q-button{border-radius:2px!important}
+.wpsoft-site-header[data-wpst-preset="ecommerce"] .wpst-q-action{border-radius:50%}.wpsoft-site-header[data-wpst-preset="ecommerce"] .wpst-q-button{border-radius:999px!important}
+.wpsoft-site-header[data-wpst-preset="hotel"] .wpst-q-button{border-radius:999px!important}.wpsoft-site-header[data-wpst-preset="hotel"] .wpst-quick-inner{letter-spacing:.01em}
+.wpsoft-site-header[data-wpst-preset="creative"] .wpst-q-menu>li>a{font-weight:800}.wpsoft-site-header[data-wpst-preset="creative"] .wpst-q-button{border-radius:999px!important;box-shadow:0 8px 24px color-mix(in srgb,var(--wpst-button-bg,#2563eb) 26%,transparent)}
+
+@media(max-width:782px){
+ .wpsoft-site-header .wpst-quick-inner{min-height:64px!important;}
+ .wpsoft-site-header[data-wpst-preset="saas"] .wpst-quick-inner{margin:6px 8px;width:calc(100% - 16px)}
+}
+
+
+/* v3.1.49 — Transparent header + active menu state fixes */
+
+/* Transparent mode must clear every visual surface layer until scroll state becomes active. */
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled),
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-quick-inner,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-header-shell,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-desktop-template,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-all-template,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-desktop-template>.elementor,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-all-template>.elementor,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-desktop-template>.elementor>.elementor-section,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-all-template>.elementor>.elementor-section,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-desktop-template>.elementor>.e-con,
+body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled) .wpst-all-template>.elementor>.e-con{
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+/* Nested widgets/cards and mega menu templates keep their own surface styling. */
+
+/* SaaS preset previously added its own glass/white surface. In transparent mode it must also become fully transparent. */
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-preset="saas"]:not(.is-wpst-scrolled) .wpst-quick-inner{
+  background:transparent!important;
+  border-color:rgba(255,255,255,.22)!important;
+  box-shadow:none!important;
+}
+
+/* Once scrolled, restore the configured solid header surface. */
+.wpsoft-site-header.is-wpst-scrolled,
+.wpsoft-site-header.is-wpst-scrolled .wpst-quick-inner{
+  background-color:var(--wpst-header-scroll-bg)!important;
+}
+.wpsoft-site-header.is-wpst-scrolled .wpst-header-shell,
+.wpsoft-site-header.is-wpst-scrolled .wpst-desktop-template,
+.wpsoft-site-header.is-wpst-scrolled .wpst-all-template{
+  background-color:transparent!important;
+}
+
+/* Active menu indicator rules:
+   underline appears only in Underline mode.
+   Pill/Fade/Slide active states must not inherit a line. */
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>li>a:after,
+.wpsoft-site-header[data-wpst-menu-hover="fade"] .wpst-q-menu>li>a:after,
+.wpsoft-site-header[data-wpst-menu-hover="slide"] .wpst-q-menu>li>a:after{
+  content:none!important;
+  display:none!important;
+  transform:none!important;
+}
+
+/* Active/current item in pill mode uses the pill itself as the only indicator. */
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>.current-menu-item>a,
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>.current-menu-ancestor>a,
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>.current_page_item>a,
+.wpsoft-site-header[data-wpst-menu-hover="pill"] .wpst-q-menu>.current_page_ancestor>a{
+  background:color-mix(in srgb,currentColor 9%,transparent)!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+}
+
+/* If a theme or previous preset injected an active underline pseudo-element,
+   suppress it outside underline mode. */
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current-menu-item>a:before,
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current-menu-item>a:after,
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current-menu-ancestor>a:before,
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current-menu-ancestor>a:after,
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current_page_item>a:before,
+.wpsoft-site-header:not([data-wpst-menu-hover="underline"]) .wpst-q-menu>.current_page_item>a:after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Underline mode: exactly one clean line, no duplicate shadow-like indicator. */
+.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>.current-menu-item>a,
+.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>.current-menu-ancestor>a,
+.wpsoft-site-header[data-wpst-menu-hover="underline"] .wpst-q-menu>.current_page_item>a{
+  box-shadow:none!important;
+  background:transparent!important;
+}
+
+
+
+/* v3.2.85 — Transparent mobile header contrast */
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-mobile-toggle{
+  color:var(--wpst-header-transparent-color,#fff)!important;
+  border-color:rgba(255,255,255,.18)!important;
+  background:rgba(255,255,255,.08)!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-mobile-toggle:hover{
+  color:var(--wpst-header-transparent-color,#fff)!important;
+  background:rgba(255,255,255,.14)!important;
+  border-color:rgba(255,255,255,.26)!important;
+}
+
+
+/* ==========================================================
+   v3.3.11 · Header Quick Start presets
+   ========================================================== */
+.wpsoft-site-header[data-wpst-preset="minimal"] .wpst-quick-inner{
+  box-shadow:none!important;
+  border-color:transparent!important;
+}
+.wpsoft-site-header[data-wpst-preset="minimal"] .wpst-q-menu>li>a{
+  font-weight:650;
+  letter-spacing:-.01em;
+}
+.wpsoft-site-header[data-wpst-preset="minimal"] .wpst-q-button{
+  border-radius:10px!important;
+  box-shadow:none!important;
+}
+
+.wpsoft-site-header[data-wpst-preset="centered"] .wpst-header-row-main .wpst-header-row-inner,
+.wpsoft-site-header[data-wpst-preset="centered"] .wpst-quick-inner{
+  max-width:1180px;
+  margin-inline:auto;
+}
+.wpsoft-site-header[data-wpst-preset="centered"] .wpst-q-menu{justify-content:center}
+.wpsoft-site-header[data-wpst-preset="centered"] .wpst-q-menu>li>a{
+  font-weight:700;
+  letter-spacing:-.012em;
+}
+.wpsoft-site-header[data-wpst-preset="centered"] .wpst-q-button{border-radius:999px!important}
+
+.wpsoft-site-header[data-wpst-preset="transparent"]:not(.is-wpst-scrolled),
+.wpsoft-site-header[data-wpst-preset="transparent"]:not(.is-wpst-scrolled) .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-preset="transparent"]:not(.is-wpst-scrolled) .wpst-header-row{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.wpsoft-site-header[data-wpst-preset="transparent"]:not(.is-wpst-scrolled) .wpst-q-menu>li>a,
+.wpsoft-site-header[data-wpst-preset="transparent"]:not(.is-wpst-scrolled) .wpst-q-text{
+  color:var(--wpst-header-transparent-color,#fff)!important;
+}
+.wpsoft-site-header[data-wpst-preset="transparent"] .wpst-q-button{border-radius:999px!important}
+
+.wpsoft-site-header[data-wpst-preset="corporate"] .wpst-quick-inner{
+  border-color:rgba(148,163,184,.16);
+}
+.wpsoft-site-header[data-wpst-preset="corporate"] .wpst-q-menu>li>a{font-weight:700}
+
+
+/* v3.3.12 · Floating Boxed Quick Start
+   A centered floating header with safe automatic side gutters. */
+.wpsoft-site-header[data-wpst-preset="floating-boxed"]{
+  background:transparent!important;
+  box-shadow:none!important;
+  padding:12px clamp(12px,2.2vw,28px);
+}
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-header-row-main{
+  width:min(100%,var(--wpst-container,1240px));
+  margin-inline:auto;
+  border:1px solid rgba(148,163,184,.20);
+  border-radius:20px;
+  background:var(--wpst-bg,#fff);
+  box-shadow:0 14px 38px rgba(15,23,42,.09);
+}
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-header-row-inner{
+  padding-inline:clamp(18px,2.4vw,32px);
+}
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-q-button{
+  border-radius:12px!important;
+}
+.wpsoft-site-header[data-wpst-preset="floating-boxed"].is-wpst-scrolled{
+  padding-top:8px;
+  padding-bottom:8px;
+}
+.wpsoft-site-header[data-wpst-preset="floating-boxed"].is-wpst-scrolled .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"].is-wpst-scrolled .wpst-header-row-main{
+  box-shadow:0 12px 34px rgba(15,23,42,.12);
+}
+@media(max-width:782px){
+  /* Floating Boxed is opt-in on mobile.
+     "Mobilde de Floating / Boxed kullan" = ON */
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="1"]{
+    padding:7px 8px;
+    background:transparent!important;
+  }
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="1"] .wpst-quick-inner,
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-main{
+    border-radius:16px;
+  }
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="1"] .wpst-quick-inner,
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-inner{
+    padding-inline:14px;
+  }
+
+  /* OFF = restore the established full-width mobile header. */
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"]{
+    padding:0!important;
+    background:var(--wpst-bg,#fff)!important;
+    box-shadow:none!important;
+  }
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-quick-inner,
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-header-row-main{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:var(--wpst-bg,#fff)!important;
+    box-shadow:none!important;
+  }
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-quick-inner,
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-header-row-inner{
+    padding-inline:14px!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.3.14 · Floating Boxed mobile opt-in fix
+   ========================================================== */
+@media(max-width:1024px){
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"]{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-quick-inner,
+  .wpsoft-site-header[data-wpst-preset="floating-boxed"][data-wpst-boxed-mobile="0"] .wpst-header-row-main{
+    width:100%!important;
+    max-width:none!important;
+    margin-inline:0!important;
+    border-radius:0!important;
+    border-left:0!important;
+    border-right:0!important;
+    box-shadow:none!important;
+  }
+}
+
+/* Header final-state overrides moved to wpst-06-header-canonical.css in v3.3.18.21.10. */

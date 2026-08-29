@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 470 220">
+<rect width="470" height="220" rx="26" fill="#0c4a6e"/>
+<circle cx="420" cy="12" r="92" fill="#06b6d4" opacity=".06"/>
+
+<rect x="30" y="34" width="410" height="118" rx="18" fill="#fff" opacity=".055"/>
+<circle cx="72" cy="74" r="20" fill="#06b6d4" opacity=".95"/>
+<rect x="108" y="58" width="124" height="11" rx="5.5" fill="#fff" opacity=".82"/>
+<rect x="108" y="82" width="98" height="7" rx="3.5" fill="#fff" opacity=".25"/>
+<rect x="270" y="50" width="132" height="72" rx="14" fill="#06b6d4" opacity=".12"/>
+
+<text x="30" y="205" font-family="Arial" font-size="10" font-weight="700" fill="#94a3b8">Contact Rich Footer</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420">
+<rect width="720" height="420" rx="28" fill="#f8fafc"/>
+<text x="56" y="82" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#334155">LEGAL</text>
+<rect x="52" y="116" width="616" height="82" rx="18" fill="#fff" opacity=".94"/>
+<rect x="52" y="218" width="188" height="146" rx="18" fill="#fff" opacity=".96"/>
+<rect x="260" y="218" width="188" height="146" rx="18" fill="#fff" opacity=".96"/>
+<rect x="468" y="218" width="200" height="146" rx="18" fill="#fff" opacity=".96"/>
+<rect x="76" y="144" width="180" height="12" rx="6" fill="#334155" opacity=".55"/>
+<rect x="76" y="164" width="280" height="8" rx="4" fill="#334155" opacity=".22"/>
+</svg>

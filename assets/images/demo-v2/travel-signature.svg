@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eff6ff"/><stop offset="1" stop-color="#fffbeb"/></linearGradient>
+ <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+</defs>
+<rect width="1200" height="620" rx="38" fill="url(#bg)"/>
+<circle cx="1060" cy="90" r="190" fill="#f59e0b" opacity=".08"/>
+<circle cx="110" cy="560" r="220" fill="#fff" opacity=".06"/>
+<g transform="translate(0 0)">
+ <rect x="92" y="112" width="130" height="30" rx="15" fill="#f59e0b" opacity=".16"/>
+ <text x="112" y="133" fill="#f59e0b" font-size="15" font-family="Arial,sans-serif" font-weight="700">WPSOFT DEMO</text>
+ <text x="92" y="205" fill="#0f172a" font-size="48" font-family="Arial,sans-serif" font-weight="800">Explore More</text>
+ <text x="92" y="246" fill="#475569" font-size="20" font-family="Arial,sans-serif">Destinasyon ve deneyim odaklı</text>
+ <rect x="92" y="300" width="138" height="48" rx="16" fill="#f59e0b"/>
+ <text x="126" y="330" fill="#fff" font-size="16" font-family="Arial,sans-serif" font-weight="700">İncele</text>
+ <rect x="248" y="300" width="122" height="48" rx="16" fill="#fff" opacity=".8"/>
+ <text x="278" y="330" fill="#334155" font-size="16" font-family="Arial,sans-serif" font-weight="700">Detaylar</text>
+</g>
+<rect x="500" y="150" width="385" height="295" rx="32" fill="#dbeafe"/><circle cx="800" cy="215" r="55" fill="#fde68a"/><path d="M510 390L625 250l70 80 65-70 125 130z" fill="#93c5fd"/><path d="M510 390L635 310l95 80z" fill="#0ea5e9" opacity=".75"/><path d="M600 205c45-35 85-20 125 10" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+</svg>

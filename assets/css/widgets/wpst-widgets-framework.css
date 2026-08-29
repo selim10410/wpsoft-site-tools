@@ -1,0 +1,600 @@
+/* v3.1.46 Widget Library 2.0 */
+.wpst-adv-button{--ab-bg:var(--wpst-button-bg,#2563eb);--ab-color:var(--wpst-button-text,#fff);--ab-hover:var(--wpst-button-hover-bg,#1d4ed8);position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;overflow:hidden;min-height:var(--wpst-button-height,48px);padding:0 22px;border-radius:var(--wpst-button-radius-global,12px);background:var(--ab-bg);color:var(--ab-color);font-weight:var(--wpst-button-weight,800);text-decoration:none;transition:transform var(--wpst-motion,.28s),box-shadow var(--wpst-motion,.28s),color var(--wpst-motion,.28s)}
+.wpst-adv-button:before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ab-hover);transform:translateY(102%);transition:transform var(--wpst-motion,.28s)}.wpst-adv-button.effect-slide:hover:before{transform:none}.wpst-adv-button.effect-lift:hover{transform:translateY(-4px);box-shadow:var(--wpst-shadow)}.wpst-adv-button.effect-glow:hover{box-shadow:0 0 0 5px color-mix(in srgb,var(--ab-bg) 18%,transparent),0 18px 38px color-mix(in srgb,var(--ab-bg) 25%,transparent)}.wpst-adv-button-icon{transition:transform .2s}.wpst-adv-button:hover .wpst-adv-button-icon{transform:translate(2px,-2px)}
+
+.wpst-glass-card{position:relative;overflow:hidden;min-height:310px;padding:30px;border:1px solid rgba(255,255,255,.35);border-radius:var(--wpst-card-radius,20px);background:rgba(255,255,255,.18);box-shadow:var(--wpst-shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.wpst-glass-card:after{content:"";position:absolute;width:180px;height:180px;right:-70px;top:-80px;border-radius:50%;background:var(--wpst-primary);opacity:.12;filter:blur(4px)}.wpst-glass-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:color-mix(in srgb,var(--wpst-primary) 15%,transparent);color:var(--wpst-primary);font-size:20px}.wpst-glass-card small{display:block;margin-top:28px;color:var(--wpst-primary);font-weight:900;letter-spacing:.12em}.wpst-glass-card h3{margin:7px 0}.wpst-glass-card p{color:var(--wpst-muted)}.wpst-glass-card a{display:inline-flex;margin-top:12px;color:var(--wpst-heading);font-weight:800;text-decoration:none}
+
+.wpst-image-reveal{--reveal-color:var(--wpst-primary);margin:0}.wpst-image-reveal-media{position:relative;overflow:hidden;height:480px;border-radius:var(--wpst-card-radius,20px);background:var(--wpst-soft)}.wpst-image-reveal-media img{width:100%;height:100%;object-fit:cover}.wpst-image-reveal-media>i{position:absolute;inset:0;background:var(--reveal-color);transform-origin:left;transform:scaleX(1);transition:transform .9s cubic-bezier(.77,0,.18,1)}.wpst-image-reveal.is-visible .wpst-image-reveal-media>i{transform:scaleX(0)}.wpst-image-reveal.reveal-right .wpst-image-reveal-media>i{transform-origin:right}.wpst-image-reveal.reveal-up .wpst-image-reveal-media>i{transform-origin:bottom;transform:scaleY(1)}.wpst-image-reveal.reveal-up.is-visible .wpst-image-reveal-media>i{transform:scaleY(0)}.wpst-image-reveal.reveal-center .wpst-image-reveal-media>i{transform-origin:center}.wpst-image-reveal-placeholder{height:100%;display:grid;place-items:center;color:var(--wpst-muted);font-weight:800}.wpst-image-reveal figcaption{margin-top:10px;color:var(--wpst-muted);font-size:12px;font-weight:700}
+
+.wpst-modal-trigger,.wpst-modal-footer-close{min-height:var(--wpst-button-height,48px);padding:0 20px;border:0;border-radius:var(--wpst-button-radius-global,12px);background:var(--wpst-button-bg,#2563eb);color:var(--wpst-button-text,#fff);font-weight:800;cursor:pointer}.wpst-modal-overlay{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(2,6,23,.66);backdrop-filter:blur(8px);opacity:0;visibility:hidden;transition:.25s}.wpst-modal-overlay.is-open{opacity:1;visibility:visible}.wpst-modal-dialog{position:relative;width:min(680px,94vw);max-height:88vh;overflow:auto;padding:34px;border-radius:var(--wpst-radius-xl,30px);background:var(--wpst-surface,#fff);box-shadow:0 30px 90px rgba(2,6,23,.3);transform:translateY(18px) scale(.98);transition:.25s}.wpst-modal-overlay.is-open .wpst-modal-dialog{transform:none}.wpst-modal-dialog.size-sm{width:min(480px,94vw)}.wpst-modal-dialog.size-lg{width:min(960px,94vw)}.wpst-modal-close{position:absolute;right:15px;top:15px;width:36px;height:36px;border:1px solid var(--wpst-border);border-radius:50%;background:var(--wpst-soft);color:var(--wpst-heading);font-size:22px;cursor:pointer}.wpst-modal-dialog>small{color:var(--modal-accent,var(--wpst-primary));font-weight:900;letter-spacing:.12em}.wpst-modal-dialog h3{margin:8px 0 12px}.wpst-modal-content{color:var(--wpst-text);line-height:1.7}.wpst-modal-footer-close{margin-top:18px}
+
+.wpst-content-slider{position:relative;overflow:hidden;border-radius:var(--wpst-radius-xl,30px);background:var(--wpst-soft)}.wpst-content-slider-track{position:relative;min-height:470px}.wpst-content-slide{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;opacity:0;visibility:hidden;transform:translateX(24px);transition:.45s ease}.wpst-content-slide.is-active{opacity:1;visibility:visible;transform:none}.wpst-content-slide-copy{display:flex;flex-direction:column;justify-content:center;padding:54px}.wpst-content-slide-copy small{color:var(--wpst-primary);font-weight:900;letter-spacing:.12em}.wpst-content-slide-copy h3{margin:9px 0}.wpst-content-slide-copy p{color:var(--wpst-muted)}.wpst-content-slide-copy a{align-self:flex-start;margin-top:12px;color:var(--wpst-primary);font-weight:800;text-decoration:none}.wpst-content-slide-media{min-height:470px;display:grid;place-items:center;background:var(--wpst-surface)}.wpst-content-slide-media img{width:100%;height:100%;object-fit:cover}.wpst-content-slide-media span{font-size:34px;font-weight:900;color:var(--wpst-border)}.wpst-content-slider-nav{position:absolute;left:50px;bottom:24px;z-index:4;display:flex;align-items:center;gap:9px}.wpst-content-slider-nav button{width:36px;height:36px;border:1px solid var(--wpst-border);border-radius:50%;background:var(--wpst-surface);color:var(--wpst-heading);cursor:pointer}.wpst-content-slider-dots{display:flex;gap:5px}.wpst-content-slider-dots button{width:7px;height:7px;padding:0;border:0;background:var(--wpst-border)}.wpst-content-slider-dots button.is-active{width:22px;border-radius:5px;background:var(--wpst-primary)}
+@media(max-width:767px){.wpst-content-slide{grid-template-columns:1fr}.wpst-content-slider-track{min-height:620px}.wpst-content-slide-copy{padding:32px}.wpst-content-slide-media{min-height:270px}.wpst-content-slider-nav{left:32px}.wpst-image-reveal-media{height:340px}}
+
+/* Widget Framework 2.0 · Global surface tokens */
+.elementor-widget.wpst-surface-surface > .elementor-widget-container{background:var(--wpst-surface, #fff);}
+.elementor-widget.wpst-surface-surface-alt > .elementor-widget-container{background:var(--wpst-surface-alt, #f7f8fa);}
+.elementor-widget.wpst-surface-surface-dark > .elementor-widget-container{background:var(--wpst-surface-dark, #111827);color:var(--wpst-on-dark, #fff);}
+.elementor-widget.wpst-surface-primary-soft > .elementor-widget-container{background:color-mix(in srgb, var(--wpst-primary, #2563eb) 10%, transparent);}
+@supports not (background:color-mix(in srgb, #000 10%, transparent)){.wpst-surface-primary-soft > .elementor-widget-container{background:rgba(37,99,235,.08);}}
+
+/* Blog Builder 2.0 · dynamic archive widgets */
+.wpst-archive-title{margin:0;color:var(--wpst-heading,#0f172a);line-height:1.08}
+.wpst-archive-description{max-width:780px;color:var(--wpst-text,#475569);font-size:1.05rem;line-height:1.75}
+.wpst-archive-description p:last-child{margin-bottom:0}
+.wpst-archive-author{display:flex;align-items:center;gap:18px;padding:22px;border:1px solid var(--wpst-border,#e2e8f0);border-radius:var(--wpst-radius-lg,20px);background:var(--wpst-surface,#fff)}
+.wpst-archive-author img{border-radius:999px;flex:0 0 auto}
+.wpst-archive-author small{display:block;margin-bottom:4px;color:var(--wpst-muted,#64748b);font-size:11px;font-weight:700;letter-spacing:.12em}
+.wpst-archive-author strong{display:block;color:var(--wpst-heading,#0f172a);font-size:1.1rem}
+.wpst-archive-author p{margin:6px 0 0;color:var(--wpst-text,#475569)}
+@media(max-width:767px){.wpst-archive-author{align-items:flex-start;padding:18px}.wpst-archive-description{font-size:1rem}}
+
+
+/* v3.1.77 Blog Builder 2.0 */
+.wpst-reading-progress{--wpst-progress-track:rgba(148,163,184,.22);--wpst-progress-color:#2563eb;--wpst-progress-height:4px;height:var(--wpst-progress-height);background:var(--wpst-progress-track);overflow:visible;z-index:99990}.wpst-reading-progress.is-top,.wpst-reading-progress.is-bottom{position:fixed;left:0;right:0}.wpst-reading-progress.is-top{top:0}.admin-bar .wpst-reading-progress.is-top{top:32px}.wpst-reading-progress.is-bottom{bottom:0}.wpst-reading-progress.is-inline{position:relative;width:100%}.wpst-reading-progress-bar{display:block;height:100%;width:0;background:var(--wpst-progress-color);transition:width .08s linear}.wpst-reading-progress-percent{display:none;position:absolute;right:12px;top:calc(100% + 7px);padding:4px 7px;border-radius:8px;background:#0f172a;color:#fff;font-size:10px;line-height:1}.wpst-reading-progress[data-show-percent="1"] .wpst-reading-progress-percent{display:block}
+.wpst-related-posts{margin:44px 0}.wpst-related-posts-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.wpst-related-posts-head h2{margin:0;color:var(--wpst-heading,#0f172a);font-size:clamp(22px,2vw,32px)}.wpst-related-posts-grid{display:grid;grid-template-columns:repeat(var(--wpst-related-cols,3),minmax(0,1fr));gap:18px}.wpst-related-post-card{overflow:hidden;border:1px solid var(--wpst-border,#e2e8f0);background:var(--wpst-surface,#fff);border-radius:18px}.wpst-related-post-thumb{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--wpst-soft,#f8fafc)}.wpst-related-post-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}.wpst-related-post-card:hover .wpst-related-post-thumb img{transform:scale(1.035)}.wpst-related-post-body{padding:18px}.wpst-related-post-body small{display:block;margin-bottom:8px;color:var(--wpst-muted,#64748b);font-size:11px;font-weight:800}.wpst-related-post-body h3{margin:0 0 8px;font-size:18px;line-height:1.28}.wpst-related-post-body h3 a{color:var(--wpst-heading,#0f172a);text-decoration:none}.wpst-related-post-body p{margin:0 0 13px;color:var(--wpst-text,#334155);font-size:13px;line-height:1.65}.wpst-related-post-link{display:inline-flex;gap:7px;align-items:center;color:var(--wpst-primary,#2563eb);font-size:12px;font-weight:850;text-decoration:none}.wpst-related-empty{grid-column:1/-1;padding:22px;border:1px dashed var(--wpst-border,#e2e8f0);border-radius:14px;color:var(--wpst-muted,#64748b)}
+@media(max-width:782px){.admin-bar .wpst-reading-progress.is-top{top:46px}}
+
+/* WPSoft Footer Template Library 3.0 */
+.wpst-footer-template{font-family:var(--wpst-font-body,inherit);color:var(--wpst-text,#0f172a)}
+.wpst-footer-template .wpst-ew-footer-brand-name,.wpst-footer-template h3,.wpst-footer-template h4{font-family:var(--wpst-font-heading,var(--wpst-font-body,inherit));letter-spacing:-.025em}
+.wpst-footer-modern-saas,.wpst-footer-commerce-premium,.wpst-footer-hotel-luxury,.wpst-footer-industry-modern,.wpst-footer-restaurant-editorial,.wpst-footer-dark-gradient,.wpst-footer-dark,.wpst-footer-dark-minimal,.wpst-footer-mega{color:#eef2ff}
+.wpst-footer-medical-clean{color:#183b3b}.wpst-footer-agency-bento{color:#161326}.wpst-footer-corporate-pro{color:#1e293b}.wpst-footer-portfolio-creative{color:#111}.wpst-footer-newsletter-glass{color:#13213a}
+.wpst-footer-agency-bento .wpst-ew-footer-links,.wpst-footer-agency-bento .wpst-ew-footer-social,.wpst-footer-newsletter-glass .wpst-ew-footer-newsletter{padding:20px;border:1px solid rgba(99,102,241,.13);border-radius:22px;background:rgba(255,255,255,.58);box-shadow:0 18px 50px rgba(48,40,110,.08)}
+.wpst-footer-modern-saas .wpst-ew-footer-newsletter,.wpst-footer-dark-gradient .wpst-ew-footer-newsletter{padding:26px;border:1px solid rgba(255,255,255,.10);border-radius:24px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(49,94,251,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.wpst-footer-hotel-luxury .wpst-footer-brand-name,.wpst-footer-hotel-luxury h3,.wpst-footer-hotel-luxury h4,.wpst-footer-restaurant-editorial .wpst-footer-brand-name,.wpst-footer-restaurant-editorial h3,.wpst-footer-restaurant-editorial h4{font-family:"Playfair Display",Georgia,serif;font-weight:600}
+.wpst-footer-industry-modern .wpst-ew-footer-links a{border-bottom:1px solid rgba(255,255,255,.08);border-radius:0}.wpst-footer-commerce-premium .wpst-ew-footer-social a{border-radius:10px}
+.wpst-footer-portfolio-creative .wpst-ew-footer-social a{background:#111;color:#fff;border-color:#111}.wpst-footer-portfolio-creative .wpst-ew-footer-social a b{background:#f5ff68;color:#111}
+.wpst-footer-minimal-line{color:#18181b}.wpst-footer-minimal-line .wpst-ew-footer-brand-contact{display:none}.wpst-footer-minimal-line .wpst-ew-footer-brand p{margin-bottom:0}
+@media(max-width:767px){.wpst-footer-template{gap:28px!important}.wpst-footer-template .wpst-ew-footer-links{width:100%}}
+
+/* WPSoft Footer Sector Collection 4.0 */
+.wpst-footer-finance-trust,.wpst-footer-construction-bold,.wpst-footer-app-gradient,.wpst-footer-realestate-luxury{color:#f8fafc}
+.wpst-footer-finance-trust .wpst-ew-footer-links a,.wpst-footer-realestate-luxury .wpst-ew-footer-links a{border-bottom:1px solid rgba(255,255,255,.09);border-radius:0}
+.wpst-footer-finance-trust .wpst-ew-footer-brand-name,.wpst-footer-legal-elegant .wpst-ew-footer-brand-name,.wpst-footer-realestate-luxury .wpst-ew-footer-brand-name{font-family:"Cormorant Garamond","Playfair Display",Georgia,serif;font-weight:650;letter-spacing:-.02em}
+.wpst-footer-construction-bold .wpst-ew-footer-links{padding-left:16px;border-left:2px solid rgba(245,158,11,.65)}
+.wpst-footer-construction-bold .wpst-ew-footer-social a{border-radius:6px}
+.wpst-footer-photography-canvas .wpst-ew-footer-social a{background:#151515;color:#fff;border-color:#151515}.wpst-footer-photography-canvas .wpst-ew-footer-social a b{background:#f2eee8;color:#151515}
+.wpst-footer-blog-editorial{color:#2b2926}.wpst-footer-blog-editorial .wpst-ew-footer-brand-name,.wpst-footer-blog-editorial h3,.wpst-footer-blog-editorial h4{font-family:"Playfair Display",Georgia,serif}.wpst-footer-blog-editorial .wpst-ew-footer-newsletter{padding:28px;border-top:1px solid #d9cec1;border-bottom:1px solid #d9cec1;border-radius:0;background:transparent}
+.wpst-footer-app-gradient .wpst-ew-footer-newsletter{padding:28px;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:linear-gradient(135deg,rgba(124,92,255,.22),rgba(45,212,191,.08));box-shadow:0 30px 80px rgba(5,7,20,.28)}
+.wpst-footer-seo-growth{color:#211a35}.wpst-footer-seo-growth .wpst-ew-footer-links,.wpst-footer-seo-growth .wpst-ew-footer-social{padding:18px;border:1px solid rgba(109,66,232,.12);border-radius:20px;background:rgba(255,255,255,.62)}
+.wpst-footer-legal-elegant{color:#2d2924}.wpst-footer-legal-elegant .wpst-ew-footer-links a{padding-left:0;border-radius:0;border-bottom:1px solid rgba(91,70,54,.14)}
+.wpst-footer-education-friendly{color:#17324d}.wpst-footer-education-friendly .wpst-ew-footer-links a{border-radius:12px}.wpst-footer-education-friendly .wpst-ew-footer-social a{background:#fff;border-color:#cfe2f4}
+.wpst-footer-realestate-luxury .wpst-ew-footer-links a{color:#f1eee7}.wpst-footer-realestate-luxury .wpst-ew-footer-social a{border-color:rgba(197,164,109,.3)}
+
+
+/* WPSoft Footer Premium System 5.0 */
+.wpst-footer-template{
+ --wpst-footer-heading:"Plus Jakarta Sans","DM Sans",Inter,system-ui,sans-serif;
+ --wpst-footer-body:"DM Sans",Inter,system-ui,sans-serif;
+ --wpst-footer-radius:22px;
+ --wpst-footer-border:rgba(148,163,184,.18);
+ --wpst-footer-soft:rgba(148,163,184,.08);
+ font-family:var(--wpst-footer-body)!important;
+ font-size:15px;
+ line-height:1.65;
+ letter-spacing:-.008em;
+}
+.wpst-footer-template .wpst-ew-footer-brand{max-width:430px}
+.wpst-footer-template .wpst-footer-brand-logo{max-width:178px;max-height:52px;margin-bottom:26px}
+.wpst-footer-template .wpst-footer-brand-name{font-family:var(--wpst-footer-heading)!important;font-size:clamp(28px,2.2vw,38px);font-weight:750;line-height:1;letter-spacing:-.05em;margin-bottom:22px}
+.wpst-footer-template .wpst-ew-footer-brand p{max-width:390px;margin:0 0 26px;font-size:15px;line-height:1.8;opacity:.72}
+.wpst-footer-template .wpst-footer-brand-contact{gap:10px}
+.wpst-footer-template .wpst-footer-brand-contact a{width:max-content;max-width:100%;gap:10px;font-size:12px;font-weight:700;letter-spacing:.01em;opacity:.88}
+.wpst-footer-template .wpst-footer-brand-contact a .wpst-footer-contact-icon{width:34px;height:34px;border-radius:11px;border-color:var(--wpst-footer-border);background:var(--wpst-footer-soft);opacity:1}
+.wpst-footer-template .wpst-ew-footer-links h4,.wpst-footer-template .wpst-ew-footer-social h4{font-family:var(--wpst-footer-heading)!important;margin:0 0 22px;font-size:12px;font-weight:800;line-height:1;text-transform:uppercase;letter-spacing:.12em;opacity:.62}
+.wpst-footer-template .wpst-ew-footer-links li+li{margin-top:4px}
+.wpst-footer-template .wpst-ew-footer-links a{min-height:38px;padding:4px 0;font-size:14px;font-weight:550;letter-spacing:-.01em;opacity:.74;transform:none}
+.wpst-footer-template .wpst-ew-footer-links a i{display:grid;place-items:center;width:28px;height:28px;border-radius:999px;background:var(--wpst-footer-soft);font-size:11px;transform:translateX(-5px);transition:.24s ease}
+.wpst-footer-template .wpst-ew-footer-links a:hover{opacity:1;transform:none}
+.wpst-footer-template .wpst-ew-footer-links a:hover i{opacity:1;transform:translateX(0)}
+.wpst-footer-template .wpst-ew-footer-links a small{padding:4px 8px;font-size:8px;letter-spacing:.04em}
+.wpst-footer-template .wpst-ew-footer-social>div{gap:9px}
+.wpst-footer-template .wpst-ew-footer-social a{min-height:42px;padding:7px 14px 7px 7px;border-color:var(--wpst-footer-border);background:var(--wpst-footer-soft);backdrop-filter:blur(12px);font-size:12px}
+.wpst-footer-template .wpst-ew-footer-social a b{width:29px;height:29px;background:rgba(148,163,184,.14);font-size:9px}
+.wpst-footer-template .wpst-ew-footer-social a span{font-size:11px;font-weight:700}
+.wpst-footer-template .wpst-ew-footer-social a:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(15,23,42,.10)}
+.wpst-footer-template .wpst-ew-footer-newsletter{max-width:680px}
+.wpst-footer-template .wpst-ew-footer-newsletter>small{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;letter-spacing:.16em}
+.wpst-footer-template .wpst-ew-footer-newsletter>small:before{content:"";width:18px;height:1px;background:currentColor;opacity:.65}
+.wpst-footer-template .wpst-ew-footer-newsletter h3{font-family:var(--wpst-footer-heading)!important;margin:12px 0 12px;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.045em;font-weight:730}
+.wpst-footer-template .wpst-ew-footer-newsletter p{max-width:590px;margin:0 0 22px;font-size:15px;line-height:1.75;opacity:.7}
+.wpst-footer-template .wpst-ew-footer-newsletter form{gap:8px;padding:7px;border:1px solid var(--wpst-footer-border);border-radius:16px;background:rgba(255,255,255,.055);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.wpst-footer-template .wpst-ew-footer-newsletter input{height:46px;padding:0 14px;font-family:var(--wpst-footer-body)!important;font-size:13px}
+.wpst-footer-template .wpst-ew-footer-newsletter button{height:46px;padding:0 20px;border-radius:11px;font-family:var(--wpst-footer-heading)!important;font-size:12px;font-weight:800;letter-spacing:.01em;transition:.22s ease;box-shadow:0 10px 24px rgba(0,0,0,.10)}
+.wpst-footer-template .wpst-ew-footer-newsletter button:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 15px 32px rgba(0,0,0,.16)}
+.wpst-footer-template .wpst-ew-footer-newsletter>em{margin-top:10px;font-size:9px;letter-spacing:.02em;opacity:.44}
+.wpst-footer-template .wpst-ew-heading .wpst-ew-eyebrow{font-size:10px;letter-spacing:.17em;font-weight:800;opacity:.62}
+.wpst-footer-template .wpst-ew-heading .wpst-ew-title{font-family:var(--wpst-footer-heading)!important;font-size:clamp(36px,5.2vw,76px);line-height:.98;letter-spacing:-.06em;font-weight:720}
+.wpst-footer-template .wpst-ew-heading .wpst-ew-desc{font-size:16px;line-height:1.75;opacity:.7}
+.wpst-footer-template .wpst-ew-button{min-height:50px;padding:0 22px;border-radius:999px;font-family:var(--wpst-footer-heading)!important;font-size:12px;font-weight:800;letter-spacing:.005em;box-shadow:none;transition:.24s ease}
+.wpst-footer-template .wpst-ew-button:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(15,23,42,.14)}
+
+/* Typography personalities */
+.wpst-footer-modern-saas,.wpst-footer-app-gradient,.wpst-footer-dark-gradient,.wpst-footer-seo-growth,.wpst-footer-newsletter-glass{--wpst-footer-heading:"Sora","Plus Jakarta Sans",Inter,sans-serif;--wpst-footer-body:"DM Sans",Inter,sans-serif}
+.wpst-footer-agency-bento,.wpst-footer-portfolio-creative,.wpst-footer-photography-canvas{--wpst-footer-heading:"Space Grotesk","Outfit",Inter,sans-serif;--wpst-footer-body:"Figtree",Inter,sans-serif}
+.wpst-footer-corporate-pro,.wpst-footer-finance-trust,.wpst-footer-industry-modern,.wpst-footer-construction-bold{--wpst-footer-heading:"Manrope","Plus Jakarta Sans",Inter,sans-serif;--wpst-footer-body:"Inter",system-ui,sans-serif}
+.wpst-footer-commerce-premium,.wpst-footer-education-friendly,.wpst-footer-medical-clean{--wpst-footer-heading:"Plus Jakarta Sans","DM Sans",Inter,sans-serif;--wpst-footer-body:"DM Sans",Inter,sans-serif}
+.wpst-footer-hotel-luxury,.wpst-footer-restaurant-editorial,.wpst-footer-realestate-luxury,.wpst-footer-legal-elegant,.wpst-footer-blog-editorial{--wpst-footer-heading:"Cormorant Garamond","Playfair Display",Georgia,serif;--wpst-footer-body:"DM Sans",Inter,sans-serif}
+.wpst-footer-hotel-luxury .wpst-footer-brand-name,.wpst-footer-restaurant-editorial .wpst-footer-brand-name,.wpst-footer-realestate-luxury .wpst-footer-brand-name,.wpst-footer-legal-elegant .wpst-footer-brand-name,.wpst-footer-blog-editorial .wpst-footer-brand-name{font-size:clamp(34px,3vw,48px);font-weight:600;letter-spacing:-.035em}
+
+/* Premium surfaces */
+.wpst-footer-modern-saas{background-image:radial-gradient(circle at 10% 0%,rgba(124,58,237,.24),transparent 30%),radial-gradient(circle at 90% 20%,rgba(59,130,246,.18),transparent 25%)}
+.wpst-footer-agency-bento .wpst-ew-footer-links,.wpst-footer-agency-bento .wpst-ew-footer-social{padding:24px;border-radius:24px;background:rgba(255,255,255,.72);border-color:rgba(99,102,241,.12);box-shadow:0 24px 70px rgba(46,32,110,.08)}
+.wpst-footer-industry-modern .wpst-ew-footer-links{padding:0 0 0 20px;border-left:1px solid rgba(255,255,255,.14)}
+.wpst-footer-commerce-premium .wpst-ew-footer-links,.wpst-footer-medical-clean .wpst-ew-footer-links,.wpst-footer-education-friendly .wpst-ew-footer-links{padding:20px;border:1px solid var(--wpst-footer-border);border-radius:20px;background:rgba(255,255,255,.55)}
+.wpst-footer-finance-trust .wpst-ew-footer-links,.wpst-footer-realestate-luxury .wpst-ew-footer-links{padding:0 18px 0 0}
+.wpst-footer-photography-canvas .wpst-ew-heading .wpst-ew-title,.wpst-footer-portfolio-creative .wpst-ew-heading .wpst-ew-title{font-size:clamp(48px,7vw,104px)}
+.wpst-footer-minimal-line{--wpst-footer-heading:"Figtree",Inter,sans-serif;--wpst-footer-body:"Figtree",Inter,sans-serif}
+.wpst-footer-minimal-line .wpst-footer-brand-name{font-size:24px;letter-spacing:-.035em}
+
+@media(max-width:1024px){
+ .wpst-footer-template{font-size:14px}
+ .wpst-footer-template .wpst-ew-footer-brand{max-width:none}
+ .wpst-footer-template .wpst-ew-footer-newsletter h3{font-size:clamp(28px,4.8vw,42px)}
+}
+@media(max-width:767px){
+ .wpst-footer-template{gap:24px!important}
+ .wpst-footer-template .wpst-ew-footer-brand-name{font-size:29px}
+ .wpst-footer-template .wpst-ew-footer-brand p{font-size:14px;line-height:1.72}
+ .wpst-footer-template .wpst-ew-footer-links,.wpst-footer-template .wpst-ew-footer-social{width:100%}
+ .wpst-footer-template .wpst-ew-footer-links h4,.wpst-footer-template .wpst-ew-footer-social h4{margin-bottom:16px}
+ .wpst-footer-template .wpst-ew-footer-newsletter form{display:grid;grid-template-columns:1fr}
+ .wpst-footer-template .wpst-ew-footer-newsletter button{width:100%;margin:0}
+ .wpst-footer-template .wpst-ew-heading .wpst-ew-title{font-size:clamp(38px,12vw,58px)}
+ .wpst-footer-template .wpst-ew-button{width:100%;justify-content:center}
+}
+
+/* Footer Premium CTA composition */
+.wpst-footer-premium-cta{position:relative;overflow:hidden;border-bottom:1px solid var(--wpst-footer-border)}
+.wpst-footer-premium-cta:before{content:"";position:absolute;right:-10%;top:-80%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.14),transparent 68%);pointer-events:none}
+.wpst-footer-premium-cta>.elementor-element{position:relative;z-index:1}
+.wpst-footer-premium-cta .wpst-ew-heading{max-width:850px}
+.wpst-footer-premium-cta .wpst-ew-heading .wpst-ew-desc{max-width:620px;margin:0}
+.wpst-footer-premium-cta .wpst-ew-button{white-space:nowrap}
+.wpst-footer-hotel-luxury.wpst-footer-premium-cta:before,.wpst-footer-realestate-luxury.wpst-footer-premium-cta:before{background:radial-gradient(circle,rgba(197,164,109,.2),transparent 68%)}
+.wpst-footer-construction-bold.wpst-footer-premium-cta:before{background:radial-gradient(circle,rgba(245,158,11,.18),transparent 68%)}
+.wpst-footer-medical-clean.wpst-footer-premium-cta:before{background:radial-gradient(circle,rgba(14,165,164,.13),transparent 68%)}
+@media(max-width:767px){.wpst-footer-premium-cta{flex-direction:column!important;align-items:flex-start!important;padding-top:56px!important;padding-bottom:40px!important}.wpst-footer-premium-cta .elementor-widget-wpsoft-button{width:100%}}
+
+
+
+
+/* ============================================================
+   Footer Library 6.0 · Unique Layouts + Boxed Rounded Collection
+   ============================================================ */
+
+/* Boxed footers: intentionally not full width. All rows align as one rounded shell. */
+.wpst-footer-boxed-cloud,
+.wpst-footer-boxed-midnight,
+.wpst-footer-boxed-editorial,
+.wpst-footer-boxed-sage{
+  width:calc(100% - 48px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  overflow:hidden;
+}
+.wpst-footer-boxed-cloud{max-width:1280px!important}
+.wpst-footer-boxed-midnight{max-width:1240px!important}
+.wpst-footer-boxed-editorial{max-width:1180px!important}
+.wpst-footer-boxed-sage{max-width:1220px!important}
+
+.wpst-footer-boxed-cloud.wpst-footer-row-cta,
+.wpst-footer-boxed-midnight.wpst-footer-row-cta,
+.wpst-footer-boxed-editorial.wpst-footer-row-cta,
+.wpst-footer-boxed-sage.wpst-footer-row-newsletter{
+  margin-top:34px!important;
+}
+.wpst-footer-boxed-cloud.wpst-footer-row-cta{border-radius:30px 30px 0 0}
+.wpst-footer-boxed-midnight.wpst-footer-row-cta{border-radius:34px 34px 0 0}
+.wpst-footer-boxed-editorial.wpst-footer-row-cta{border-radius:38px 38px 0 0}
+.wpst-footer-boxed-sage.wpst-footer-row-newsletter{border-radius:32px 32px 0 0}
+.wpst-footer-boxed-cloud.wpst-footer-row-bottom{border-radius:0 0 30px 30px;margin-bottom:34px!important}
+.wpst-footer-boxed-midnight.wpst-footer-row-bottom{border-radius:0 0 34px 34px;margin-bottom:34px!important}
+.wpst-footer-boxed-editorial.wpst-footer-row-bottom{border-radius:0 0 38px 38px;margin-bottom:34px!important}
+.wpst-footer-boxed-sage.wpst-footer-row-bottom{border-radius:0 0 32px 32px;margin-bottom:34px!important}
+
+.wpst-footer-boxed-cloud{box-shadow:0 24px 70px rgba(49,94,251,.11);border-color:rgba(49,94,251,.12)}
+.wpst-footer-boxed-midnight{box-shadow:0 30px 90px rgba(2,8,23,.28);border-color:rgba(255,255,255,.10)}
+.wpst-footer-boxed-editorial{box-shadow:0 28px 80px rgba(80,55,35,.10);border-color:rgba(154,93,63,.12)}
+.wpst-footer-boxed-sage{box-shadow:0 26px 78px rgba(54,88,63,.12);border-color:rgba(66,106,75,.13)}
+
+.wpst-footer-boxed-cloud.wpst-footer-row-main>.elementor-element:first-child{flex:1.55 1 0}
+.wpst-footer-boxed-cloud.wpst-footer-row-main>.elementor-element:not(:first-child){flex:.72 1 0}
+.wpst-footer-boxed-midnight.wpst-footer-row-main{display:grid!important;grid-template-columns:1.45fr .72fr .72fr .9fr!important}
+.wpst-footer-boxed-editorial.wpst-footer-row-main{display:grid!important;grid-template-columns:1.65fr .8fr .8fr .72fr!important}
+.wpst-footer-boxed-editorial .wpst-ew-footer-links a{border-bottom:1px solid rgba(40,35,30,.13);border-radius:0}
+.wpst-footer-boxed-sage.wpst-footer-row-main{display:grid!important;grid-template-columns:1.5fr .75fr .75fr .8fr!important}
+.wpst-footer-boxed-sage .wpst-ew-footer-newsletter{max-width:760px}
+
+/* Existing similar footers now receive clearly different compositions. */
+.wpst-footer-modern-saas.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.55fr .72fr .72fr .85fr!important;
+}
+.wpst-footer-app-gradient.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.05fr 1fr 1fr 1fr!important;
+  align-items:end!important;
+}
+.wpst-footer-dark-gradient.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.8fr .62fr .62fr .78fr!important;
+}
+.wpst-footer-corporate.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.35fr .85fr .85fr 1fr!important;
+  border-top:1px solid #e2e8f0;
+}
+.wpst-footer-dark.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.6fr .7fr 1fr .7fr!important;
+  border-left:4px solid rgba(124,58,237,.7);
+}
+
+/* Identical industry/construction structure -> distinct rhythm. */
+.wpst-footer-industry-modern.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.4fr .8fr .8fr .72fr!important;
+}
+.wpst-footer-construction-bold.wpst-footer-row-main{
+  display:grid!important;
+  grid-template-columns:1.8fr .62fr .62fr .76fr!important;
+}
+.wpst-footer-construction-bold.wpst-footer-row-main>.elementor-element:first-child{
+  padding-right:32px;border-right:1px solid rgba(245,158,11,.24);
+}
+
+/* Same 4-column block signatures -> unique visual systems. */
+.wpst-footer-medical-clean.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.35fr .8fr 1.05fr .8fr!important;
+}
+.wpst-footer-finance-trust.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.7fr .64fr .9fr .76fr!important;
+}
+.wpst-footer-seo-growth.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.15fr .95fr .95fr .95fr!important;
+}
+.wpst-footer-legal-elegant.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.8fr .7fr .7fr .8fr!important;
+  border-top:1px solid rgba(91,70,54,.18);
+}
+.wpst-footer-education-friendly.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.25fr .9fr .9fr .9fr!important;
+}
+.wpst-footer-realestate-luxury.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.9fr .62fr .72fr .76fr!important;
+}
+
+/* Creative pair no longer looks identical. */
+.wpst-footer-portfolio-creative{
+  text-align:left;
+}
+.wpst-footer-portfolio-creative .wpst-ew-heading{max-width:920px}
+.wpst-footer-photography-canvas{
+  text-align:center;
+}
+.wpst-footer-photography-canvas .wpst-ew-heading{max-width:980px;margin-inline:auto}
+.wpst-footer-photography-canvas .wpst-ew-button{margin-inline:auto}
+
+/* CTA/newsletter structural duplicates separated. */
+.wpst-footer-cta.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.35fr .9fr .75fr!important;
+}
+.wpst-footer-newsletter.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.2fr 1fr .8fr!important;
+}
+.wpst-footer-newsletter-glass.wpst-footer-row-main{
+  display:grid!important;grid-template-columns:1.55fr .8fr .65fr!important;
+}
+.wpst-footer-newsletter-glass.wpst-footer-row-newsletter{
+  max-width:1240px!important;margin-inline:auto!important;border-radius:28px;
+}
+
+/* Legacy minimal/split/mega special branches. */
+.wpst-footer-layout-minimal .wpst-ew-footer-brand{max-width:610px}
+.wpst-footer-layout-dark-minimal{text-align:center}
+.wpst-footer-layout-dark-minimal .wpst-ew-footer-brand{margin-inline:auto}
+.wpst-footer-layout-split>.elementor-element:first-child{
+  padding-right:44px;border-right:1px solid rgba(148,163,184,.18)
+}
+.wpst-footer-layout-mega .wpst-footer-brand-name{font-size:clamp(42px,5vw,72px)}
+
+/* Remaining distinct personalities. */
+.wpst-footer-agency-bento.wpst-footer-row-main>.elementor-element{border-radius:24px}
+.wpst-footer-corporate-pro.wpst-footer-row-main{display:grid!important;grid-template-columns:1.5fr .75fr .85fr .9fr!important}
+.wpst-footer-commerce-premium.wpst-footer-row-main{display:grid!important;grid-template-columns:1.1fr .85fr 1fr 1fr!important}
+.wpst-footer-hotel-luxury.wpst-footer-row-main{display:grid!important;grid-template-columns:1.65fr .75fr .7fr .9fr!important}
+.wpst-footer-restaurant-editorial.wpst-footer-row-main{display:grid!important;grid-template-columns:1.7fr .85fr .85fr .6fr!important}
+.wpst-footer-blog-editorial.wpst-footer-row-main{display:grid!important;grid-template-columns:1.35fr .8fr 1.1fr .75fr!important}
+.wpst-footer-centered{text-align:center}
+.wpst-footer-minimal-line.wpst-footer-row-main{gap:18px!important}
+
+/* Responsive boxed and unique grids. */
+@media(max-width:1024px){
+  .wpst-footer-template.wpst-footer-row-main{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .wpst-footer-boxed-cloud,
+  .wpst-footer-boxed-midnight,
+  .wpst-footer-boxed-editorial,
+  .wpst-footer-boxed-sage{
+    width:calc(100% - 32px)!important;
+  }
+}
+@media(max-width:767px){
+  .wpst-footer-template.wpst-footer-row-main{
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  .wpst-footer-boxed-cloud,
+  .wpst-footer-boxed-midnight,
+  .wpst-footer-boxed-editorial,
+  .wpst-footer-boxed-sage{
+    width:calc(100% - 20px)!important;
+  }
+  .wpst-footer-boxed-cloud.wpst-footer-row-cta,
+  .wpst-footer-boxed-midnight.wpst-footer-row-cta,
+  .wpst-footer-boxed-editorial.wpst-footer-row-cta,
+  .wpst-footer-boxed-sage.wpst-footer-row-newsletter{
+    margin-top:16px!important;
+  }
+  .wpst-footer-boxed-cloud.wpst-footer-row-bottom,
+  .wpst-footer-boxed-midnight.wpst-footer-row-bottom,
+  .wpst-footer-boxed-editorial.wpst-footer-row-bottom,
+  .wpst-footer-boxed-sage.wpst-footer-row-bottom{
+    margin-bottom:16px!important;
+  }
+  .wpst-footer-layout-split>.elementor-element:first-child{
+    padding-right:0;border-right:0;padding-bottom:28px;border-bottom:1px solid rgba(148,163,184,.18)
+  }
+}
+
+
+/* ============================================================
+   Footer Boxed Shell Fix
+   Real outer shell controls width/background/radius.
+   ============================================================ */
+.wpst-footer-boxed-shell{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  max-width:none!important;
+  isolation:isolate;
+}
+.wpst-footer-boxed-shell>.e-con,
+.wpst-footer-boxed-shell>.elementor-element{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.wpst-footer-boxed-shell .wpst-footer-template{
+  width:100%!important;
+  max-width:none!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  background:transparent!important;
+}
+.wpst-footer-boxed-shell-boxed-cloud{max-width:1280px!important}
+.wpst-footer-boxed-shell-boxed-midnight{max-width:1240px!important}
+.wpst-footer-boxed-shell-boxed-editorial{max-width:1180px!important}
+.wpst-footer-boxed-shell-boxed-sage{max-width:1220px!important}
+
+@media(max-width:767px){
+  .wpst-footer-boxed-shell{
+    width:calc(100% - 20px)!important;
+    margin-top:16px!important;
+    margin-bottom:16px!important;
+  }
+}
+
+
+/* ============================================================
+   Footer Boxed Shell 2.0
+   Hard centering + transparent outer footer canvas.
+   ============================================================ */
+
+/* Outer Elementor/theme footer must not paint the old full-width background. */
+.elementor-location-footer:has(.wpst-footer-boxed-shell),
+footer:has(.wpst-footer-boxed-shell),
+.site-footer:has(.wpst-footer-boxed-shell),
+#footer:has(.wpst-footer-boxed-shell),
+.wpst-footer:has(.wpst-footer-boxed-shell),
+.elementor-type-footer:has(.wpst-footer-boxed-shell){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+
+/* Some themes paint an inner wrapper rather than footer itself. */
+.elementor-location-footer:has(.wpst-footer-boxed-shell) > *,
+footer:has(.wpst-footer-boxed-shell) > .elementor,
+footer:has(.wpst-footer-boxed-shell) > .elementor-location-footer{
+  background-color:transparent!important;
+  background-image:none!important;
+}
+
+/* Do not rely on Elementor's --width for boxed footers. */
+.wpst-footer-boxed-shell{
+  --width:auto!important;
+  --container-widget-width:100%!important;
+  flex:0 0 auto!important;
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+
+.wpst-footer-boxed-shell-boxed-cloud{
+  width:min(calc(100% - 64px),1280px)!important;
+  max-width:1280px!important;
+}
+.wpst-footer-boxed-shell-boxed-midnight{
+  width:min(calc(100% - 64px),1240px)!important;
+  max-width:1240px!important;
+}
+.wpst-footer-boxed-shell-boxed-editorial{
+  width:min(calc(100% - 64px),1180px)!important;
+  max-width:1180px!important;
+}
+.wpst-footer-boxed-shell-boxed-sage{
+  width:min(calc(100% - 64px),1220px)!important;
+  max-width:1220px!important;
+}
+
+/* The shell owns the whole visible background/radius. */
+.wpst-footer-boxed-shell > .e-con,
+.wpst-footer-boxed-shell > .elementor-element,
+.wpst-footer-boxed-shell .wpst-footer-template{
+  width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  border-radius:0!important;
+}
+
+/* Prevent old boxed row margins from creating broken seams inside the shell. */
+.wpst-footer-boxed-shell .wpst-footer-row-cta,
+.wpst-footer-boxed-shell .wpst-footer-row-newsletter,
+.wpst-footer-boxed-shell .wpst-footer-row-main,
+.wpst-footer-boxed-shell .wpst-footer-row-bottom{
+  margin-top:0!important;
+  margin-bottom:0!important;
+}
+
+/* Keep a clean white/transparent canvas around the floating footer card. */
+body .elementor-location-footer:has(.wpst-footer-boxed-shell){
+  padding-top:28px!important;
+  padding-bottom:28px!important;
+}
+
+@media(max-width:1024px){
+  .wpst-footer-boxed-shell-boxed-cloud,
+  .wpst-footer-boxed-shell-boxed-midnight,
+  .wpst-footer-boxed-shell-boxed-editorial,
+  .wpst-footer-boxed-shell-boxed-sage{
+    width:calc(100% - 32px)!important;
+  }
+  body .elementor-location-footer:has(.wpst-footer-boxed-shell){
+    padding-top:20px!important;
+    padding-bottom:20px!important;
+  }
+}
+
+@media(max-width:767px){
+  .wpst-footer-boxed-shell-boxed-cloud,
+  .wpst-footer-boxed-shell-boxed-midnight,
+  .wpst-footer-boxed-shell-boxed-editorial,
+  .wpst-footer-boxed-shell-boxed-sage{
+    width:calc(100% - 20px)!important;
+  }
+  .wpst-footer-boxed-shell{
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+  body .elementor-location-footer:has(.wpst-footer-boxed-shell){
+    padding-top:12px!important;
+    padding-bottom:12px!important;
+  }
+}
+
+
+/* ============================================================
+   Footer Boxed Shell 3.0 · Nested Elementor-safe structure
+   ============================================================ */
+.wpst-footer-boxed-outer{
+  width:100%!important;
+  max-width:none!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+}
+
+.wpst-footer-boxed-outer > .wpst-footer-boxed-shell,
+.wpst-footer-boxed-outer > .e-con.wpst-footer-boxed-shell,
+.wpst-footer-boxed-outer > .elementor-element.wpst-footer-boxed-shell{
+  flex:0 0 auto!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  transform:none!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+
+.wpst-footer-boxed-outer-boxed-cloud > .wpst-footer-boxed-shell,
+.wpst-footer-boxed-shell-boxed-cloud{
+  width:min(100%,1280px)!important;
+  max-width:1280px!important;
+}
+.wpst-footer-boxed-outer-boxed-midnight > .wpst-footer-boxed-shell,
+.wpst-footer-boxed-shell-boxed-midnight{
+  width:min(100%,1240px)!important;
+  max-width:1240px!important;
+}
+.wpst-footer-boxed-outer-boxed-editorial > .wpst-footer-boxed-shell,
+.wpst-footer-boxed-shell-boxed-editorial{
+  width:min(100%,1180px)!important;
+  max-width:1180px!important;
+}
+.wpst-footer-boxed-outer-boxed-sage > .wpst-footer-boxed-shell,
+.wpst-footer-boxed-shell-boxed-sage{
+  width:min(100%,1220px)!important;
+  max-width:1220px!important;
+}
+
+/* Child rows fill only the inner shell, never viewport. */
+.wpst-footer-boxed-shell > .e-con,
+.wpst-footer-boxed-shell > .elementor-element,
+.wpst-footer-boxed-shell .wpst-footer-template{
+  width:100%!important;
+  max-width:100%!important;
+  margin:0!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  border-radius:0!important;
+}
+
+/* Only the shell has rounded corners. */
+.wpst-footer-boxed-shell{
+  isolation:isolate!important;
+}
+.wpst-footer-boxed-shell-boxed-cloud{border-radius:30px!important}
+.wpst-footer-boxed-shell-boxed-midnight{border-radius:34px!important}
+.wpst-footer-boxed-shell-boxed-editorial{border-radius:38px!important}
+.wpst-footer-boxed-shell-boxed-sage{border-radius:32px!important}
+
+/* Clear legacy row margins from previous boxed implementation. */
+.wpst-footer-boxed-shell .wpst-footer-row-cta,
+.wpst-footer-boxed-shell .wpst-footer-row-newsletter,
+.wpst-footer-boxed-shell .wpst-footer-row-main,
+.wpst-footer-boxed-shell .wpst-footer-row-bottom{
+  margin:0!important;
+}
+
+/* Neutralize theme/footer wrappers only when our nested outer canvas exists. */
+.elementor-location-footer .wpst-footer-boxed-outer,
+.elementor-type-footer .wpst-footer-boxed-outer{
+  background:transparent!important;
+}
+
+@media(max-width:1024px){
+  .wpst-footer-boxed-outer{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
+@media(max-width:767px){
+  .wpst-footer-boxed-outer{
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+}

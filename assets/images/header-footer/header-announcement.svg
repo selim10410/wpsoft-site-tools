@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="320" viewBox="0 0 420 160">
+<rect width="420" height="160" rx="18" fill="#eef2f7"/>
+<rect x="34" y="42" width="352" height="18" rx="7" fill="#ea580c" opacity=".14"/><rect x="58" y="48" width="156" height="5" rx="2.5" fill="#0f172a" opacity=".55"/><rect x="34" y="68" width="352" height="48" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-opacity=".35"/><rect x="52" y="79" width="62" height="24" rx="10" fill="#ea580c" opacity=".15"/><text x="65" y="95" font-family="Arial" font-size="10" font-weight="700" fill="#0f172a">LOGO</text><rect x="150" y="89" width="34" height="6" rx="3" fill="#cbd5e1"/><rect x="194" y="89" width="34" height="6" rx="3" fill="#cbd5e1"/><rect x="238" y="89" width="34" height="6" rx="3" fill="#cbd5e1"/><rect x="300" y="78" width="66" height="28" rx="12" fill="#ea580c"/>
+<text x="34" y="142" font-family="Arial" font-size="10" font-weight="700" fill="#64748b">Announcement Header</text>
+</svg>

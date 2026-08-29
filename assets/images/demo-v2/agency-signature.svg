@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fdf2f8"/><stop offset="1" stop-color="#f5f3ff"/></linearGradient>
+ <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+</defs>
+<rect width="1200" height="620" rx="38" fill="url(#bg)"/>
+<circle cx="1060" cy="90" r="190" fill="#db2777" opacity=".08"/>
+<circle cx="110" cy="560" r="220" fill="#fff" opacity=".06"/>
+<g transform="translate(0 0)">
+ <rect x="92" y="112" width="130" height="30" rx="15" fill="#db2777" opacity=".16"/>
+ <text x="112" y="133" fill="#db2777" font-size="15" font-family="Arial,sans-serif" font-weight="700">WPSOFT DEMO</text>
+ <text x="92" y="205" fill="#0f172a" font-size="48" font-family="Arial,sans-serif" font-weight="800">Creative Studio</text>
+ <text x="92" y="246" fill="#475569" font-size="20" font-family="Arial,sans-serif">Cesur tipografi ve proje odaklı akış</text>
+ <rect x="92" y="300" width="138" height="48" rx="16" fill="#db2777"/>
+ <text x="126" y="330" fill="#fff" font-size="16" font-family="Arial,sans-serif" font-weight="700">İncele</text>
+ <rect x="248" y="300" width="122" height="48" rx="16" fill="#fff" opacity=".8"/>
+ <text x="278" y="330" fill="#334155" font-size="16" font-family="Arial,sans-serif" font-weight="700">Detaylar</text>
+</g>
+<rect x="500" y="145" width="385" height="300" rx="36" fill="#111827"/><circle cx="610" cy="250" r="85" fill="#db2777" opacity=".88"/><rect x="690" y="205" width="145" height="100" rx="24" fill="#fff"/><rect x="555" y="340" width="280" height="58" rx="20" fill="#fff" opacity=".12"/><path d="M720 240h80M720 260h55" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
+</svg>

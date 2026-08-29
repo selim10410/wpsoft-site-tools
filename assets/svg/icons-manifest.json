@@ -1,0 +1,790 @@
+{
+  "version": "1.0",
+  "count": 126,
+  "categories": {
+    "Arayüz": [
+      "arrow-right",
+      "arrow-up-right",
+      "chevron-right",
+      "chevron-down",
+      "check",
+      "check-circle",
+      "plus",
+      "minus",
+      "menu",
+      "close",
+      "search",
+      "filter",
+      "eye",
+      "arrow-left",
+      "arrow-up",
+      "arrow-down",
+      "chevron-left",
+      "chevrons-right",
+      "external-link",
+      "refresh",
+      "copy",
+      "trash",
+      "edit",
+      "more-horizontal",
+      "more-vertical",
+      "sliders",
+      "maximize",
+      "minimize"
+    ],
+    "Genel": [
+      "home",
+      "user",
+      "users",
+      "heart",
+      "star",
+      "award",
+      "sparkles",
+      "info",
+      "help-circle",
+      "bell",
+      "bookmark",
+      "flag",
+      "location",
+      "compass"
+    ],
+    "İş": [
+      "bolt",
+      "rocket",
+      "target",
+      "chart",
+      "briefcase",
+      "building"
+    ],
+    "Tasarım": [
+      "layers",
+      "grid",
+      "palette",
+      "pen",
+      "layout",
+      "columns",
+      "move",
+      "crop"
+    ],
+    "Teknoloji": [
+      "monitor",
+      "smartphone",
+      "code",
+      "globe",
+      "settings",
+      "wifi",
+      "database",
+      "server",
+      "cpu",
+      "cloud",
+      "zap"
+    ],
+    "Güvenlik": [
+      "shield",
+      "lock",
+      "fingerprint",
+      "key",
+      "unlock",
+      "shield-alert"
+    ],
+    "İletişim": [
+      "phone",
+      "mail",
+      "map-pin",
+      "clock",
+      "calendar",
+      "message",
+      "headphones",
+      "send",
+      "at-sign"
+    ],
+    "E-Ticaret": [
+      "cart",
+      "bag",
+      "package",
+      "truck",
+      "tag",
+      "credit-card",
+      "receipt",
+      "percent",
+      "gift",
+      "store",
+      "wallet"
+    ],
+    "Medya": [
+      "camera",
+      "image",
+      "play",
+      "video",
+      "link",
+      "mic",
+      "music",
+      "volume",
+      "pause",
+      "skip-forward",
+      "skip-back"
+    ],
+    "Dosya": [
+      "download",
+      "upload",
+      "folder",
+      "file",
+      "file-text",
+      "archive",
+      "printer"
+    ],
+    "Araçlar": [
+      "wrench",
+      "tool",
+      "scissors",
+      "hammer",
+      "ruler"
+    ],
+    "İçerik": [
+      "quote",
+      "faq",
+      "lightbulb",
+      "book-open",
+      "clipboard",
+      "list"
+    ],
+    "Şekiller": [
+      "circle",
+      "square",
+      "triangle",
+      "hexagon"
+    ]
+  },
+  "icons": {
+    "arrow-right": {
+      "label": "Ok Sağ",
+      "category": "Arayüz",
+      "file": "icons/arrow-right.svg"
+    },
+    "arrow-up-right": {
+      "label": "Ok Sağ Üst",
+      "category": "Arayüz",
+      "file": "icons/arrow-up-right.svg"
+    },
+    "chevron-right": {
+      "label": "Chevron Sağ",
+      "category": "Arayüz",
+      "file": "icons/chevron-right.svg"
+    },
+    "chevron-down": {
+      "label": "Chevron Aşağı",
+      "category": "Arayüz",
+      "file": "icons/chevron-down.svg"
+    },
+    "check": {
+      "label": "Onay",
+      "category": "Arayüz",
+      "file": "icons/check.svg"
+    },
+    "check-circle": {
+      "label": "Onay Daire",
+      "category": "Arayüz",
+      "file": "icons/check-circle.svg"
+    },
+    "plus": {
+      "label": "Artı",
+      "category": "Arayüz",
+      "file": "icons/plus.svg"
+    },
+    "minus": {
+      "label": "Eksi",
+      "category": "Arayüz",
+      "file": "icons/minus.svg"
+    },
+    "menu": {
+      "label": "Menü",
+      "category": "Arayüz",
+      "file": "icons/menu.svg"
+    },
+    "close": {
+      "label": "Kapat",
+      "category": "Arayüz",
+      "file": "icons/close.svg"
+    },
+    "search": {
+      "label": "Arama",
+      "category": "Arayüz",
+      "file": "icons/search.svg"
+    },
+    "filter": {
+      "label": "Filtre",
+      "category": "Arayüz",
+      "file": "icons/filter.svg"
+    },
+    "eye": {
+      "label": "Göz",
+      "category": "Arayüz",
+      "file": "icons/eye.svg"
+    },
+    "home": {
+      "label": "Ana Sayfa",
+      "category": "Genel",
+      "file": "icons/home.svg"
+    },
+    "user": {
+      "label": "Kullanıcı",
+      "category": "Genel",
+      "file": "icons/user.svg"
+    },
+    "users": {
+      "label": "Kullanıcılar",
+      "category": "Genel",
+      "file": "icons/users.svg"
+    },
+    "heart": {
+      "label": "Kalp",
+      "category": "Genel",
+      "file": "icons/heart.svg"
+    },
+    "star": {
+      "label": "Yıldız",
+      "category": "Genel",
+      "file": "icons/star.svg"
+    },
+    "award": {
+      "label": "Ödül",
+      "category": "Genel",
+      "file": "icons/award.svg"
+    },
+    "sparkles": {
+      "label": "Parıltı",
+      "category": "Genel",
+      "file": "icons/sparkles.svg"
+    },
+    "bolt": {
+      "label": "Hız",
+      "category": "İş",
+      "file": "icons/bolt.svg"
+    },
+    "rocket": {
+      "label": "Roket",
+      "category": "İş",
+      "file": "icons/rocket.svg"
+    },
+    "target": {
+      "label": "Hedef",
+      "category": "İş",
+      "file": "icons/target.svg"
+    },
+    "chart": {
+      "label": "Grafik",
+      "category": "İş",
+      "file": "icons/chart.svg"
+    },
+    "briefcase": {
+      "label": "Çanta",
+      "category": "İş",
+      "file": "icons/briefcase.svg"
+    },
+    "building": {
+      "label": "Bina",
+      "category": "İş",
+      "file": "icons/building.svg"
+    },
+    "layers": {
+      "label": "Katmanlar",
+      "category": "Tasarım",
+      "file": "icons/layers.svg"
+    },
+    "grid": {
+      "label": "Grid",
+      "category": "Tasarım",
+      "file": "icons/grid.svg"
+    },
+    "palette": {
+      "label": "Palet",
+      "category": "Tasarım",
+      "file": "icons/palette.svg"
+    },
+    "pen": {
+      "label": "Kalem",
+      "category": "Tasarım",
+      "file": "icons/pen.svg"
+    },
+    "monitor": {
+      "label": "Monitör",
+      "category": "Teknoloji",
+      "file": "icons/monitor.svg"
+    },
+    "smartphone": {
+      "label": "Telefon",
+      "category": "Teknoloji",
+      "file": "icons/smartphone.svg"
+    },
+    "code": {
+      "label": "Kod",
+      "category": "Teknoloji",
+      "file": "icons/code.svg"
+    },
+    "globe": {
+      "label": "Dünya",
+      "category": "Teknoloji",
+      "file": "icons/globe.svg"
+    },
+    "settings": {
+      "label": "Ayarlar",
+      "category": "Teknoloji",
+      "file": "icons/settings.svg"
+    },
+    "shield": {
+      "label": "Kalkan",
+      "category": "Güvenlik",
+      "file": "icons/shield.svg"
+    },
+    "lock": {
+      "label": "Kilit",
+      "category": "Güvenlik",
+      "file": "icons/lock.svg"
+    },
+    "phone": {
+      "label": "Telefon",
+      "category": "İletişim",
+      "file": "icons/phone.svg"
+    },
+    "mail": {
+      "label": "E-posta",
+      "category": "İletişim",
+      "file": "icons/mail.svg"
+    },
+    "map-pin": {
+      "label": "Konum",
+      "category": "İletişim",
+      "file": "icons/map-pin.svg"
+    },
+    "clock": {
+      "label": "Saat",
+      "category": "İletişim",
+      "file": "icons/clock.svg"
+    },
+    "calendar": {
+      "label": "Takvim",
+      "category": "İletişim",
+      "file": "icons/calendar.svg"
+    },
+    "message": {
+      "label": "Mesaj",
+      "category": "İletişim",
+      "file": "icons/message.svg"
+    },
+    "cart": {
+      "label": "Sepet",
+      "category": "E-Ticaret",
+      "file": "icons/cart.svg"
+    },
+    "bag": {
+      "label": "Çanta",
+      "category": "E-Ticaret",
+      "file": "icons/bag.svg"
+    },
+    "package": {
+      "label": "Paket",
+      "category": "E-Ticaret",
+      "file": "icons/package.svg"
+    },
+    "truck": {
+      "label": "Kargo",
+      "category": "E-Ticaret",
+      "file": "icons/truck.svg"
+    },
+    "tag": {
+      "label": "Etiket",
+      "category": "E-Ticaret",
+      "file": "icons/tag.svg"
+    },
+    "camera": {
+      "label": "Kamera",
+      "category": "Medya",
+      "file": "icons/camera.svg"
+    },
+    "image": {
+      "label": "Görsel",
+      "category": "Medya",
+      "file": "icons/image.svg"
+    },
+    "play": {
+      "label": "Oynat",
+      "category": "Medya",
+      "file": "icons/play.svg"
+    },
+    "video": {
+      "label": "Video",
+      "category": "Medya",
+      "file": "icons/video.svg"
+    },
+    "link": {
+      "label": "Bağlantı",
+      "category": "Medya",
+      "file": "icons/link.svg"
+    },
+    "download": {
+      "label": "İndir",
+      "category": "Dosya",
+      "file": "icons/download.svg"
+    },
+    "upload": {
+      "label": "Yükle",
+      "category": "Dosya",
+      "file": "icons/upload.svg"
+    },
+    "wrench": {
+      "label": "Anahtar",
+      "category": "Araçlar",
+      "file": "icons/wrench.svg"
+    },
+    "tool": {
+      "label": "Araç",
+      "category": "Araçlar",
+      "file": "icons/tool.svg"
+    },
+    "quote": {
+      "label": "Alıntı",
+      "category": "İçerik",
+      "file": "icons/quote.svg"
+    },
+    "faq": {
+      "label": "Soru",
+      "category": "İçerik",
+      "file": "icons/faq.svg"
+    },
+    "arrow-left": {
+      "label": "Ok Sol",
+      "category": "Arayüz",
+      "file": "icons/arrow-left.svg"
+    },
+    "arrow-up": {
+      "label": "Ok Yukarı",
+      "category": "Arayüz",
+      "file": "icons/arrow-up.svg"
+    },
+    "arrow-down": {
+      "label": "Ok Aşağı",
+      "category": "Arayüz",
+      "file": "icons/arrow-down.svg"
+    },
+    "chevron-left": {
+      "label": "Chevron Sol",
+      "category": "Arayüz",
+      "file": "icons/chevron-left.svg"
+    },
+    "chevrons-right": {
+      "label": "Çift Chevron Sağ",
+      "category": "Arayüz",
+      "file": "icons/chevrons-right.svg"
+    },
+    "external-link": {
+      "label": "Harici Bağlantı",
+      "category": "Arayüz",
+      "file": "icons/external-link.svg"
+    },
+    "refresh": {
+      "label": "Yenile",
+      "category": "Arayüz",
+      "file": "icons/refresh.svg"
+    },
+    "copy": {
+      "label": "Kopyala",
+      "category": "Arayüz",
+      "file": "icons/copy.svg"
+    },
+    "trash": {
+      "label": "Sil",
+      "category": "Arayüz",
+      "file": "icons/trash.svg"
+    },
+    "edit": {
+      "label": "Düzenle",
+      "category": "Arayüz",
+      "file": "icons/edit.svg"
+    },
+    "more-horizontal": {
+      "label": "Daha Fazla",
+      "category": "Arayüz",
+      "file": "icons/more-horizontal.svg"
+    },
+    "more-vertical": {
+      "label": "Daha Fazla Dikey",
+      "category": "Arayüz",
+      "file": "icons/more-vertical.svg"
+    },
+    "sliders": {
+      "label": "Kontroller",
+      "category": "Arayüz",
+      "file": "icons/sliders.svg"
+    },
+    "maximize": {
+      "label": "Tam Ekran",
+      "category": "Arayüz",
+      "file": "icons/maximize.svg"
+    },
+    "minimize": {
+      "label": "Küçült",
+      "category": "Arayüz",
+      "file": "icons/minimize.svg"
+    },
+    "info": {
+      "label": "Bilgi",
+      "category": "Genel",
+      "file": "icons/info.svg"
+    },
+    "help-circle": {
+      "label": "Yardım",
+      "category": "Genel",
+      "file": "icons/help-circle.svg"
+    },
+    "bell": {
+      "label": "Bildirim",
+      "category": "Genel",
+      "file": "icons/bell.svg"
+    },
+    "bookmark": {
+      "label": "Yer İmi",
+      "category": "Genel",
+      "file": "icons/bookmark.svg"
+    },
+    "flag": {
+      "label": "Bayrak",
+      "category": "Genel",
+      "file": "icons/flag.svg"
+    },
+    "location": {
+      "label": "Konum",
+      "category": "Genel",
+      "file": "icons/location.svg"
+    },
+    "compass": {
+      "label": "Pusula",
+      "category": "Genel",
+      "file": "icons/compass.svg"
+    },
+    "wifi": {
+      "label": "Wi-Fi",
+      "category": "Teknoloji",
+      "file": "icons/wifi.svg"
+    },
+    "database": {
+      "label": "Veritabanı",
+      "category": "Teknoloji",
+      "file": "icons/database.svg"
+    },
+    "server": {
+      "label": "Sunucu",
+      "category": "Teknoloji",
+      "file": "icons/server.svg"
+    },
+    "cpu": {
+      "label": "İşlemci",
+      "category": "Teknoloji",
+      "file": "icons/cpu.svg"
+    },
+    "cloud": {
+      "label": "Bulut",
+      "category": "Teknoloji",
+      "file": "icons/cloud.svg"
+    },
+    "zap": {
+      "label": "Enerji",
+      "category": "Teknoloji",
+      "file": "icons/zap.svg"
+    },
+    "fingerprint": {
+      "label": "Parmak İzi",
+      "category": "Güvenlik",
+      "file": "icons/fingerprint.svg"
+    },
+    "key": {
+      "label": "Anahtar",
+      "category": "Güvenlik",
+      "file": "icons/key.svg"
+    },
+    "unlock": {
+      "label": "Kilidi Aç",
+      "category": "Güvenlik",
+      "file": "icons/unlock.svg"
+    },
+    "shield-alert": {
+      "label": "Uyarı Kalkanı",
+      "category": "Güvenlik",
+      "file": "icons/shield-alert.svg"
+    },
+    "credit-card": {
+      "label": "Kredi Kartı",
+      "category": "E-Ticaret",
+      "file": "icons/credit-card.svg"
+    },
+    "receipt": {
+      "label": "Fiş",
+      "category": "E-Ticaret",
+      "file": "icons/receipt.svg"
+    },
+    "percent": {
+      "label": "Yüzde",
+      "category": "E-Ticaret",
+      "file": "icons/percent.svg"
+    },
+    "gift": {
+      "label": "Hediye",
+      "category": "E-Ticaret",
+      "file": "icons/gift.svg"
+    },
+    "store": {
+      "label": "Mağaza",
+      "category": "E-Ticaret",
+      "file": "icons/store.svg"
+    },
+    "wallet": {
+      "label": "Cüzdan",
+      "category": "E-Ticaret",
+      "file": "icons/wallet.svg"
+    },
+    "headphones": {
+      "label": "Kulaklık",
+      "category": "İletişim",
+      "file": "icons/headphones.svg"
+    },
+    "send": {
+      "label": "Gönder",
+      "category": "İletişim",
+      "file": "icons/send.svg"
+    },
+    "at-sign": {
+      "label": "@ İşareti",
+      "category": "İletişim",
+      "file": "icons/at-sign.svg"
+    },
+    "mic": {
+      "label": "Mikrofon",
+      "category": "Medya",
+      "file": "icons/mic.svg"
+    },
+    "music": {
+      "label": "Müzik",
+      "category": "Medya",
+      "file": "icons/music.svg"
+    },
+    "volume": {
+      "label": "Ses",
+      "category": "Medya",
+      "file": "icons/volume.svg"
+    },
+    "pause": {
+      "label": "Duraklat",
+      "category": "Medya",
+      "file": "icons/pause.svg"
+    },
+    "skip-forward": {
+      "label": "Sonraki",
+      "category": "Medya",
+      "file": "icons/skip-forward.svg"
+    },
+    "skip-back": {
+      "label": "Önceki",
+      "category": "Medya",
+      "file": "icons/skip-back.svg"
+    },
+    "folder": {
+      "label": "Klasör",
+      "category": "Dosya",
+      "file": "icons/folder.svg"
+    },
+    "file": {
+      "label": "Dosya",
+      "category": "Dosya",
+      "file": "icons/file.svg"
+    },
+    "file-text": {
+      "label": "Metin Dosyası",
+      "category": "Dosya",
+      "file": "icons/file-text.svg"
+    },
+    "archive": {
+      "label": "Arşiv",
+      "category": "Dosya",
+      "file": "icons/archive.svg"
+    },
+    "printer": {
+      "label": "Yazıcı",
+      "category": "Dosya",
+      "file": "icons/printer.svg"
+    },
+    "scissors": {
+      "label": "Makas",
+      "category": "Araçlar",
+      "file": "icons/scissors.svg"
+    },
+    "hammer": {
+      "label": "Çekiç",
+      "category": "Araçlar",
+      "file": "icons/hammer.svg"
+    },
+    "ruler": {
+      "label": "Cetvel",
+      "category": "Araçlar",
+      "file": "icons/ruler.svg"
+    },
+    "lightbulb": {
+      "label": "Fikir",
+      "category": "İçerik",
+      "file": "icons/lightbulb.svg"
+    },
+    "book-open": {
+      "label": "Kitap",
+      "category": "İçerik",
+      "file": "icons/book-open.svg"
+    },
+    "clipboard": {
+      "label": "Pano",
+      "category": "İçerik",
+      "file": "icons/clipboard.svg"
+    },
+    "list": {
+      "label": "Liste",
+      "category": "İçerik",
+      "file": "icons/list.svg"
+    },
+    "layout": {
+      "label": "Yerleşim",
+      "category": "Tasarım",
+      "file": "icons/layout.svg"
+    },
+    "columns": {
+      "label": "Kolonlar",
+      "category": "Tasarım",
+      "file": "icons/columns.svg"
+    },
+    "move": {
+      "label": "Taşı",
+      "category": "Tasarım",
+      "file": "icons/move.svg"
+    },
+    "crop": {
+      "label": "Kırp",
+      "category": "Tasarım",
+      "file": "icons/crop.svg"
+    },
+    "circle": {
+      "label": "Daire",
+      "category": "Şekiller",
+      "file": "icons/circle.svg"
+    },
+    "square": {
+      "label": "Kare",
+      "category": "Şekiller",
+      "file": "icons/square.svg"
+    },
+    "triangle": {
+      "label": "Üçgen",
+      "category": "Şekiller",
+      "file": "icons/triangle.svg"
+    },
+    "hexagon": {
+      "label": "Altıgen",
+      "category": "Şekiller",
+      "file": "icons/hexagon.svg"
+    }
+  }
+}

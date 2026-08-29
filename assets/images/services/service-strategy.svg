@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<rect width="900" height="600" fill="#111827"/>
+<circle cx="710" cy="110" r="210" fill="#315cf5" opacity=".24"/>
+<circle cx="140" cy="520" r="180" fill="#315cf5" opacity=".12"/>
+<path d="M120 390 C270 210 430 490 760 210" fill="none" stroke="#315cf5" stroke-width="3" opacity=".72"/>
+<rect x="90" y="88" width="120" height="10" rx="5" fill="#fff" opacity=".5"/>
+<text x="88" y="175" fill="#fff" font-family="Arial,sans-serif" font-size="66" font-weight="700">STRATEGY</text>
+<rect x="90" y="215" width="330" height="12" rx="6" fill="#fff" opacity=".26"/>
+<rect x="90" y="244" width="250" height="12" rx="6" fill="#fff" opacity=".16"/>
+</svg>

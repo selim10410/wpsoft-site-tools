@@ -1,0 +1,334 @@
+/* WPSoft Site Tools v3.2.71 · Modern Compatibility cleanup stage */
+/* WPSoft Site Tools v3.2.68 · Frontend module: 05-modern-compat */
+/* v3.2.44 — Essentials-inspired clean header navigation. */
+@media (min-width:1025px){
+  .wpsoft-site-header .wpst-q-menu>li>a{text-decoration:none!important}
+  .wpsoft-site-header .wpst-q-menu>li>a:before{content:none!important;display:none!important}
+  .wpsoft-site-header .wpst-q-menu>li:not(.menu-item-has-children):not(.page_item_has_children)>a:after{content:none!important;display:none!important}
+  .wpsoft-site-header[data-wpst-menu-hover="none"] .wpst-q-menu>li>a:hover,
+  .wpsoft-site-header[data-wpst-menu-hover="none"] .wpst-q-menu>li>a:focus-visible{background:transparent!important;box-shadow:none!important;transform:none!important}
+  .wpsoft-site-header[data-wpst-menu-hover="shadow"] .wpst-q-menu>li>a:hover,
+  .wpsoft-site-header[data-wpst-menu-hover="shadow"] .wpst-q-menu>li>a:focus-visible{padding-left:12px;padding-right:12px;border-radius:12px;background:rgba(255,255,255,.68);box-shadow:0 7px 22px rgba(15,23,42,.10);transform:translateY(-1px)}
+}
+
+/* ==========================================================
+   v3.2.46 — Transparent Header / Mega Menu Isolation
+   Transparent header colors belong only to the header navigation.
+   Mega panels are independent surfaces and must keep their own colors.
+   ========================================================== */
+@media(min-width:901px){
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.sub-menu,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.wpst-elementor-mega-panel{
+    color:#0f172a!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.sub-menu a{
+    color:#0f172a!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.sub-menu .wpst-menu-item-description{
+    color:#64748b!important;
+  }
+
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.sub-menu .wpst-mega-column-title>a,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-q-menu>.wpst-mega-enabled>.sub-menu .wpst-mega-column-title>span>a{
+    color:#64748b!important;
+  }
+
+  /* Elementor mega templates keep their own nested backgrounds and typography. */
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-elementor-mega-panel .elementor,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-elementor-mega-panel .elementor-element,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-elementor-mega-panel .elementor-widget-container,
+  body.wpst-header-transparent .wpsoft-site-header:not(.is-wpst-scrolled)
+  .wpst-elementor-mega-panel .e-con{
+    color:initial;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.49 — Elementor Color Priority
+   Elementor templates keep the colors/styles configured in Elementor.
+   Only WPSoft native quick Header/Footer blocks inherit WPSoft shell colors.
+   ========================================================== */
+
+/* Native WPSoft shell */
+.wpsoft-site-header,
+.wpsoft-site-footer{
+  color:var(--wpst-color);
+}
+
+/* Only native quick-builder elements inherit shell colors. */
+.wpsoft-site-header .wpst-quick-inner .wpst-q-logo>a,
+.wpsoft-site-header .wpst-quick-inner .wpst-q-menu>li>a,
+.wpsoft-site-header .wpst-quick-inner .wpst-q-html,
+.wpsoft-site-footer .wpst-quick-inner .wpst-q-logo>a,
+.wpsoft-site-footer .wpst-quick-inner .wpst-q-menu>li>a,
+.wpsoft-site-footer .wpst-quick-inner .wpst-q-html,
+.wpsoft-site-footer .wpst-footer-bottom{
+  color:inherit;
+}
+
+/* Elementor templates are independent design contexts.
+   Do not force link/text/form colors from WPSoft shell/global tokens. */
+.wpsoft-site-header :is(.wpst-desktop-template,.wpst-mobile-template,.wpst-all-template) .elementor,
+.wpsoft-site-footer :is(.wpst-desktop-template,.wpst-mobile-template,.wpst-all-template) .elementor{
+  color:initial;
+}
+
+/* Keep native quick-builder form controls readable without touching Elementor forms. */
+.wpsoft-site-footer .wpst-quick-inner input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.wpsoft-site-footer .wpst-quick-inner select,
+.wpsoft-site-footer .wpst-quick-inner textarea{
+  border-color:color-mix(in srgb,currentColor 24%,transparent);
+  background:color-mix(in srgb,currentColor 7%,transparent);
+  color:inherit;
+}
+.wpsoft-site-footer .wpst-quick-inner input::placeholder,
+.wpsoft-site-footer .wpst-quick-inner textarea::placeholder{
+  color:currentColor;
+  opacity:.5;
+}
+
+/* Native Builder dark logo treatment for dark transparent hero headers. */
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-logo img{
+  filter:brightness(0) invert(1);
+  opacity:1;
+}
+.wpsoft-site-header.is-wpst-scrolled .wpst-q-logo img{
+  filter:none;
+}
+
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-button{
+  color:#fff!important;
+}
+
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"][data-wpst-glass="off"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  background:transparent!important;
+  border-color:rgba(255,255,255,.10)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+@media(min-width:783px){
+  body.admin-bar.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"][data-wpst-transparent-overlay="1"]:not(.is-wpst-scrolled){
+    top:32px!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.90 · Floating / Boxed Header
+   Only the MAIN header row becomes a centered floating surface.
+   ========================================================== */
+@media(min-width:1025px){
+  .wpsoft-site-header[data-wpst-layout="boxed"]{
+    background:transparent!important;
+    box-shadow:none!important;
+    padding-top:var(--wpst-header-boxed-top,16px);
+    padding-inline:var(--wpst-header-boxed-side,24px);
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-shell{
+    background:transparent!important;
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-row-main{
+    width:min(100%,var(--wpst-header-boxed-width,1260px));
+    margin-inline:auto;
+    overflow:visible;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-row-main .wpst-header-row-inner{
+    width:100%;
+    max-width:none!important;
+    border:var(--wpst-header-boxed-border-w,1px) solid var(--wpst-header-boxed-border,#e5e7eb);
+    border-radius:var(--wpst-header-boxed-radius,14px);
+    background:var(--wpst-header-boxed-bg,#fff)!important;
+    color:#111827;
+    overflow:visible;
+    transition:
+      background-color .25s ease,
+      box-shadow .25s ease,
+      border-color .25s ease,
+      border-radius .25s ease;
+  }
+
+  /* Boxed surface owns its own contrast even when Transparent Header is enabled. */
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-header-row-inner{
+    background:var(--wpst-header-boxed-bg,#fff)!important;
+    border-color:var(--wpst-header-boxed-border,#e5e7eb)!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-menu>li>a{
+    color:#111827!important;
+  }
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-logo img{
+    filter:none!important;
+  }
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-button{
+    color:#fff!important;
+  }
+
+  /* Active/hover state inside a white floating bar should use normal light-header styling. */
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-menu>li.current-menu-item>a,
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-menu>li.current_page_item>a,
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-menu>li.current-menu-ancestor>a,
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-menu>li.current_page_ancestor>a{
+    color:#111827!important;
+    background:#f1f5f9!important;
+    border-color:transparent!important;
+  }
+
+  /* Keep mega menus visually aligned with the floating main row. */
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-mega-menu,
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-elementor-mega-panel{
+    border-radius:14px;
+  }
+
+  /* Sticky/scrolled keeps the floating identity, but tightens spacing. */
+  .wpsoft-site-header[data-wpst-layout="boxed"].is-wpst-scrolled{
+    padding-top:8px;
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"].is-wpst-scrolled .wpst-header-row-main .wpst-header-row-inner{
+    background:var(--wpst-header-scroll-bg,#fff)!important;
+    color:var(--wpst-header-scroll-color,#111827)!important;
+  }
+}
+
+/* Optional boxed mobile mode. Default remains the established mobile header. */
+@media(max-width:1024px){
+  .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"]{
+    padding:10px 12px 0!important;
+    background:transparent!important;
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-main{
+    border:0!important;
+    background:transparent!important;
+  }
+  .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-main .wpst-header-row-inner{
+    border:var(--wpst-header-boxed-border-w,1px) solid var(--wpst-header-boxed-border,#e5e7eb)!important;
+    border-radius:min(var(--wpst-header-boxed-radius,14px),18px)!important;
+    background:var(--wpst-header-boxed-bg,#fff)!important;
+    box-shadow:0 10px 28px rgba(15,23,42,.08)!important;
+    overflow:visible!important;
+  }
+  body.wpst-header-transparent .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"]:not(.is-wpst-scrolled)
+  .wpst-header-row-main .wpst-q-logo img{
+    filter:none!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.91 · Floating / Boxed Header automatic inner spacing
+   Keeps logo and right-side CTA away from the box edges.
+   ========================================================== */
+@media(min-width:1025px){
+  .wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-row-main .wpst-header-row-inner{
+    padding-left:24px!important;
+    padding-right:24px!important;
+  }
+}
+
+/* Tablet/mobile boxed mode uses tighter automatic padding. */
+@media(max-width:1024px){
+  .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-main .wpst-header-row-inner{
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+}
+
+@media(max-width:560px){
+  .wpsoft-site-header[data-wpst-layout="boxed"][data-wpst-boxed-mobile="1"] .wpst-header-row-main .wpst-header-row-inner{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.94 · Header button local color controls
+   Per-button values from Header Builder live preview/Inspector.
+   ========================================================== */
+.wpsoft-site-header .wpst-q-button{
+  background:var(--wpst-header-button-bg,var(--wpst-button-bg,#2563eb))!important;
+  color:var(--wpst-header-button-text,#fff)!important;
+}
+.wpsoft-site-header .wpst-q-button:hover,
+.wpsoft-site-header .wpst-q-button:focus-visible{
+  background:var(--wpst-header-button-hover-bg,var(--wpst-header-button-bg,var(--wpst-button-hover-bg,#1d4ed8)))!important;
+  color:var(--wpst-header-button-hover-text,var(--wpst-header-button-text,var(--wpst-button-hover-text,#fff)))!important;
+}
+
+/* Transparent and Floating/Boxed header must respect explicitly assigned button colors. */
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-button{
+  background:var(--wpst-header-button-bg,var(--wpst-button-bg,#2563eb))!important;
+  color:var(--wpst-header-button-text,#fff)!important;
+}
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-button:hover,
+body.wpst-header-transparent .wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-button:focus-visible{
+  background:var(--wpst-header-button-hover-bg,var(--wpst-header-button-bg,var(--wpst-button-hover-bg,#1d4ed8)))!important;
+  color:var(--wpst-header-button-hover-text,var(--wpst-header-button-text,var(--wpst-button-hover-text,#fff)))!important;
+}
+
+
+/* ==========================================================
+   v3.3.18.7 · Elementor Header/Footer editor hover fix
+   Elementor/theme link hover colors must not paint editable text blue.
+   Frontend hover styles remain unchanged.
+   ========================================================== */
+.elementor-editor-active .wpsoft-site-header :is(
+  .wpst-q-menu a,
+  .wpst-q-logo a,
+  .wpst-q-text a,
+  .wpst-header-row a,
+  .wpst-header-zone a
+):hover,
+.elementor-editor-active .wpsoft-site-header :is(
+  .wpst-q-menu a,
+  .wpst-q-logo a,
+  .wpst-q-text a,
+  .wpst-header-row a,
+  .wpst-header-zone a
+):focus{
+  color:inherit!important;
+}
+
+/* Keep CTA/button text on its own intended color in the editor. */
+.elementor-editor-active .wpsoft-site-header :is(
+  .wpst-q-button,
+  a[class*="button"]
+):hover,
+.elementor-editor-active .wpsoft-site-header :is(
+  .wpst-q-button,
+  a[class*="button"]
+):focus{
+  color:var(--wpst-button-text,#fff)!important;
+}
+
+/* Final Header state/interaction authority: wpst-06-header-canonical.css. */

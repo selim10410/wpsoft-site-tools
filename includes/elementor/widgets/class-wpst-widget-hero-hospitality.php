@@ -1,0 +1,30 @@
+<?php
+if(!defined('ABSPATH'))exit;
+class WPST_Widget_Hero_Hospitality extends WPST_Elementor_Widget_Base{
+ public function get_name(){return'wpsoft-hero-hospitality';} public function get_title(){return'WPSoft Hero · Hospitality 2.0';} public function get_icon(){return'eicon-hotel';}
+ protected function register_controls(){ $this->start_controls_section('content',array('label'=>'İçerik')); $this->add_control('eyebrow',array('label'=>'Etiket','type'=>\Elementor\Controls_Manager::TEXT,'default'=>'UNUTULMAZ DENEYİM')); $this->add_control('title',array('label'=>'Başlık','type'=>\Elementor\Controls_Manager::TEXTAREA,'default'=>'Konforun ötesinde özel bir konaklama deneyimi')); $this->add_control('text',array('label'=>'Açıklama','type'=>\Elementor\Controls_Manager::TEXTAREA,'default'=>'Otel, resort ve turizm markaları için görsel odaklı premium hero.')); $this->add_control('image',array('label'=>'Görsel','type'=>\Elementor\Controls_Manager::MEDIA)); $this->add_control('rating_value',array('label'=>'Puan','type'=>\Elementor\Controls_Manager::TEXT,'default'=>'★ 4.9 / 5')); $this->add_control('rating_text',array('label'=>'Puan Açıklaması','type'=>\Elementor\Controls_Manager::TEXT,'default'=>'1.200+ misafir değerlendirmesi'));
+ $this->add_control('show_rating',array('label'=>'Puan Kartını Göster','type'=>\Elementor\Controls_Manager::SWITCHER,'return_value'=>'yes','default'=>'yes')); $this->link_controls('button','Buton'); $this->end_controls_section(); 
+  $this->start_controls_section('quality_style',array('label'=>'Hospitality Biçimi','tab'=>\Elementor\Controls_Manager::TAB_STYLE));
+  $this->add_control('layout_variant',array('label'=>'Hero Düzeni','type'=>\Elementor\Controls_Manager::SELECT,'default'=>'cinematic','options'=>array('cinematic'=>'Cinematic','editorial'=>'Editorial','center'=>'Centered','luxury'=>'Luxury','minimal'=>'Minimal'),'prefix_class'=>'wpst-hospitality-layout-'));
+  $this->wpst_signature_preset_control('hospitality_preset');
+  $this->add_control('overlay',array('label'=>'Overlay','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'rgba(2,6,23,.48)','selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-overlay:{{VALUE}};')));
+  $this->add_control('image_position',array('label'=>'Görsel Konumu','type'=>\Elementor\Controls_Manager::SELECT,'default'=>'center','options'=>array('center'=>'Orta','top'=>'Üst','bottom'=>'Alt','left'=>'Sol','right'=>'Sağ'),'selectors'=>array('{{WRAPPER}} .wpst-hh-bg'=>'object-position:{{VALUE}};')));
+  $this->add_control('image_zoom',array('label'=>'Görsel Hover','type'=>\Elementor\Controls_Manager::SELECT,'default'=>'subtle','options'=>array('none'=>'Yok','subtle'=>'Hafif Zoom','cinematic'=>'Cinematic Zoom'),'prefix_class'=>'wpst-hh-image-'));
+  $this->add_responsive_control('height',array('label'=>'Minimum Yükseklik','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>420,'max'=>1100)),'selectors'=>array('{{WRAPPER}} .wpst-ew-hero-hospitality'=>'min-height:{{SIZE}}px;')));
+  $this->add_responsive_control('radius',array('label'=>'Köşe','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>70)),'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-radius:{{SIZE}}px;')));
+  $this->add_responsive_control('content_width',array('label'=>'İçerik Genişliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>320,'max'=>1100)),'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-copy-width:{{SIZE}}px;')));
+  $this->add_responsive_control('content_padding',array('label'=>'İçerik Boşluğu','type'=>\Elementor\Controls_Manager::DIMENSIONS,'size_units'=>array('px','%'),'selectors'=>array('{{WRAPPER}} .wpst-hh-copy'=>'padding:{{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};')));
+  $this->end_controls_section();
+  $this->start_controls_section('hospitality_text_style',array('label'=>'Hospitality · Yazılar','tab'=>\Elementor\Controls_Manager::TAB_STYLE));
+  $this->add_control('eyebrow_color',array('label'=>'Etiket Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-eyebrow:{{VALUE}};')));
+  $this->add_control('title_color',array('label'=>'Başlık Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-title:{{VALUE}};')));
+  $this->add_group_control(\Elementor\Group_Control_Typography::get_type(),array('name'=>'title_typography','label'=>'Başlık Tipografi','selector'=>'{{WRAPPER}} .wpst-hh-copy h1'));
+  $this->add_control('text_color',array('label'=>'Açıklama Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-text:{{VALUE}};')));
+  $this->add_group_control(\Elementor\Group_Control_Typography::get_type(),array('name'=>'text_typography','label'=>'Açıklama Tipografi','selector'=>'{{WRAPPER}} .wpst-hh-copy p'));
+  $this->add_control('rating_bg',array('label'=>'Puan Kartı Arka Plan','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-rating-bg:{{VALUE}};')));
+  $this->add_control('rating_color',array('label'=>'Puan Kartı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}}'=>'--wpst-hh-rating-color:{{VALUE}};')));
+  $this->end_controls_section();
+        $this->hero_button_style_controls();
+        $this->standard_responsive_controls(); }
+ protected function render(){ $s=$this->get_settings_for_display(); echo'<section class="wpst-ew-hero-hospitality">'.(!empty($s['image']['url'])?'<img class="wpst-hh-bg" src="'.esc_url($s['image']['url']).'" alt="">':'').'<div class="wpst-hh-shade"></div><div class="wpst-hh-copy"><small>'.esc_html($s['eyebrow']).'</small><h1>'.wp_kses_post($s['title']).'</h1><p>'.esc_html($s['text']).'</p>'; if($s['button_text'])echo'<a'.$this->render_link_attrs($s['button_url']).'>'.esc_html($s['button_text']).' <span class="wpst-cta-arrow" aria-hidden="true"></span></a>'; echo'</div>'; if('yes'===($s['show_rating']??'yes')) echo'<div class="wpst-hh-rating"><b>'.esc_html($s['rating_value']).'</b><span>'.esc_html($s['rating_text']).'</span></div>'; echo'</section>'; }
+}

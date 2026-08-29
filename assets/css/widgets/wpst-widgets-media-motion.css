@@ -1,0 +1,1182 @@
+/* v3.2.44 — Gallery & Media 2.0 */
+.wpst-gallery-zoom-pro{position:relative}
+.wpst-gallery-zoom-pro[data-fit="contain"] .wpst-gallery-zoom-item img{object-fit:contain;background:#f8fafc}
+.wpst-gallery-zoom-pro.ratio-1-1:not(.is-masonry) .wpst-gallery-zoom-item img{aspect-ratio:1/1;height:auto!important}
+.wpst-gallery-zoom-pro.ratio-4-3:not(.is-masonry) .wpst-gallery-zoom-item img{aspect-ratio:4/3;height:auto!important}
+.wpst-gallery-zoom-pro.ratio-3-2:not(.is-masonry) .wpst-gallery-zoom-item img{aspect-ratio:3/2;height:auto!important}
+.wpst-gallery-zoom-pro.ratio-16-9:not(.is-masonry) .wpst-gallery-zoom-item img{aspect-ratio:16/9;height:auto!important}
+.wpst-gallery-zoom-pro.ratio-21-9:not(.is-masonry) .wpst-gallery-zoom-item img{aspect-ratio:21/9;height:auto!important}
+.wpst-gallery-zoom-pro.hover-none .wpst-gallery-zoom-item img{transition:none}
+.wpst-gallery-zoom-pro.hover-none .wpst-gallery-zoom-item:hover img{transform:none}
+.wpst-gallery-zoom-pro.hover-lift .wpst-gallery-zoom-item{transition:transform .28s ease,box-shadow .28s ease}
+.wpst-gallery-zoom-pro.hover-lift .wpst-gallery-zoom-item:hover{transform:translateY(-6px);box-shadow:0 18px 42px rgba(15,23,42,.14)}
+.wpst-gallery-zoom-pro.hover-soft .wpst-gallery-zoom-item img{transform:none;filter:saturate(.92)}
+.wpst-gallery-zoom-pro.hover-soft .wpst-gallery-zoom-item:hover img{filter:saturate(1.08) brightness(.92)}
+.wpst-gallery-zoom-pro.hover-grayscale .wpst-gallery-zoom-item img{filter:grayscale(1);transform:none}
+.wpst-gallery-zoom-pro.hover-grayscale .wpst-gallery-zoom-item:hover img{filter:grayscale(0)}
+.wpst-gallery-zoom-pro.is-carousel{display:flex;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;gap:var(--wpst-gallery-gap)}
+.wpst-gallery-zoom-pro.is-carousel::-webkit-scrollbar{display:none}
+.wpst-gallery-zoom-pro.is-carousel[data-snap="1"]{scroll-snap-type:x mandatory}
+.wpst-gallery-zoom-pro.is-carousel .wpst-gallery-zoom-item{flex:0 0 calc((100% - (var(--wpst-gallery-cols) - 1)*var(--wpst-gallery-gap))/var(--wpst-gallery-cols));scroll-snap-align:start}
+.wpst-gallery-carousel-controls,.wpst-video-gallery-controls{position:absolute;right:6px;top:-54px;display:flex;gap:8px;z-index:5}
+.wpst-gallery-carousel-controls button,.wpst-video-gallery-controls button{width:40px;height:40px;border:1px solid #e2e8f0;border-radius:50%;background:#fff;color:#0f172a;box-shadow:0 6px 18px rgba(15,23,42,.08);font-size:20px;cursor:pointer}
+
+.wpst-gallery-lightbox[data-style="glass"]{background:rgba(15,23,42,.68);backdrop-filter:blur(22px)}
+.wpst-gallery-lightbox[data-style="clean"]{background:rgba(248,250,252,.96)}
+.wpst-gallery-lightbox[data-style="clean"] .wpst-gallery-lightbox-caption{color:#334155}
+.wpst-gallery-lightbox[data-style="clean"] img{box-shadow:0 30px 80px rgba(15,23,42,.18)}
+
+.wpst-video-gallery-pro{--wpst-video-cols:3;--wpst-video-gap:18px;position:relative;display:grid;grid-template-columns:repeat(var(--wpst-video-cols),minmax(0,1fr));gap:var(--wpst-video-gap)}
+.wpst-video-card{display:block;min-width:0;padding:0;overflow:hidden;border:1px solid #e5e7eb;background:#fff;color:#0f172a;text-align:left;text-decoration:none;cursor:pointer;box-shadow:0 10px 30px rgba(15,23,42,.05);transition:transform .28s ease,box-shadow .28s ease}
+.wpst-video-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(15,23,42,.12)}
+.wpst-video-poster{position:relative;display:block;overflow:hidden;background:#e2e8f0}
+.wpst-video-poster img,.wpst-video-placeholder{display:block;width:100%;height:100%;object-fit:cover}
+.wpst-video-placeholder{background:linear-gradient(135deg,#0f172a,#334155)}
+.wpst-video-gallery-pro.ratio-1-1 .wpst-video-poster{aspect-ratio:1/1}.wpst-video-gallery-pro.ratio-4-3 .wpst-video-poster{aspect-ratio:4/3}.wpst-video-gallery-pro.ratio-16-9 .wpst-video-poster{aspect-ratio:16/9}.wpst-video-gallery-pro.ratio-21-9 .wpst-video-poster{aspect-ratio:21/9}
+.wpst-video-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,6,23,.38),rgba(2,6,23,.03))}
+.wpst-video-play{position:absolute;left:50%;top:50%;width:56px;height:56px;display:grid;place-items:center;transform:translate(-50%,-50%);border-radius:50%;background:#fff;color:#111827;box-shadow:0 12px 32px rgba(0,0,0,.20);transition:transform .25s ease}
+.wpst-video-card:hover .wpst-video-play{transform:translate(-50%,-50%) scale(1.08)}
+.wpst-video-play svg{width:24px;height:24px;fill:currentColor}
+.wpst-video-info{display:grid;gap:4px;padding:15px 16px 17px}
+.wpst-video-info small{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#64748b;font-weight:800}
+.wpst-video-info strong{font-size:15px;line-height:1.35}
+.wpst-video-gallery-pro.is-featured .wpst-video-card:first-of-type{grid-column:span 2;grid-row:span 2}
+.wpst-video-gallery-pro.is-carousel{display:flex;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.wpst-video-gallery-pro.is-carousel::-webkit-scrollbar{display:none}
+.wpst-video-gallery-pro.is-carousel .wpst-video-card{flex:0 0 calc((100% - (var(--wpst-video-cols) - 1)*var(--wpst-video-gap))/var(--wpst-video-cols));scroll-snap-align:start}
+
+.wpst-video-lightbox{position:fixed;z-index:100510;inset:0;display:grid;place-items:center;padding:24px;background:rgba(2,6,23,.9);opacity:0;visibility:hidden;pointer-events:none;transition:.22s}
+.wpst-video-lightbox.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.wpst-video-lightbox-inner{position:relative;width:min(1180px,94vw);aspect-ratio:16/9}
+.wpst-video-lightbox iframe{width:100%;height:100%;border:0;border-radius:18px;background:#000;box-shadow:0 30px 90px rgba(0,0,0,.42)}
+.wpst-video-lightbox-close{position:absolute;right:0;top:-56px;width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:#0f172a;font-size:22px;cursor:pointer}
+@media(max-width:767px){
+ .wpst-gallery-zoom-pro.is-carousel .wpst-gallery-zoom-item,.wpst-video-gallery-pro.is-carousel .wpst-video-card{flex-basis:88%}
+ .wpst-video-gallery-pro.is-featured .wpst-video-card:first-of-type{grid-column:span 1;grid-row:span 1}
+ .wpst-gallery-carousel-controls,.wpst-video-gallery-controls{position:static;justify-content:flex-end;margin-bottom:10px}
+}
+
+
+/* v3.2.44 — Unified Media Framework */
+.wpst-media-placeholder{min-height:220px;display:grid;place-items:center;background:linear-gradient(135deg,#e2e8f0,#f8fafc);color:#94a3b8;font-size:12px;font-weight:800}
+
+/* Before / After Pro */
+.wpst-ew-before-after{--wpst-ba-pos:50%;--wpst-ba-line:#fff;--wpst-ba-handle:#fff;position:relative;height:480px;overflow:hidden;background:#e2e8f0}
+.wpst-ew-before-after>div{position:absolute;inset:0}.wpst-ew-before-after img{width:100%;height:100%;object-fit:cover;display:block}
+.wpst-ew-ba-before{z-index:1}.wpst-ew-ba-after{z-index:2;clip-path:inset(0 calc(100% - var(--wpst-ba-pos)) 0 0)}
+.wpst-ew-ba-placeholder{height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#cbd5e1,#f8fafc);color:#64748b;font-weight:800}
+.wpst-ew-before-after input[type=range]{position:absolute;z-index:7;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.wpst-ba-divider{position:absolute;z-index:5;left:var(--wpst-ba-pos);top:0;bottom:0;width:2px;transform:translateX(-1px);background:var(--wpst-ba-line);pointer-events:none}
+.wpst-ba-divider i{position:absolute;left:50%;top:50%;width:48px;height:48px;display:grid;place-items:center;transform:translate(-50%,-50%);border-radius:50%;background:var(--wpst-ba-handle);color:#0f172a;font-style:normal;font-size:18px;box-shadow:0 10px 28px rgba(15,23,42,.22)}
+.wpst-ew-before-after.handle-pill .wpst-ba-divider i{width:38px;height:64px;border-radius:999px}
+.wpst-ew-before-after.handle-minimal .wpst-ba-divider i{width:34px;height:34px;background:transparent;color:#fff;box-shadow:none}
+.wpst-ba-label{position:absolute;z-index:4;top:16px;padding:7px 10px;border-radius:999px;background:rgba(15,23,42,.72);color:#fff;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.wpst-ba-label.is-before{left:16px}.wpst-ba-label.is-after{right:16px}
+
+/* Hotspots Pro */
+.wpst-ew-image-hotspots{position:relative;overflow:hidden;background:#e2e8f0}
+.wpst-ew-image-hotspots>img{display:block;width:100%;height:auto}
+.wpst-hotspot{position:absolute;z-index:3;transform:translate(-50%,-50%);width:34px;height:34px;padding:0;border:0;border-radius:50%;background:var(--wpst-hotspot-bg,#fff);color:var(--wpst-hotspot-color,#0f172a);box-shadow:0 7px 20px rgba(15,23,42,.22);cursor:pointer}
+.wpst-hotspot>span{position:relative;z-index:2;font-size:20px;line-height:1;display:grid;place-items:center;transition:transform .2s ease}
+.wpst-hotspot[aria-expanded=true]>span{transform:rotate(45deg)}
+.wpst-ew-image-hotspots.has-pulse .wpst-hotspot:after{content:"";position:absolute;inset:-7px;border:1px solid color-mix(in srgb,var(--wpst-hotspot-bg,#fff) 80%,transparent);border-radius:50%;animation:wpst-hotspot-pulse 1.8s ease-out infinite}
+@keyframes wpst-hotspot-pulse{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+.wpst-hotspot>b{position:absolute;left:50%;bottom:calc(100% + 14px);width:230px;padding:13px 14px;border-radius:14px;background:#0f172a;color:#fff;text-align:left;transform:translateX(-50%) translateY(7px);opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 16px 40px rgba(15,23,42,.25);transition:.2s ease;font-weight:400}
+.wpst-hotspot>b strong{display:block;margin-bottom:4px;font-size:13px}.wpst-hotspot>b em{display:block;font-style:normal;font-size:11px;line-height:1.55;opacity:.76}.wpst-hotspot>b a{display:inline-block;margin-top:8px;color:inherit;font-size:10px;font-weight:800;text-decoration:none}
+.wpst-ew-image-hotspots.tooltip-light .wpst-hotspot>b{background:#fff;color:#0f172a}.wpst-ew-image-hotspots.tooltip-glass .wpst-hotspot>b{background:rgba(15,23,42,.68);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.16)}
+.wpst-ew-image-hotspots[data-hotspot-mode=hover] .wpst-hotspot:hover>b,.wpst-ew-image-hotspots[data-hotspot-mode=hover] .wpst-hotspot:focus-visible>b,.wpst-hotspot[aria-expanded=true]>b{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
+/* Video Hero Pro */
+.wpst-ew-video-hero{position:relative;min-height:680px;display:flex;align-items:center;overflow:hidden;background:#0f172a;color:#fff}
+.wpst-ew-video-hero>video,.wpst-ew-video-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wpst-ew-video-overlay{position:absolute;inset:0;background:rgba(2,6,23,.52)}
+.wpst-ew-video-content{position:relative;z-index:2;width:min(calc(100% - 48px),1200px);max-width:720px;margin-left:max(24px,calc((100% - 1200px)/2));padding:80px 0}
+.wpst-ew-video-content small{display:inline-flex;margin-bottom:15px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.wpst-ew-video-content h2{margin:0;font-size:clamp(38px,6vw,78px);line-height:1.02;letter-spacing:-.045em;color:inherit}.wpst-ew-video-content p{max-width:650px;margin:20px 0 0;font-size:17px;line-height:1.7;color:rgba(255,255,255,.8)}
+.wpst-ew-video-content>a{display:inline-flex;margin-top:26px;padding:13px 19px;border-radius:999px;background:#fff;color:#0f172a;text-decoration:none;font-weight:800}
+.wpst-video-align-center .wpst-ew-video-content{margin-inline:auto;text-align:center}.wpst-video-align-center .wpst-ew-video-content p{margin-inline:auto}
+
+/* Video Popup Pro */
+.wpst-video-popup-pro{position:relative;width:100%;min-height:420px;display:flex;align-items:flex-end;justify-content:flex-start;padding:28px;border:0;overflow:hidden;background:#0f172a center/cover no-repeat;color:#fff;text-align:left;text-decoration:none;cursor:pointer}
+.wpst-video-popup-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,6,23,.72),rgba(2,6,23,.06))}
+.wpst-video-popup-pro>.wpst-video-play{left:auto;top:28px;right:28px;transform:none}
+.wpst-video-popup-pro:hover>.wpst-video-play{transform:scale(1.07)}
+.wpst-video-popup-copy{position:relative;z-index:3;display:grid;gap:5px}.wpst-video-popup-copy small{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.7}.wpst-video-popup-copy strong{font-size:clamp(22px,3vw,36px);line-height:1.05;letter-spacing:-.03em}
+
+/* Media Card Pro */
+.wpst-media-card-pro{overflow:hidden;border:1px solid #e5e7eb;background:#fff;color:#0f172a;box-shadow:0 10px 32px rgba(15,23,42,.06);transition:transform .3s ease,box-shadow .3s ease}
+.wpst-media-card-pro:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(15,23,42,.12)}
+.wpst-media-card-media{position:relative;width:100%;height:420px;display:block;padding:0;border:0;overflow:hidden;background:#e2e8f0;cursor:pointer}
+.wpst-media-card-media img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.wpst-media-card-pro:hover .wpst-media-card-media img{transform:scale(1.045)}
+.wpst-media-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,6,23,.28),transparent 55%)}
+.wpst-media-card-play{position:absolute;left:50%;top:50%;width:56px;height:56px;display:grid;place-items:center;transform:translate(-50%,-50%);border-radius:50%;background:#fff;color:#0f172a;box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.wpst-media-card-copy{padding:20px 22px 23px}.wpst-media-card-copy small{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#64748b}.wpst-media-card-copy h3{margin:7px 0 8px;font-size:24px;line-height:1.15;letter-spacing:-.025em}.wpst-media-card-copy p{margin:0;color:#64748b;line-height:1.65}.wpst-media-card-copy>a{display:inline-flex;margin-top:15px;color:inherit;font-size:12px;font-weight:800;text-decoration:none}
+.wpst-media-card-glass .wpst-media-card-pro{background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border-color:rgba(255,255,255,.5)}
+.wpst-media-card-dark .wpst-media-card-pro{background:#0f172a;color:#fff;border-color:#1e293b}.wpst-media-card-dark .wpst-media-card-copy p,.wpst-media-card-dark .wpst-media-card-copy small{color:#94a3b8}
+.wpst-media-card-minimal .wpst-media-card-pro{border:0;box-shadow:none}.wpst-media-card-minimal .wpst-media-card-copy{padding-inline:0}
+
+@media(max-width:767px){
+ .wpst-ew-video-content{width:calc(100% - 36px);margin:0 18px;padding:56px 0}.wpst-ew-video-content h2{font-size:clamp(34px,11vw,54px)}
+ .wpst-ew-video-hero[data-mobile-video="0"]>video{display:none}.wpst-ew-video-hero[data-mobile-video="0"]{background-size:cover;background-position:center}
+ .wpst-hotspot>b{width:190px}
+ .wpst-media-card-media{height:320px}
+}
+@media(prefers-reduced-motion:reduce){
+ .wpst-hotspot:after{animation:none!important}.wpst-media-card-pro,.wpst-media-card-media img,.wpst-video-popup-pro>.wpst-video-play{transition:none!important}
+}
+
+
+/* v3.2.44 — WPSoft Motion Framework 3.0 */
+.elementor-element[class*="wpst-entry-"]{
+  --wpst-motion-duration:700ms;
+  --wpst-motion-delay:0ms;
+  --wpst-motion-distance:28px;
+  --wpst-motion-ease:cubic-bezier(.22,.61,.36,1);
+  --wpst-stagger-delay:90ms;
+}
+.elementor-element.wpst-ease-ease{--wpst-motion-ease:ease}
+.elementor-element.wpst-ease-snappy{--wpst-motion-ease:cubic-bezier(.2,.9,.3,1)}
+.elementor-element.wpst-ease-spring{--wpst-motion-ease:cubic-bezier(.18,1.25,.35,1)}
+.elementor-element.wpst-ease-linear{--wpst-motion-ease:linear}
+.elementor-element.wpst-motion-soft{--wpst-motion-duration:900ms;--wpst-motion-distance:18px}
+.elementor-element.wpst-motion-dynamic{--wpst-motion-duration:560ms;--wpst-motion-distance:38px}
+.elementor-element.wpst-motion-none{--wpst-motion-duration:0ms!important;--wpst-motion-delay:0ms!important}
+
+/* Initial states are added only after JS marks the element motion-ready. */
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-fade{opacity:0}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-fade-up{opacity:0;transform:translate3d(0,var(--wpst-motion-distance),0)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-fade-down{opacity:0;transform:translate3d(0,calc(var(--wpst-motion-distance) * -1),0)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-fade-left{opacity:0;transform:translate3d(var(--wpst-motion-distance),0,0)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-fade-right{opacity:0;transform:translate3d(calc(var(--wpst-motion-distance) * -1),0,0)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-scale{opacity:0;transform:scale(.94)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-zoom{opacity:0;transform:scale(.86)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-blur{opacity:0;filter:blur(14px);transform:translate3d(0,10px,0)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-rotate-soft{opacity:0;transform:translate3d(0,18px,0) rotate(2deg)}
+.elementor-element.wpst-motion-ready:not(.wpst-motion-visible).wpst-entry-clip-up{opacity:.3;clip-path:inset(100% 0 0 0);transform:translate3d(0,10px,0)}
+
+.elementor-element.wpst-motion-ready.wpst-motion-visible{
+  opacity:1;
+  transform:none;
+  filter:none;
+  clip-path:inset(0 0 0 0);
+  transition:
+    opacity var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    transform var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    filter var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay),
+    clip-path var(--wpst-motion-duration) var(--wpst-motion-ease) var(--wpst-motion-delay);
+  will-change:auto;
+}
+
+/* Child staggering – intentionally targets direct content children only. */
+.elementor-element.wpst-stagger-yes.wpst-motion-ready > .elementor-widget-container > *{
+  transition-property:opacity,transform,filter;
+  transition-duration:var(--wpst-motion-duration);
+  transition-timing-function:var(--wpst-motion-ease);
+}
+.elementor-element.wpst-stagger-yes.wpst-motion-ready:not(.wpst-motion-visible) > .elementor-widget-container > *{
+  opacity:0;
+  transform:translateY(14px);
+}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *{opacity:1;transform:none}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(1){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 0)}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(2){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 1)}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(3){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 2)}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(4){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 3)}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(5){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 4)}
+.elementor-element.wpst-stagger-yes.wpst-motion-visible > .elementor-widget-container > *:nth-child(n+6){transition-delay:calc(var(--wpst-motion-delay) + var(--wpst-stagger-delay) * 5)}
+
+/* Hover motion presets */
+.elementor-element[class*="wpst-hover-motion-"] > .elementor-widget-container{transition:transform .28s cubic-bezier(.22,.61,.36,1),box-shadow .28s ease,filter .28s ease}
+.elementor-element.wpst-hover-motion-lift:hover > .elementor-widget-container{transform:translateY(-7px)}
+.elementor-element.wpst-hover-motion-scale:hover > .elementor-widget-container{transform:scale(1.025)}
+.elementor-element.wpst-hover-motion-tilt:hover > .elementor-widget-container{transform:perspective(900px) rotateX(1.5deg) rotateY(-2deg) translateY(-2px)}
+.elementor-element.wpst-hover-motion-glow:hover > .elementor-widget-container{box-shadow:0 18px 50px color-mix(in srgb,var(--wpst-primary,#2563eb) 18%,transparent)}
+.elementor-element.wpst-hover-motion-press:active > .elementor-widget-container{transform:scale(.985)}
+
+/* Parallax and pointer tilt use CSS variables so JS does not overwrite entrance transforms. */
+.elementor-element.wpst-parallax-yes > .elementor-widget-container{translate:0 var(--wpst-parallax-y,0px)}
+.elementor-element.wpst-mouse-follow-yes > .elementor-widget-container{
+  transform:perspective(1000px) rotateX(var(--wpst-tilt-x,0deg)) rotateY(var(--wpst-tilt-y,0deg));
+  transition:transform .16s ease-out;
+  transform-style:preserve-3d;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .elementor-element[class*="wpst-entry-"],
+  .elementor-element[class*="wpst-entry-"] > .elementor-widget-container,
+  .elementor-element[class*="wpst-entry-"] > .elementor-widget-container > *,
+  .elementor-element[class*="wpst-hover-motion-"] > .elementor-widget-container{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+    translate:none!important;
+    filter:none!important;
+    clip-path:none!important;
+    opacity:1!important;
+  }
+}
+
+
+/* v3.2.44 — Global Design System 3.0 token bridge */
+.wpst-global-design-yes{
+  --wpst-widget-primary:var(--wpst-primary);
+  --wpst-widget-secondary:var(--wpst-secondary);
+  --wpst-widget-heading:var(--wpst-heading);
+  --wpst-widget-text:var(--wpst-text);
+  --wpst-widget-muted:var(--wpst-muted);
+  --wpst-widget-border:var(--wpst-border);
+  --wpst-widget-motion:var(--wpst-motion);
+}
+.wpst-global-design-yes > .elementor-widget-container{font-family:var(--wpst-font-body)}
+.wpst-global-design-yes > .elementor-widget-container :is(h1,h2,h3,h4,h5,h6){font-family:var(--wpst-font-heading);color:var(--wpst-heading);font-weight:var(--wpst-heading-weight);line-height:var(--wpst-heading-line);letter-spacing:var(--wpst-heading-letter)}
+.wpst-global-design-yes > .elementor-widget-container :is(p,li){color:var(--wpst-text)}
+.wpst-global-design-yes > .elementor-widget-container :is(a:not(.elementor-button),button){transition-duration:var(--wpst-motion)}
+
+.wpst-global-design-yes.wpst-surface-token-surface > .elementor-widget-container{background:var(--wpst-surface)}
+.wpst-global-design-yes.wpst-surface-token-soft > .elementor-widget-container{background:var(--wpst-soft)}
+.wpst-global-design-yes.wpst-surface-token-dark > .elementor-widget-container{background:var(--wpst-surface-dark);color:#fff}
+.wpst-global-design-yes.wpst-global-design-yes.wpst-surface-token-dark > .elementor-widget-container :is(h1,h2,h3,h4,h5,h6,p,li){color:inherit}
+
+.wpst-global-design-yes.wpst-radius-token-sm > .elementor-widget-container{border-radius:var(--wpst-radius-sm);overflow:hidden}
+.wpst-global-design-yes.wpst-radius-token-md > .elementor-widget-container{border-radius:var(--wpst-radius-md);overflow:hidden}
+.wpst-global-design-yes.wpst-radius-token-lg > .elementor-widget-container{border-radius:var(--wpst-radius-lg);overflow:hidden}
+.wpst-global-design-yes.wpst-radius-token-xl > .elementor-widget-container{border-radius:var(--wpst-radius-xl);overflow:hidden}
+.wpst-global-design-yes.wpst-radius-token-card > .elementor-widget-container{border-radius:var(--wpst-card-radius);overflow:hidden}
+
+.wpst-global-design-yes.wpst-shadow-token-none > .elementor-widget-container{box-shadow:none}
+.wpst-global-design-yes.wpst-shadow-token-sm > .elementor-widget-container{box-shadow:var(--wpst-shadow-sm)}
+.wpst-global-design-yes.wpst-shadow-token-md > .elementor-widget-container{box-shadow:var(--wpst-shadow-md)}
+.wpst-global-design-yes.wpst-shadow-token-lg > .elementor-widget-container{box-shadow:var(--wpst-shadow-lg)}
+.wpst-global-design-yes.wpst-shadow-token-global > .elementor-widget-container{box-shadow:var(--wpst-shadow)}
+
+.wpst-global-container{width:min(calc(100% - 40px),var(--wpst-container));margin-inline:auto}
+.wpst-global-container.is-narrow{max-width:var(--wpst-container-narrow)}
+.wpst-global-container.is-wide{max-width:var(--wpst-container-wide)}
+.wpst-global-section{padding-block:var(--wpst-section-space)}
+.wpst-global-gap{gap:var(--wpst-gap)}
+
+@media(max-width:1024px){.wpst-global-section{padding-block:var(--wpst-section-space-tablet)}}
+@media(max-width:767px){.wpst-global-section{padding-block:var(--wpst-section-space-mobile)}.wpst-global-container{width:min(calc(100% - 28px),var(--wpst-container))}}
+
+
+/* v3.2.44 — Signature Header & Footer presentation */
+.wpst-header-template{position:relative;z-index:20}
+.wpst-header-template .elementor-widget-site-logo img{max-height:48px;object-fit:contain}
+.wpst-header-template .elementor-nav-menu--main .elementor-item{
+  min-height:40px;padding:0 11px!important;border-radius:10px;font-family:var(--wpst-font-body);
+  font-weight:650;letter-spacing:-.01em;text-decoration:none!important;transition:background .22s ease,color .22s ease,box-shadow .22s ease
+}
+.wpst-header-template .elementor-nav-menu--main .elementor-item:after,
+.wpst-header-template .elementor-nav-menu--main .elementor-item:before{display:none!important}
+.wpst-header-template .elementor-nav-menu--main .elementor-item.elementor-item-active,
+.wpst-header-template .elementor-nav-menu--main .current-menu-item>.elementor-item{
+  background:rgba(15,23,42,.055);box-shadow:0 5px 16px rgba(15,23,42,.08)
+}
+.wpst-header-template.is-glass{
+  background:rgba(255,255,255,.82)!important;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+}
+.wpst-header-glass.is-glass,.wpst-header-saas-command,.wpst-header-industry-pro,.wpst-header-hotel-reserve{
+  color:#fff
+}
+.wpst-header-saas-command .elementor-nav-menu--main .elementor-item,
+.wpst-header-industry-pro .elementor-nav-menu--main .elementor-item,
+.wpst-header-hotel-reserve .elementor-nav-menu--main .elementor-item{color:inherit}
+.wpst-header-saas-command .elementor-nav-menu--main .elementor-item.elementor-item-active,
+.wpst-header-industry-pro .elementor-nav-menu--main .elementor-item.elementor-item-active,
+.wpst-header-hotel-reserve .elementor-nav-menu--main .elementor-item.elementor-item-active{
+  background:rgba(255,255,255,.10);box-shadow:0 5px 18px rgba(0,0,0,.18)
+}
+.wpst-header-luxury-center{font-family:var(--wpst-font-body)}
+.wpst-header-luxury-center .elementor-nav-menu--main .elementor-item{font-size:13px;letter-spacing:.02em}
+.wpst-header-studio-minimal .elementor-nav-menu--main .elementor-item{font-size:13px}
+.wpst-header-notice .elementor-widget-container{color:#fff;text-align:center}
+.wpst-header-notice .wpst-heading-eyebrow{margin:0!important;color:inherit!important;letter-spacing:.08em}
+
+/* Premium footers share stronger typography rhythm. */
+.wpst-footer-template{font-family:var(--wpst-font-body)}
+.wpst-footer-template h1,.wpst-footer-template h2,.wpst-footer-template h3,
+.wpst-footer-template h4,.wpst-footer-template strong{letter-spacing:-.025em}
+.wpst-footer-template .wpst-footer-links a{display:inline-flex;padding:4px 0;opacity:.78;transition:opacity .2s ease,transform .2s ease}
+.wpst-footer-template .wpst-footer-links a:hover{opacity:1;transform:translateX(3px)}
+.wpst-footer-premium-cta{border-radius:28px 28px 0 0}
+.wpst-footer-premium-cta h2,.wpst-footer-premium-cta h3{font-size:clamp(34px,5vw,66px)!important;line-height:1.02!important;letter-spacing:-.045em!important}
+.wpst-footer-premium-cta .wpst-button,.wpst-footer-template .wpst-button{min-height:46px;border-radius:999px}
+.wpst-footer-hotel-luxury h2,.wpst-footer-hotel-luxury h3,
+.wpst-footer-realestate-luxury h2,.wpst-footer-realestate-luxury h3,
+.wpst-footer-legal-elegant h2,.wpst-footer-legal-elegant h3{font-family:"Cormorant Garamond",serif!important;font-weight:600!important}
+.wpst-footer-industry-modern,.wpst-footer-construction-bold{letter-spacing:.005em}
+@media(max-width:767px){
+  .wpst-header-template{border-radius:0!important;margin-inline:0!important}
+  .wpst-header-template>.e-con-inner,.wpst-header-template{gap:10px!important}
+  .wpst-footer-premium-cta{border-radius:18px 18px 0 0}
+}
+
+
+/* v3.2.44 — WPSoft Responsive System 2.0 */
+.elementor-element[class*="wpst-responsive-preset-"]{
+  --wpst-responsive-gap:var(--wpst-gap,24px);
+}
+.elementor-element.wpst-responsive-preset-balanced > .elementor-widget-container :is(h1,h2,h3){
+  font-size:clamp(30px,4vw,64px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+}
+.elementor-element.wpst-responsive-preset-balanced > .elementor-widget-container :is(p,li){
+  font-size:clamp(14px,1.25vw,18px);
+  line-height:1.65;
+}
+.elementor-element.wpst-responsive-preset-compact > .elementor-widget-container :is(h1,h2,h3){
+  font-size:clamp(26px,3.25vw,52px);
+  line-height:1.1;
+  letter-spacing:-.028em;
+}
+.elementor-element.wpst-responsive-preset-compact > .elementor-widget-container :is(p,li){
+  font-size:clamp(13px,1.05vw,16px);
+  line-height:1.6;
+}
+.elementor-element.wpst-responsive-preset-editorial > .elementor-widget-container :is(h1,h2,h3){
+  font-size:clamp(36px,5.4vw,78px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+.elementor-element.wpst-responsive-preset-editorial > .elementor-widget-container :is(p,li){
+  font-size:clamp(15px,1.35vw,19px);
+  line-height:1.72;
+}
+.elementor-element.wpst-responsive-preset-fluid > .elementor-widget-container :is(h1,h2,h3){
+  font-size:clamp(32px,6vw,92px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+.elementor-element.wpst-responsive-preset-fluid > .elementor-widget-container :is(p,li){
+  font-size:clamp(14px,1.5vw,20px);
+  line-height:1.68;
+}
+
+.elementor-element.wpst-text-wrap-balance > .elementor-widget-container :is(h1,h2,h3,h4){text-wrap:balance}
+.elementor-element.wpst-text-wrap-pretty > .elementor-widget-container :is(h1,h2,h3,h4,p){text-wrap:pretty}
+
+/* Shared responsive gap token for common WPSoft grid/flex components. */
+.elementor-element > .elementor-widget-container :is(
+ .wpst-ew-grid,.wpst-card-grid,.wpst-services-grid,.wpst-stats-grid,.wpst-icon-grid,.wpst-badge-grid,
+ .wpst-team-grid,.wpst-pricing-grid,.wpst-logo-grid,.wpst-contact-cards,.wpst-video-gallery-pro,
+ .wpst-gallery-zoom-pro,.wpst-footer-grid,.wpst-process-grid,.wpst-feature-grid,.wpst-blog-posts
+){gap:var(--wpst-responsive-gap,var(--wpst-gap,24px))}
+
+/* Safe stack fallbacks. Only known WPSoft collections are targeted. */
+@media(max-width:1024px){
+ .elementor-element.wpst-stack-tablet-yes > .elementor-widget-container :is(
+  .wpst-ew-grid,.wpst-card-grid,.wpst-services-grid,.wpst-stats-grid,.wpst-icon-grid,.wpst-badge-grid,
+  .wpst-team-grid,.wpst-pricing-grid,.wpst-logo-grid,.wpst-contact-cards,.wpst-process-grid,.wpst-feature-grid,.wpst-blog-posts
+ ){
+   grid-template-columns:1fr!important;
+ }
+ .elementor-element.wpst-stack-tablet-yes > .elementor-widget-container :is(.wpst-video-gallery-pro,.wpst-gallery-zoom-pro):not(.is-carousel){
+   grid-template-columns:1fr!important;
+ }
+}
+@media(max-width:767px){
+ .elementor-element.wpst-stack-mobile-yes > .elementor-widget-container :is(
+  .wpst-ew-grid,.wpst-card-grid,.wpst-services-grid,.wpst-stats-grid,.wpst-icon-grid,.wpst-badge-grid,
+  .wpst-team-grid,.wpst-pricing-grid,.wpst-logo-grid,.wpst-contact-cards,.wpst-process-grid,.wpst-feature-grid,.wpst-blog-posts
+ ){
+   grid-template-columns:1fr!important;
+ }
+ .elementor-element.wpst-stack-mobile-yes > .elementor-widget-container :is(.wpst-video-gallery-pro,.wpst-gallery-zoom-pro):not(.is-carousel){
+   grid-template-columns:1fr!important;
+ }
+ .elementor-element.wpst-responsive-preset-balanced > .elementor-widget-container :is(h1,h2,h3),
+ .elementor-element.wpst-responsive-preset-editorial > .elementor-widget-container :is(h1,h2,h3),
+ .elementor-element.wpst-responsive-preset-fluid > .elementor-widget-container :is(h1,h2,h3){
+   overflow-wrap:anywhere;
+ }
+}
+
+/* Device visibility: keep WPSoft switches deterministic and independent of theme CSS. */
+@media(min-width:1025px){.elementor-element.wpst-hide-desktop-yes{display:none!important}}
+@media(min-width:768px) and (max-width:1024px){.elementor-element.wpst-hide-tablet-yes{display:none!important}}
+@media(max-width:767px){.elementor-element.wpst-hide-mobile-yes{display:none!important}}
+
+
+/* v3.2.44 — Mobile & Touch UX 2.0 */
+:where(.wpst-ew-hero-slider,.wpst-ew-testimonial-slider,.wpst-ew-image-carousel,.wpst-ew-card-carousel,.wpst-content-slider){
+  touch-action:pan-y pinch-zoom;
+  -webkit-tap-highlight-color:transparent;
+}
+:where(.wpst-ew-hero-slider,.wpst-ew-testimonial-slider,.wpst-ew-image-carousel,.wpst-ew-card-carousel,.wpst-content-slider).is-touching{
+  user-select:none;-webkit-user-select:none
+}
+:where(.wpst-ew-slider-prev,.wpst-ew-slider-next,.wpst-ew-testimonial-prev,.wpst-ew-testimonial-next,
+.wpst-ew-carousel-prev,.wpst-ew-carousel-next,.wpst-ew-card-prev,.wpst-ew-card-next,
+[data-slider-prev],[data-slider-next]){
+  min-width:44px!important;min-height:44px!important;display:inline-flex!important;align-items:center;justify-content:center;
+  touch-action:manipulation;cursor:pointer
+}
+.wpst-ew-slider-dots button,.wpst-content-slider-dots button{
+  position:relative;min-width:24px!important;min-height:24px!important;padding:0!important;background:transparent!important
+}
+.wpst-ew-slider-dots button:after,.wpst-content-slider-dots button:after{
+  content:"";width:7px;height:7px;border-radius:999px;background:currentColor;opacity:.3;display:block;margin:auto;transition:.2s ease
+}
+.wpst-ew-slider-dots button.is-active:after,.wpst-content-slider-dots button.is-active:after{width:20px;opacity:1}
+.wpst-ew-tabs-nav{
+  scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-inline:contain
+}
+.wpst-ew-tabs-nav::-webkit-scrollbar{display:none}
+.wpst-ew-tabs-nav button{min-height:44px;touch-action:manipulation;white-space:nowrap}
+.wpst-ew-before-after input[type="range"]{min-height:44px;touch-action:pan-y}
+.wpst-ew-before-after input[type="range"]::-webkit-slider-thumb{width:32px;height:32px}
+.wpst-ew-before-after input[type="range"]::-moz-range-thumb{width:32px;height:32px}
+.wpst-button,.wpst-adv-button,.wpst-booking-strip a,.wpst-cta a{
+  min-height:44px;touch-action:manipulation
+}
+@media(hover:none),(pointer:coarse){
+  /* Hover-only concepts must expose content on touch devices. */
+  .wpst-hover-reveal :is(.wpst-hover-reveal-content,.wpst-hover-reveal-copy,.wpst-hover-reveal-overlay){
+    opacity:1!important;visibility:visible!important;transform:none!important
+  }
+  .wpst-mouse-follow-card{transform:none!important}
+  :where(.wpst-card,.wpst-service-card,.wpst-fancy-box,.wpst-media-card,.wpst-pricing-card):hover{
+    transform:none
+  }
+  :where(a,button,[role="button"],input[type="range"]){-webkit-tap-highlight-color:rgba(15,23,42,.08)}
+}
+@media(max-width:767px){
+  :where(.wpst-ew-slider-prev,.wpst-ew-slider-next,.wpst-ew-testimonial-prev,.wpst-ew-testimonial-next,
+  .wpst-ew-carousel-prev,.wpst-ew-carousel-next,.wpst-ew-card-prev,.wpst-ew-card-next,
+  [data-slider-prev],[data-slider-next]){
+    min-width:48px!important;min-height:48px!important
+  }
+  .wpst-ew-tabs-nav{display:flex!important;overflow-x:auto!important;flex-wrap:nowrap!important;gap:8px!important;padding-bottom:4px}
+  .wpst-ew-tabs-nav button{flex:0 0 auto}
+  .wpst-ew-image-carousel,.wpst-ew-card-carousel{overflow:hidden}
+  .wpst-ew-carousel-track,.wpst-ew-card-carousel-track{will-change:transform}
+  .wpst-content-slider{overflow:hidden}
+  :where(.wpst-button,.wpst-adv-button,.wpst-booking-strip a,.wpst-cta a){min-height:48px}
+}
+@media(prefers-reduced-motion:reduce){
+  .wpst-ew-carousel-track,.wpst-ew-card-carousel-track,.wpst-content-slide,.wpst-ew-hero-slide{transition-duration:.01ms!important}
+}
+
+
+
+
+/* ==========================================================
+   v3.2.87 · Video Gallery 3.0
+   Premium cinematic media-card system
+   ========================================================== */
+.wpst-video-gallery-pro{
+  --wpst-video-card-radius:22px;
+  align-items:stretch;
+}
+.wpst-video-card{
+  position:relative;
+  isolation:isolate;
+  border-radius:var(--wpst-video-card-radius);
+  border:1px solid rgba(15,23,42,.08);
+  background:#fff;
+  box-shadow:0 12px 34px rgba(15,23,42,.06);
+  overflow:hidden;
+  transform:translateZ(0);
+}
+.wpst-video-poster{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 78% 24%,rgba(99,102,241,.16),transparent 28%),
+    linear-gradient(145deg,#111827,#1e293b);
+}
+.wpst-video-poster img{
+  transform:scale(1.001);
+  will-change:transform;
+}
+.wpst-video-scrim{
+  background:
+    linear-gradient(180deg,rgba(2,6,23,.04) 16%,rgba(2,6,23,.18) 48%,var(--wpst-video-scrim,rgba(2,6,23,.72)) 100%);
+  opacity:.86;
+  transition:opacity .32s ease;
+}
+.wpst-video-placeholder{
+  position:relative;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 28% 28%,rgba(99,102,241,.25),transparent 22%),
+    radial-gradient(circle at 72% 68%,rgba(14,165,233,.16),transparent 26%),
+    linear-gradient(135deg,#111827 0%,#1e293b 56%,#0f172a 100%);
+}
+.wpst-video-placeholder:before,
+.wpst-video-placeholder:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+}
+.wpst-video-placeholder:before{
+  width:46%;height:46%;right:-12%;top:-16%;
+}
+.wpst-video-placeholder:after{
+  width:32%;height:32%;left:-8%;bottom:-12%;
+}
+.wpst-video-placeholder i,
+.wpst-video-placeholder b{
+  position:absolute;display:block;height:1px;background:rgba(255,255,255,.08)
+}
+.wpst-video-placeholder i{left:11%;right:30%;top:34%}
+.wpst-video-placeholder b{left:18%;right:14%;top:48%}
+
+.wpst-video-play{
+  z-index:5;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.38);
+  background:rgba(255,255,255,.92);
+  color:#0f172a;
+  box-shadow:0 16px 44px rgba(2,6,23,.22);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.wpst-video-play svg circle{display:none}
+.wpst-video-play svg path{
+  fill:currentColor;
+  stroke:none;
+}
+.wpst-video-play svg{
+  width:18px!important;
+  height:18px!important;
+  transform:translateX(1px);
+}
+.wpst-video-play-style-glass .wpst-video-play{
+  background:rgba(255,255,255,.14)!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.38)!important;
+  box-shadow:0 18px 44px rgba(2,6,23,.26),inset 0 1px 0 rgba(255,255,255,.16);
+}
+.wpst-video-play-style-solid .wpst-video-play{
+  background:#fff!important;color:#0f172a!important;border-color:#fff!important;
+}
+.wpst-video-play-style-minimal .wpst-video-play{
+  width:44px!important;height:44px!important;
+  background:transparent!important;color:#fff!important;
+  border:0!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+.wpst-video-play-style-outline .wpst-video-play{
+  background:rgba(2,6,23,.12)!important;color:#fff!important;
+  border:1px solid rgba(255,255,255,.65)!important;box-shadow:none!important;
+}
+
+.wpst-video-index,
+.wpst-video-duration{
+  position:absolute;
+  z-index:5;
+  top:14px;
+  min-height:26px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;
+  background:rgba(2,6,23,.28);
+  color:#fff;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.wpst-video-index{left:14px;padding:0 9px}
+.wpst-video-duration{right:14px;padding:0 10px;font-variant-numeric:tabular-nums}
+
+.wpst-video-info{
+  position:relative;
+  z-index:4;
+  display:grid;
+  gap:7px;
+  padding:18px 18px 20px;
+}
+.wpst-video-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.wpst-video-meta small{
+  margin:0;
+  font-size:9px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.13em;
+}
+.wpst-video-meta i{
+  display:grid;
+  place-items:center;
+  opacity:.58;
+  transition:transform .22s ease,opacity .22s ease;
+}
+.wpst-video-info strong{
+  font-size:clamp(17px,1.6vw,21px);
+  line-height:1.16;
+  letter-spacing:-.035em;
+  transition:transform .24s ease;
+}
+
+/* overlay info = modern default */
+.wpst-video-info-overlay .wpst-video-card{
+  min-height:100%;
+}
+.wpst-video-info-overlay .wpst-video-info{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  color:#fff;
+  padding:22px 20px 20px;
+  pointer-events:none;
+}
+.wpst-video-info-overlay .wpst-video-info strong{color:#fff}
+.wpst-video-info-overlay .wpst-video-meta small{color:#bfdbfe}
+.wpst-video-info-overlay .wpst-video-meta i{color:#fff}
+.wpst-video-info-overlay .wpst-video-scrim{opacity:1}
+
+/* floating info panel */
+.wpst-video-info-floating .wpst-video-info{
+  margin:-52px 14px 14px;
+  border:1px solid rgba(255,255,255,.74);
+  border-radius:16px;
+  background:rgba(255,255,255,.90);
+  box-shadow:0 16px 34px rgba(15,23,42,.12);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.wpst-video-info-floating .wpst-video-meta i{color:#0f172a}
+
+/* style families */
+.wpst-video-gallery-style-cinematic .wpst-video-card{
+  background:#0b1220;
+  border-color:rgba(255,255,255,.06);
+  color:#fff;
+  box-shadow:0 18px 44px rgba(2,6,23,.14);
+}
+.wpst-video-gallery-style-cinematic.wpst-video-info-below .wpst-video-info strong{color:#fff}
+.wpst-video-gallery-style-cinematic.wpst-video-info-below .wpst-video-info small{color:#93c5fd}
+
+.wpst-video-gallery-style-studio .wpst-video-card{
+  border-color:#e5e7eb;
+  background:#f8fafc;
+  box-shadow:none;
+}
+.wpst-video-gallery-style-studio .wpst-video-poster{
+  margin:8px;
+  border-radius:calc(var(--wpst-video-card-radius) - 7px);
+}
+.wpst-video-gallery-style-studio.wpst-video-info-overlay .wpst-video-info{
+  left:8px;right:8px;bottom:8px;
+}
+
+.wpst-video-gallery-style-glass .wpst-video-card{
+  border-color:rgba(255,255,255,.46);
+  background:rgba(255,255,255,.72);
+  box-shadow:0 20px 50px rgba(15,23,42,.10);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.wpst-video-gallery-style-editorial .wpst-video-card{
+  border-width:0 0 1px;
+  border-radius:0!important;
+  box-shadow:none;
+}
+.wpst-video-gallery-style-editorial .wpst-video-info{padding-inline:0}
+.wpst-video-gallery-style-editorial .wpst-video-info strong{
+  font-size:clamp(22px,2.1vw,30px);
+}
+.wpst-video-gallery-style-clean .wpst-video-card{box-shadow:none}
+
+/* hover systems */
+.wpst-video-hover-cinematic .wpst-video-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 58px rgba(15,23,42,.15);
+}
+.wpst-video-hover-cinematic .wpst-video-card:hover .wpst-video-poster img{transform:scale(1.055)}
+.wpst-video-hover-cinematic .wpst-video-card:hover .wpst-video-scrim{opacity:1}
+.wpst-video-hover-lift .wpst-video-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 26px 58px rgba(15,23,42,.14);
+}
+.wpst-video-hover-soft .wpst-video-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(99,102,241,.24);
+  box-shadow:0 16px 36px rgba(15,23,42,.09);
+}
+.wpst-video-hover-none .wpst-video-card:hover{
+  transform:none;
+  box-shadow:inherit;
+}
+.wpst-video-card:hover .wpst-video-meta i{
+  opacity:1;
+  transform:translate(2px,-2px);
+}
+
+/* layout polish */
+.wpst-video-gallery-pro.is-featured .wpst-video-card:first-of-type .wpst-video-info strong{
+  font-size:clamp(24px,3vw,38px);
+}
+.wpst-video-gallery-pro.is-featured .wpst-video-card:first-of-type .wpst-video-play{
+  width:68px;height:68px;
+}
+.wpst-video-gallery-pro.is-editorial{
+  gap:clamp(22px,3vw,40px);
+}
+.wpst-video-gallery-pro.is-editorial .wpst-video-card{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(240px,.75fr);
+  align-items:center;
+}
+.wpst-video-gallery-pro.is-editorial .wpst-video-poster{aspect-ratio:16/9}
+.wpst-video-gallery-pro.is-editorial.wpst-video-info-overlay .wpst-video-info{
+  position:relative;
+  color:inherit;
+}
+.wpst-video-gallery-pro.is-editorial.wpst-video-info-overlay .wpst-video-info strong{color:inherit}
+.wpst-video-gallery-pro.is-filmstrip{
+  padding-bottom:8px;
+}
+.wpst-video-gallery-pro.is-filmstrip .wpst-video-card{
+  flex-basis:min(72vw,520px);
+}
+.wpst-video-gallery-pro.is-stack .wpst-video-card{
+  grid-template-columns:minmax(180px,.8fr) minmax(0,1.2fr);
+}
+
+@media(max-width:767px){
+  .wpst-video-gallery-pro{
+    --wpst-video-gap:14px;
+  }
+  .wpst-video-card{
+    border-radius:18px;
+  }
+  .wpst-video-info-overlay .wpst-video-info{
+    padding:18px 16px 16px;
+  }
+  .wpst-video-play{
+    width:50px!important;
+    height:50px!important;
+  }
+  .wpst-video-index,.wpst-video-duration{
+    top:11px;
+  }
+  .wpst-video-index{left:11px}
+  .wpst-video-duration{right:11px}
+  .wpst-video-gallery-pro.is-editorial .wpst-video-card,
+  .wpst-video-gallery-pro.is-stack .wpst-video-card{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .wpst-video-info-floating .wpst-video-info{
+    margin:-42px 10px 10px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .wpst-video-card,
+  .wpst-video-poster img,
+  .wpst-video-play,
+  .wpst-video-meta i{
+    transition:none!important;
+  }
+  .wpst-video-card:hover,
+  .wpst-video-card:hover .wpst-video-poster img{
+    transform:none!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.2.88 · Video Background Pro
+   ========================================================== */
+.wpst-video-background-pro{
+  position:relative;
+  isolation:isolate;
+  min-height:620px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  background:#0f172a;
+}
+.wpst-video-bg-media{
+  --wpst-video-bg-scale:1.02;
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:#0f172a;
+}
+.wpst-video-bg-media video,
+.wpst-video-bg-poster{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.wpst-video-bg-media video{
+  z-index:2;
+  transform:scale(var(--wpst-video-bg-scale));
+}
+.wpst-video-bg-poster{
+  z-index:1;
+}
+.wpst-video-bg-youtube{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:50%;
+  width:177.78vh;
+  min-width:100%;
+  height:56.25vw;
+  min-height:100%;
+  transform:translate(-50%,-50%) scale(var(--wpst-video-bg-scale));
+  border:0;
+  pointer-events:none;
+}
+.wpst-video-bg-overlay{
+  --wpst-video-bg-overlay:rgba(2,6,23,.56);
+  --wpst-video-bg-overlay-2:rgba(2,6,23,.10);
+  position:absolute;
+  z-index:3;
+  inset:0;
+  pointer-events:none;
+}
+.wpst-video-bg-overlay-solid .wpst-video-bg-overlay{
+  background:var(--wpst-video-bg-overlay);
+}
+.wpst-video-bg-overlay-gradient .wpst-video-bg-overlay{
+  background:linear-gradient(90deg,var(--wpst-video-bg-overlay) 0%,var(--wpst-video-bg-overlay-2) 72%,transparent 100%);
+}
+.wpst-video-bg-overlay-vignette .wpst-video-bg-overlay{
+  background:radial-gradient(circle at center,transparent 28%,var(--wpst-video-bg-overlay) 100%);
+}
+.wpst-video-bg-overlay-none .wpst-video-bg-overlay{
+  display:none;
+}
+
+.wpst-video-bg-copy{
+  position:relative;
+  z-index:4;
+  width:min(100%,700px);
+  margin:clamp(26px,6vw,76px);
+  color:#fff;
+}
+.wpst-video-bg-copy small{
+  display:block;
+  margin-bottom:14px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.wpst-video-bg-copy h2{
+  margin:0;
+  font-size:clamp(42px,6vw,86px);
+  line-height:.96;
+  letter-spacing:-.055em;
+}
+.wpst-video-bg-copy p{
+  max-width:58ch;
+  margin:20px 0 0;
+  font-size:clamp(15px,1.3vw,18px);
+  line-height:1.65;
+}
+.wpst-video-bg-copy>a{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:48px;
+  margin-top:24px;
+  padding:0 18px;
+  border-radius:12px;
+  background:#fff;
+  color:#0f172a;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:850;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.wpst-video-bg-copy>a:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(2,6,23,.20);
+}
+.wpst-video-bg-copy .wpst-native-arrow{
+  display:grid;
+  place-items:center;
+}
+
+/* positions */
+.wpst-video-bg-pos-top-left .wpst-video-background-pro{align-items:flex-start;justify-content:flex-start}
+.wpst-video-bg-pos-top-center .wpst-video-background-pro{align-items:flex-start;justify-content:center;text-align:center}
+.wpst-video-bg-pos-center-left .wpst-video-background-pro{align-items:center;justify-content:flex-start}
+.wpst-video-bg-pos-center .wpst-video-background-pro{align-items:center;justify-content:center;text-align:center}
+.wpst-video-bg-pos-center-right .wpst-video-background-pro{align-items:center;justify-content:flex-end;text-align:right}
+.wpst-video-bg-pos-bottom-left .wpst-video-background-pro{align-items:flex-end;justify-content:flex-start}
+.wpst-video-bg-pos-bottom-center .wpst-video-background-pro{align-items:flex-end;justify-content:center;text-align:center}
+.wpst-video-bg-pos-top-center .wpst-video-bg-copy,
+.wpst-video-bg-pos-center .wpst-video-bg-copy,
+.wpst-video-bg-pos-bottom-center .wpst-video-bg-copy{margin-inline:auto}
+.wpst-video-bg-pos-center-right .wpst-video-bg-copy{margin-left:auto}
+
+/* content surface */
+.wpst-video-bg-content-glass .wpst-video-bg-copy,
+.wpst-video-bg-content-dark .wpst-video-bg-copy,
+.wpst-video-bg-content-light .wpst-video-bg-copy{
+  padding:clamp(22px,3vw,36px);
+  border-radius:22px;
+}
+.wpst-video-bg-content-glass .wpst-video-bg-copy{
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.10);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 24px 64px rgba(2,6,23,.18);
+}
+.wpst-video-bg-content-dark .wpst-video-bg-copy{
+  background:rgba(2,6,23,.76);
+  box-shadow:0 24px 64px rgba(2,6,23,.22);
+}
+.wpst-video-bg-content-light .wpst-video-bg-copy{
+  background:rgba(255,255,255,.92);
+  color:#0f172a;
+  box-shadow:0 24px 64px rgba(15,23,42,.14);
+}
+.wpst-video-bg-content-light .wpst-video-bg-copy h2{color:#0f172a}
+.wpst-video-bg-content-light .wpst-video-bg-copy p{color:#475569}
+.wpst-video-bg-content-light .wpst-video-bg-copy small{color:#315cf5}
+
+/* poster takes over on disabled mobile video */
+@media(max-width:767px){
+  .wpst-video-background-pro{
+    min-height:440px;
+  }
+  .wpst-video-background-pro[data-mobile-video="0"] .wpst-video-bg-media video,
+  .wpst-video-background-pro[data-mobile-video="0"] .wpst-video-bg-youtube{
+    display:none!important;
+  }
+  .wpst-video-bg-copy{
+    margin:22px 18px;
+  }
+  .wpst-video-bg-copy h2{
+    font-size:clamp(36px,11vw,58px);
+  }
+  .wpst-video-bg-overlay-gradient .wpst-video-bg-overlay{
+    background:linear-gradient(180deg,var(--wpst-video-bg-overlay-2) 0%,var(--wpst-video-bg-overlay) 100%);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .wpst-video-background-pro .wpst-video-bg-media video,
+  .wpst-video-background-pro .wpst-video-bg-youtube{
+    display:none!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.3.10 · Widget Global Design Bridge 4.0
+   Global tokens are opt-in and local widget controls remain authoritative.
+   ========================================================== */
+
+/* Additional Global Design surfaces. */
+.wpst-global-design-yes.wpst-surface-token-surface-alt > .elementor-widget-container{
+  background:var(--wpst-surface-alt,var(--wpst-soft,#f8fafc));
+}
+.wpst-global-design-yes.wpst-surface-token-primary-soft > .elementor-widget-container{
+  background:color-mix(in srgb,var(--wpst-primary,#2563eb) 9%,var(--wpst-surface,#fff));
+}
+@supports not (background:color-mix(in srgb,#000 10%,#fff)){
+  .wpst-global-design-yes.wpst-surface-token-primary-soft > .elementor-widget-container{
+    background:var(--wpst-soft,#f8fafc);
+  }
+}
+
+/* Global spacing rhythm. It only affects the widget's own outer surface;
+   widget-specific internal grid gaps continue to use their responsive controls. */
+.wpst-global-design-yes.wpst-spacing-token-compact > .elementor-widget-container{
+  padding:var(--wpst-space-sm,16px);
+}
+.wpst-global-design-yes.wpst-spacing-token-balanced > .elementor-widget-container{
+  padding:var(--wpst-space-md,24px);
+}
+.wpst-global-design-yes.wpst-spacing-token-spacious > .elementor-widget-container{
+  padding:var(--wpst-space-lg,36px);
+}
+
+/* Global action token bridge. Custom colors entered in 02 · Lokal Stil are
+   Elementor-generated CSS and therefore remain the final override. */
+.wpst-global-design-yes.wpst-button-token-primary{
+  --wpst-widget-button-bg:var(--wpst-button-bg,var(--wpst-primary,#2563eb));
+  --wpst-widget-button-text:var(--wpst-button-text,#fff);
+  --wpst-widget-button-hover-bg:var(--wpst-button-hover-bg,var(--wpst-primary-dark,#1d4ed8));
+}
+.wpst-global-design-yes.wpst-button-token-secondary{
+  --wpst-widget-button-bg:var(--wpst-secondary,#7c3aed);
+  --wpst-widget-button-text:#fff;
+  --wpst-widget-button-hover-bg:color-mix(in srgb,var(--wpst-secondary,#7c3aed) 84%,#000);
+}
+.wpst-global-design-yes.wpst-button-token-dark{
+  --wpst-widget-button-bg:var(--wpst-heading,#0f172a);
+  --wpst-widget-button-text:#fff;
+  --wpst-widget-button-hover-bg:#020617;
+}
+.wpst-global-design-yes.wpst-button-token-outline{
+  --wpst-widget-button-bg:transparent;
+  --wpst-widget-button-text:var(--wpst-primary,#2563eb);
+  --wpst-widget-button-hover-bg:color-mix(in srgb,var(--wpst-primary,#2563eb) 9%,transparent);
+}
+
+.wpst-global-design-yes:not(.wpst-design-source-local)[class*="wpst-button-token-"] > .elementor-widget-container :is(
+  a.wpst-ew-button,
+  a.wpst-q-button,
+  [class*="cta"] a,
+  a[class*="button"],
+  button[class*="button"],
+  .wpst-ew-hero-slide a,
+  .wpst-content-slide-copy a,
+  .wpst-ew-footer-newsletter button[type="submit"],
+  .wpforms-submit
+){
+  background:var(--wpst-widget-button-bg)!important;
+  color:var(--wpst-widget-button-text)!important;
+  border-radius:var(--wpst-button-radius-global,12px);
+  min-height:var(--wpst-button-height,48px);
+  font-weight:var(--wpst-button-weight,800);
+}
+.wpst-global-design-yes:not(.wpst-design-source-local)[class*="wpst-button-token-"] > .elementor-widget-container :is(
+  a.wpst-ew-button,
+  a.wpst-q-button,
+  [class*="cta"] a,
+  a[class*="button"],
+  button[class*="button"],
+  .wpst-ew-hero-slide a,
+  .wpst-content-slide-copy a,
+  .wpst-ew-footer-newsletter button[type="submit"],
+  .wpforms-submit
+):hover{
+  background:var(--wpst-widget-button-hover-bg)!important;
+  color:var(--wpst-widget-button-text)!important;
+}
+
+/* Outline is the only token that intentionally adds a border. */
+.wpst-global-design-yes.wpst-button-token-outline > .elementor-widget-container :is(
+  a.wpst-ew-button,a.wpst-q-button,[class*="cta"] a,a[class*="button"],button[class*="button"]
+){
+  border:1px solid var(--wpst-primary,#2563eb);
+}
+
+/* Turning Global Design off must also neutralize its surface/radius/shadow/
+   spacing token classes. The local controls and the widget's own design remain. */
+.wpst-global-design-no > .elementor-widget-container{
+  --wpst-widget-primary:initial;
+  --wpst-widget-secondary:initial;
+  --wpst-widget-heading:initial;
+  --wpst-widget-text:initial;
+  --wpst-widget-muted:initial;
+  --wpst-widget-border:initial;
+}
+
+/* Local design source does not erase global fallbacks; it simply guarantees
+   Elementor/local values have priority without forcing global typography. */
+.wpst-global-design-yes.wpst-design-source-local > .elementor-widget-container :is(h1,h2,h3,h4,h5,h6,p,li){
+  font-family:inherit;
+}
+
+/* Responsive spacing tokens. */
+@media(max-width:1024px){
+  .wpst-global-design-yes.wpst-spacing-token-spacious > .elementor-widget-container{
+    padding:var(--wpst-space-md,24px);
+  }
+}
+@media(max-width:767px){
+  .wpst-global-design-yes.wpst-spacing-token-compact > .elementor-widget-container{
+    padding:var(--wpst-space-xs,12px);
+  }
+  .wpst-global-design-yes.wpst-spacing-token-balanced > .elementor-widget-container{
+    padding:var(--wpst-space-sm,16px);
+  }
+  .wpst-global-design-yes.wpst-spacing-token-spacious > .elementor-widget-container{
+    padding:var(--wpst-space-md,24px);
+  }
+}
+
+
+/* ==========================================================
+   v3.3.18.21.13.8.6 · Video Background Pro alignment fix
+   ========================================================== */
+.wpst-video-bg-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:var(--wpst-video-copy-align,stretch);
+  min-width:0;
+}
+.wpst-video-bg-copy>small,
+.wpst-video-bg-copy>h2,
+.wpst-video-bg-copy>p{
+  width:100%;
+}
+.wpst-video-bg-copy>h2,
+.wpst-video-bg-copy>p,
+.wpst-video-bg-copy>small{
+  text-align:
+    var(--wpst-video-copy-text-align,inherit);
+}
+
+/* Dedicated alignment control aligns the whole composition, not only glyphs. */
+.elementor-element.wpst-video-copy-align-center .wpst-video-bg-copy{
+  text-align:center;
+}
+.elementor-element.wpst-video-copy-align-center .wpst-video-bg-copy>p{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.elementor-element.wpst-video-copy-align-center .wpst-video-bg-copy>a{
+  align-self:center;
+}
+.elementor-element.wpst-video-copy-align-flex-end .wpst-video-bg-copy{
+  text-align:right;
+}
+.elementor-element.wpst-video-copy-align-flex-end .wpst-video-bg-copy>p{
+  margin-left:auto!important;
+  margin-right:0!important;
+}
+.elementor-element.wpst-video-copy-align-flex-end .wpst-video-bg-copy>a{
+  align-self:flex-end;
+}
+
+/* Content-position center variants must remain truly centered even when
+   the copy has a constrained max-width. */
+.wpst-video-bg-pos-top-center .wpst-video-bg-copy,
+.wpst-video-bg-pos-center .wpst-video-bg-copy,
+.wpst-video-bg-pos-bottom-center .wpst-video-bg-copy{
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.wpst-video-bg-pos-top-center .wpst-video-bg-copy>p,
+.wpst-video-bg-pos-center .wpst-video-bg-copy>p,
+.wpst-video-bg-pos-bottom-center .wpst-video-bg-copy>p{
+  margin-left:auto;
+  margin-right:auto;
+}
+.wpst-video-bg-pos-top-center .wpst-video-bg-copy>a,
+.wpst-video-bg-pos-center .wpst-video-bg-copy>a,
+.wpst-video-bg-pos-bottom-center .wpst-video-bg-copy>a{
+  align-self:center;
+}
+
+
+/* Gallery Zoom 2.0 · responsive gap authority
+   The widget's own Görsel Aralığı control must win over shared preset/responsive gaps. */
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro{
+  gap:var(--wpst-gallery-gap,14px);
+}
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-grid,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-masonry,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-featured,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-editorial,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-filmstrip,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-collage,
+.elementor-widget-wpsoft-gallery-zoom-pro .wpst-gallery-zoom-pro.is-carousel{
+  gap:var(--wpst-gallery-gap,14px);
+}

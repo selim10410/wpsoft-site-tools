@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<rect width="960" height="540" rx="30" fill="#f8fafc"/>
+<rect x="42" y="44" width="390" height="210" rx="24" fill="#ffffff"/><rect x="452" y="44" width="466" height="210" rx="24" fill="#2563eb" opacity=".84"/><rect x="42" y="278" width="876" height="112" rx="20" fill="#ffffff"/><rect x="42" y="410" width="272" height="86" rx="18" fill="#ffffff"/><rect x="334" y="410" width="272" height="86" rx="18" fill="#ffffff"/><rect x="626" y="410" width="292" height="86" rx="18" fill="#ffffff"/>
+<rect x="66" y="68" width="118" height="9" rx="4.5" fill="#2563eb" opacity=".8"/>
+<rect x="66" y="92" width="310" height="16" rx="8" fill="#0f172a" opacity=".86"/>
+<rect x="66" y="120" width="238" height="8" rx="4" fill="#94a3b8" opacity=".8"/>
+<text x="66" y="520" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#0f172a" opacity=".72">Kurumsal Ana Sayfa</text>
+</svg>

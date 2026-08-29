@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<rect width="1200" height="620" rx="38" fill="#08111f"/>
+<circle cx="1120" cy="60" r="180" fill="#8b5cf6" opacity=".07"/>
+<rect x="80" y="118" width="126" height="28" rx="14" fill="#8b5cf6" opacity=".15"/>
+<text x="100" y="138" font-family="Arial" font-size="13" font-weight="800" fill="#8b5cf6">WPSOFT BLOCK</text>
+<text x="80" y="215" font-family="Arial" font-size="43" font-weight="800" fill="#f8fafc">CTA Gradient</text>
+<text x="80" y="258" font-family="Arial" font-size="18" fill="#94a3b8">Yüksek dönüşümlü CTA</text>
+<rect x="80" y="315" width="140" height="45" rx="14" fill="#8b5cf6"/><rect x="240" y="315" width="110" height="45" rx="14" fill="#111c2d"/>
+<rect x="610" y="180" width="440" height="270" rx="28" fill="#111c2d"/>
+<rect x="650" y="220" width="360" height="170" rx="20" fill="#8b5cf6" opacity=".13"/>
+<circle cx="830" cy="305" r="70" fill="#8b5cf6" opacity=".23"/>
+</svg>

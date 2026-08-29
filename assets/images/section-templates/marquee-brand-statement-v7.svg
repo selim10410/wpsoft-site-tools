@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect width="900" height="520" rx="28" fill="#f8fafc"/>
+<rect x="34" y="34" width="832" height="452" rx="22" fill="#ffffff" stroke="#e2e8f0"/>
+<rect x="68" y="70" width="92" height="8" rx="4" fill="#2563eb"/>
+<text x="68" y="145" font-family="Arial,sans-serif" font-size="42" font-weight="700" fill="#0f172a">CREATE • BUILD • GROW</text>
+<text x="68" y="184" font-family="Arial,sans-serif" font-size="19" fill="#64748b">Moving brand statement</text>
+<rect x="68" y="225" width="164" height="46" rx="12" fill="#0f172a"/>
+<text x="91" y="254" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#ffffff">→</text>
+<rect x="495" y="92" width="318" height="310" rx="22" fill="#eef2ff"/>
+<rect x="525" y="122" width="116" height="116" rx="18" fill="#c7d2fe"/>
+<rect x="659" y="122" width="124" height="54" rx="15" fill="#dbeafe"/>
+<rect x="659" y="190" width="124" height="110" rx="15" fill="#e0e7ff"/>
+<rect x="525" y="256" width="116" height="116" rx="18" fill="#e2e8f0"/>
+<rect x="659" y="316" width="124" height="56" rx="15" fill="#bfdbfe"/>
+<circle cx="78" cy="434" r="6" fill="#2563eb"/><rect x="94" y="429" width="142" height="10" rx="5" fill="#cbd5e1"/>
+</svg>

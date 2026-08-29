@@ -1,0 +1,675 @@
+/*
+ * WPSoft Site Tools · Header Canonical Layer
+ * v3.3.18.21.13.1
+ *
+ * Purpose:
+ * - one final authority for modern Header states;
+ * - no chained version-specific patch blocks;
+ * - Floating/Boxed geometry remains owned by earlier layout modules;
+ * - only final state/interaction decisions live here.
+ */
+
+
+/* ==========================================================
+   0. HEADER STATE CONTRACT 4.0
+   Single authority for geometry + surface state.
+   NORMAL       = row-local Inspector appearance.
+   TRANSPARENT  = transparent overlay before scroll.
+   SCROLLED     = either explicit solid scroll surface or transparent,
+                  controlled only by data-wpst-scroll-surface.
+   Menu/active/mega-menu rules are NOT owned by this section.
+   ========================================================== */
+
+.wpsoft-site-header[data-wpst-state-contract="1"]{
+  transition:transform .28s ease,box-shadow .28s ease,background-color .28s ease,color .28s ease;
+}
+.wpsoft-site-header[data-wpst-state-contract="1"] .wpst-header-row{
+  transition:min-height .28s ease,background-color .28s ease,color .28s ease,border-color .28s ease,backdrop-filter .28s ease,opacity .2s ease;
+}
+
+/* A. STICKY GEOMETRY */
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-sticky="1"][data-wpst-sticky-mode="always"]{
+  position:sticky;
+  top:0;
+  z-index:99990;
+}
+.wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-sticky-active{
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
+  z-index:99990;
+}
+
+/* B. TRANSPARENT INITIAL STATE */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-transparent-overlay="1"]:not(.is-wpst-scrolled){
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  width:100%;
+  z-index:99990;
+}
+
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled),
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-header-shell,.wpst-header-row,.wpst-quick-inner){
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  color:var(--wpst-header-transparent-color,inherit);
+  border-color:color-mix(in srgb,currentColor 18%,transparent);
+}
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-q-menu>li>a{
+  color:var(--wpst-header-transparent-color,#fff)!important;
+}
+
+/* C. OPTIONAL GLASS — transparent state only */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-glass="soft"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  background:rgba(255,255,255,.52)!important;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-color:rgba(255,255,255,.42)!important;
+}
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-glass="strong"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  background:rgba(255,255,255,.72)!important;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border-color:rgba(255,255,255,.42)!important;
+}
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-glass="dark"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  background:rgba(15,23,42,.58)!important;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-color:rgba(255,255,255,.14)!important;
+}
+
+/* D. SCROLLED SURFACE
+   Solid is explicit. No implicit white fallback: the Inspector token owns it. */
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-scroll-surface="solid"].is-wpst-scrolled,
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-scroll-surface="solid"].is-wpst-scrolled
+:is(.wpst-header-shell,.wpst-header-row){
+  background:var(--wpst-header-scroll-bg)!important;
+  color:var(--wpst-header-scroll-color,#111827)!important;
+}
+
+/* Transparent scroll surface is background-only by contract.
+   This deliberately does NOT touch menu/text/active/mega-menu colors. */
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-scroll-surface="transparent"].is-wpst-scrolled,
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-scroll-surface="transparent"].is-wpst-scrolled
+:is(.wpst-header-shell,.wpst-header-row){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+}
+
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-scroll-blur="1"].is-wpst-scrolled,
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-scroll-blur="1"].is-wpst-scrolled .wpst-header-row{
+  backdrop-filter:blur(var(--wpst-header-scroll-blur,14px));
+  -webkit-backdrop-filter:blur(var(--wpst-header-scroll-blur,14px));
+}
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-scroll-shadow="1"].is-wpst-scrolled{
+  box-shadow:0 12px 34px rgba(15,23,42,.12);
+}
+
+/* E. SCROLLED GEOMETRY */
+.wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-scrolled .wpst-header-row .wpst-header-row-inner{
+  min-height:var(--wpst-row-h-scrolled,var(--wpst-row-h-desktop,38px));
+}
+.wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-scrolled .wpst-header-row-main .wpst-header-row-inner{
+  min-height:var(--wpst-row-h-scrolled,var(--wpst-header-scrolled-height));
+}
+
+/* F. LOGO STATE */
+.wpst-q-logo .wpst-logo-normal,
+.wpst-q-logo .wpst-logo-scroll{
+  align-items:center;
+  line-height:0;
+}
+.wpst-q-logo .wpst-logo-normal{display:inline-flex}
+.wpst-q-logo .wpst-logo-scroll{display:none}
+.wpsoft-site-header.is-wpst-scrolled .wpst-logo-normal{display:none!important}
+.wpsoft-site-header.is-wpst-scrolled .wpst-logo-scroll{display:inline-flex!important}
+.wpsoft-site-header:not(.is-wpst-scrolled) .wpst-logo-scroll{display:none!important}
+
+.wpsoft-site-header:not(.is-wpst-mobile).is-wpst-scrolled .wpst-q-logo .wpst-logo-scroll img{
+  width:var(--wpst-header-scroll-logo-width,auto)!important;
+  max-width:none!important;
+  height:auto!important;
+  max-height:var(--wpst-header-scroll-logo-height,none)!important;
+  object-fit:contain!important;
+}
+
+/* G. OPTIONAL SHRINK */
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-shrink="1"] .wpst-quick-inner{
+  transition:padding .25s ease;
+}
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-shrink="1"].is-wpst-scrolled .wpst-quick-inner{
+  padding-top:8px;
+  padding-bottom:8px;
+}
+
+/* H. ADMIN BAR OFFSETS */
+body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-sticky="1"][data-wpst-sticky-mode="always"],
+body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-sticky-active,
+body.admin-bar.wpst-header-transparent
+.wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-transparent-overlay="1"]:not(.is-wpst-scrolled){
+  top:32px;
+}
+@media(max-width:782px){
+  body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-sticky="1"][data-wpst-sticky-mode="always"],
+  body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-sticky-active,
+  body.admin-bar.wpst-header-transparent
+  .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-transparent-overlay="1"]:not(.is-wpst-scrolled){
+    top:46px;
+  }
+}
+@media(max-width:600px){
+  body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-sticky="1"][data-wpst-sticky-mode="always"],
+  body.admin-bar .wpsoft-site-header[data-wpst-state-contract="1"].is-wpst-sticky-active,
+  body.admin-bar.wpst-header-transparent
+  .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"][data-wpst-transparent-overlay="1"]:not(.is-wpst-scrolled){
+    top:0;
+  }
+}
+
+/* I. TRANSPARENT MENU CONTRAST
+   Appearance only; structural navigation remains outside the state engine. */
+@media(min-width:1025px){
+  body.wpst-header-transparent
+  .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    color:var(--wpst-header-transparent-color,#fff)!important;
+  }
+
+  body.wpst-header-transparent
+  .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)[data-wpst-menu-hover="shadow"]
+  .wpst-q-menu>li>a:hover,
+  body.wpst-header-transparent
+  .wpsoft-site-header[data-wpst-state-contract="1"][data-wpst-transparent="1"]:not(.is-wpst-scrolled)[data-wpst-menu-hover="shadow"]
+  .wpst-q-menu>li>a:focus-visible{
+    color:var(--wpst-header-transparent-color,#fff)!important;
+    background:rgba(255,255,255,.10)!important;
+    border-color:rgba(255,255,255,.08)!important;
+    box-shadow:0 8px 22px rgba(2,6,23,.10)!important;
+  }
+}
+
+
+/* ==========================================================
+   1. HEADER SHADOW STATE
+   ========================================================== */
+
+/* "Normal" means genuinely shadow-free in every state. */
+.wpsoft-site-header[data-wpst-shadow-style="normal"],
+.wpsoft-site-header[data-wpst-shadow-style="normal"] .wpst-header-shell,
+.wpsoft-site-header[data-wpst-shadow-style="normal"] .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-shadow-style="normal"] .wpst-header-row-main,
+.wpsoft-site-header[data-wpst-shadow-style="normal"] .wpst-header-row-main .wpst-header-row-inner,
+.wpsoft-site-header[data-wpst-shadow-style="normal"].is-wpst-scrolled{
+  box-shadow:none!important;
+}
+
+/* Non-boxed headers may use the general shadow choice. */
+.wpsoft-site-header:not([data-wpst-layout="boxed"]):not([data-wpst-preset="floating-boxed"])[data-wpst-shadow-style="soft"]{
+  box-shadow:0 8px 26px rgba(15,23,42,.07)!important;
+}
+.wpsoft-site-header:not([data-wpst-layout="boxed"]):not([data-wpst-preset="floating-boxed"])[data-wpst-shadow-style="medium"]{
+  box-shadow:0 12px 36px rgba(15,23,42,.11)!important;
+}
+.wpsoft-site-header:not([data-wpst-layout="boxed"]):not([data-wpst-preset="floating-boxed"])[data-wpst-shadow-style="strong"]{
+  box-shadow:0 16px 48px rgba(15,23,42,.17)!important;
+}
+
+/* Floating / Boxed stays visually floating through spacing/radius/border,
+   but does not create the old diffuse light/shadow behind the card. */
+.wpsoft-site-header[data-wpst-layout="boxed"],
+.wpsoft-site-header[data-wpst-layout="boxed"].is-wpst-scrolled,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"],
+.wpsoft-site-header[data-wpst-preset="floating-boxed"].is-wpst-scrolled,
+.wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-row-main,
+.wpsoft-site-header[data-wpst-layout="boxed"] .wpst-header-row-main .wpst-header-row-inner,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-quick-inner,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-header-row-main,
+.wpsoft-site-header[data-wpst-preset="floating-boxed"] .wpst-header-row-main .wpst-header-row-inner{
+  box-shadow:none!important;
+}
+
+
+/* ==========================================================
+   2. ACTIVE MENU STATE
+   ========================================================== */
+@media(min-width:1025px){
+  /* Never allow a second glow/filter layer on active navigation. */
+  .wpsoft-site-header .wpst-q-menu>li:is(
+    .current-menu-item,
+    .current_page_item,
+    .current-menu-ancestor,
+    .current_page_ancestor
+  )>a{
+    filter:none!important;
+    text-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+
+  .wpsoft-site-header .wpst-q-menu>li:is(
+    .current-menu-item,
+    .current_page_item,
+    .current-menu-ancestor,
+    .current_page_ancestor
+  )>a:before,
+  .wpsoft-site-header .wpst-q-menu>li:is(
+    .current-menu-item,
+    .current_page_item,
+    .current-menu-ancestor,
+    .current_page_ancestor
+  )>a:after{
+    box-shadow:none!important;
+    filter:none!important;
+    text-shadow:none!important;
+  }
+
+  /* Current active-mode appearance. Structural navigation stays in Builder Rows. */
+  .wpsoft-site-header[data-wpst-menu-active="none"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    background:none!important;
+    box-shadow:none!important;
+  }
+
+  .wpsoft-site-header[data-wpst-menu-active="pill"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    padding-left:12px;
+    padding-right:12px;
+    border-radius:999px;
+    background:color-mix(in srgb,currentColor 10%,transparent);
+    box-shadow:none!important;
+  }
+
+  .wpsoft-site-header[data-wpst-menu-active="fade"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    opacity:.66;
+    box-shadow:none!important;
+  }
+
+  .wpsoft-site-header[data-wpst-menu-active="shadow"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    padding-left:12px;
+    padding-right:12px;
+    border-radius:11px;
+    background:rgba(255,255,255,.72);
+  }
+
+  /* Shadow mode: exactly one controlled shadow. */
+  .wpsoft-site-header[data-wpst-menu-active="shadow"][data-wpst-menu-active-shadow="soft"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    box-shadow:0 5px 14px rgba(15,23,42,.09)!important;
+  }
+  .wpsoft-site-header[data-wpst-menu-active="shadow"][data-wpst-menu-active-shadow="medium"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    box-shadow:0 7px 18px rgba(15,23,42,.13)!important;
+  }
+  .wpsoft-site-header[data-wpst-menu-active="shadow"][data-wpst-menu-active-shadow="strong"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    box-shadow:0 9px 22px rgba(15,23,42,.17)!important;
+  }
+
+  .wpsoft-site-header[data-wpst-menu-active="border"]
+  .wpst-q-menu>li:is(.current-menu-item,.current_page_item,.current-menu-ancestor,.current_page_ancestor)>a{
+    box-shadow:inset 0 0 0 1px currentColor!important;
+    background:transparent!important;
+  }
+}
+
+
+/* ==========================================================
+   3. MOBILE HEADER / HAMBURGER
+   ========================================================== */
+
+/* Configurable breakpoint safety: JS toggles is-wpst-mobile using the
+   Header setting, so final visibility must follow the class rather than
+   historical hard-coded 768/782/900px assumptions. */
+.wpsoft-site-header.is-wpst-mobile .wpst-q-nav,
+.wpsoft-site-header.is-wpst-mobile .wpst-header-row-main .wpst-header-zone:not(.wpst-mobile-logo-zone){
+  display:none!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head,
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head-actions,
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle{
+  visibility:visible!important;
+  opacity:1!important;
+}
+
+/* Normal and scrolled logos remain separate in mobile state too. */
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head .wpst-mobile-logo-clone{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  max-width:100%;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head
+:is(.wpst-mobile-logo-clone,.wpst-mobile-brand .wpst-q-logo) img{
+  display:block!important;
+  width:min(var(--wpst-mobile-logo-width,160px),100%)!important;
+  max-width:100%!important;
+  max-height:var(--wpst-mobile-logo-height,44px)!important;
+  height:auto!important;
+  object-fit:contain!important;
+  transition:width .22s ease,max-height .22s ease!important;
+}
+.wpsoft-site-header.is-wpst-mobile.is-wpst-scrolled .wpst-mobile-head
+:is(.wpst-mobile-logo-clone,.wpst-mobile-brand .wpst-q-logo) .wpst-logo-scroll img{
+  width:min(var(--wpst-mobile-logo-scroll-width,150px),100%)!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:var(--wpst-mobile-logo-scroll-height,40px)!important;
+  object-fit:contain!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head .wpst-mobile-logo-clone
+:is(.wpst-logo-normal,.wpst-logo-scroll){
+  max-width:100%;
+}
+
+/* Core mobile state follows the configured JS breakpoint. */
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head{
+  box-sizing:border-box;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-head-actions{
+  margin-left:auto!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-brand img{
+  max-width:min(180px,100%)!important;
+  height:auto!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle{
+  color:#0f172a!important;
+}
+.wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle span{
+  background-color:currentColor!important;
+  border-color:currentColor!important;
+}
+
+/* Fine phone-size adjustments remain in a media query. */
+@media(max-width:782px){
+  /* Floating / Boxed mobile row: keep logo and hamburger inside the card. */
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"])
+  [data-wpst-boxed-mobile="1"]{
+    box-sizing:border-box;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-mobile-head{
+    display:flex!important;
+    width:100%!important;
+    min-width:0!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:10px!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-mobile-brand{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    max-width:calc(100% - 54px)!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-mobile-head-actions{
+    display:flex!important;
+    flex:0 0 auto!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    min-width:44px!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-mobile-toggle{
+    display:flex!important;
+    visibility:visible!important;
+    opacity:1!important;
+    flex:0 0 42px!important;
+    width:42px!important;
+    height:42px!important;
+    min-width:42px!important;
+    min-height:42px!important;
+    position:relative!important;
+    z-index:15!important;
+    color:#0f172a!important;
+    background:#fff!important;
+    border-color:rgba(148,163,184,.22)!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-mobile-toggle span{
+    width:19px!important;
+    height:2px!important;
+    background:currentColor!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  .wpst-q-nav,
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"]).is-wpst-mobile
+  > .wpst-q-button{
+    display:none!important;
+  }
+  .wpsoft-site-header:is([data-wpst-layout="boxed"],[data-wpst-preset="floating-boxed"])[data-wpst-boxed-mobile="1"]
+  :is(.wpst-quick-inner,.wpst-header-row-inner){
+    min-height:64px!important;
+    padding-inline:12px!important;
+  }
+
+  /* Transparent header may use a light hamburger before scroll;
+     once solid/sticky, use the standard dark control. */
+  .wpsoft-site-header[data-wpst-transparent="1"].is-wpst-mobile:not(.is-wpst-scrolled):not([data-wpst-layout="boxed"])
+  .wpst-mobile-toggle{
+    color:var(--wpst-header-transparent-color,#fff)!important;
+    background:rgba(15,23,42,.18)!important;
+    border-color:rgba(255,255,255,.28)!important;
+  }
+  .wpsoft-site-header[data-wpst-transparent="1"].is-wpst-mobile.is-wpst-scrolled
+  .wpst-mobile-toggle{
+    color:#0f172a!important;
+    background:#fff!important;
+    border-color:rgba(148,163,184,.22)!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.3.18.21.13.8.23.4 · Elementor Header transparent parity
+   ========================================================== */
+
+/*
+ * Live Builder transparency targets .wpst-header-row/.wpst-header-shell.
+ * Elementor Header has a different DOM, so its first/root section/container
+ * must participate in exactly the same transparent state.
+ */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template){
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor{
+  background:transparent!important;
+  background-image:none!important;
+}
+
+/* Elementor Containers */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .e-con:first-child{
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+/* Legacy Elementor Sections */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .elementor-section-wrap
+> .elementor-section:first-child{
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+/* Some Elementor versions add the first section directly under .elementor. */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .elementor-section:first-child{
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+
+/* WPSoft Navigation must inherit transparent Header text color before scroll. */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.elementor-widget-wpsoft-navigation .wpst-navigation,
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.elementor-widget-wpsoft-navigation .wpst-navigation-menu>li>a{
+  color:var(--wpst-header-transparent-color,#fff)!important;
+}
+
+/* After scroll, Elementor Header follows exactly the normal WPSoft solid state. */
+.wpsoft-site-header[data-wpst-scroll-solid="1"].is-wpst-scrolled
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template),
+.wpsoft-site-header[data-wpst-scroll-solid="1"].is-wpst-scrolled
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor{
+  background:var(--wpst-header-scroll-bg,#fff)!important;
+  color:var(--wpst-header-scroll-color,#111827)!important;
+}
+
+.wpsoft-site-header[data-wpst-scroll-solid="1"].is-wpst-scrolled
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .e-con:first-child,
+.wpsoft-site-header[data-wpst-scroll-solid="1"].is-wpst-scrolled
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .elementor-section-wrap
+> .elementor-section:first-child,
+.wpsoft-site-header[data-wpst-scroll-solid="1"].is-wpst-scrolled
+:is(.wpst-all-template,.wpst-desktop-template,.wpst-mobile-template)
+> .elementor
+> .elementor-section:first-child{
+  background:var(--wpst-header-scroll-bg,#fff)!important;
+  color:var(--wpst-header-scroll-color,#111827)!important;
+}
+
+
+/* ==========================================================
+   Mobile Header · logo / hamburger vertical alignment repair
+   Keep both owners in one flex row without changing header height settings.
+   ========================================================== */
+@media(max-width:1024px){
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-head{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    min-width:0!important;
+  }
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-brand{
+    display:flex!important;
+    align-items:center!important;
+    align-self:center!important;
+    min-width:0!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-brand > *,
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-logo-clone,
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-logo-clone > a,
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-logo-clone .wpst-q-logo{
+    display:flex!important;
+    align-items:center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-head
+  :is(.wpst-mobile-logo-clone,.wpst-mobile-brand .wpst-q-logo) img{
+    display:block!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+    vertical-align:middle!important;
+  }
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-head-actions{
+    display:flex!important;
+    flex:0 0 auto!important;
+    align-items:center!important;
+    align-self:center!important;
+    justify-content:flex-end!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+  .wpsoft-site-header.is-wpst-mobile .wpst-mobile-toggle{
+    align-self:center!important;
+    margin-top:0!important;
+    margin-bottom:0!important;
+  }
+}
+
+
+/* ==========================================================
+   v3.3.1 · Inspector > Header Satırları > Görünüm authority
+   Row-local colors are authoritative in the normal state.
+   Transparent and scrolled states keep their dedicated behavior.
+   ========================================================== */
+.wpsoft-site-header:not(.is-wpst-scrolled)
+.wpst-header-row{
+  background-color:var(--wpst-row-bg,transparent);
+  color:var(--wpst-row-color,inherit);
+  border-bottom-color:var(--wpst-row-border,transparent);
+  border-bottom-width:var(--wpst-row-border-w,0);
+  border-bottom-style:solid;
+}
+
+/* Normal (non-transparent) Live Builder content follows the selected row text color. */
+body:not(.wpst-header-transparent)
+.wpsoft-site-header:not(.is-wpst-scrolled)
+.wpst-header-row :is(
+  .wpst-q-text,
+  .wpst-q-html,
+  .wpst-q-social,
+  .wpst-q-menu>li>a,
+  .wpst-q-nav .menu>li>a
+){
+  color:var(--wpst-row-color,inherit)!important;
+}
+
+/* Transparent header intentionally keeps transparent-state contrast. */
+body.wpst-header-transparent
+.wpsoft-site-header[data-wpst-transparent="1"]:not(.is-wpst-scrolled)
+.wpst-header-row{
+  border-bottom-color:var(--wpst-row-border,transparent);
+  border-bottom-width:var(--wpst-row-border-w,0);
+}
