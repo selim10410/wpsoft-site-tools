@@ -40,6 +40,7 @@ final class WPST_Icon_Library {
             'eye'=>array('label'=>'Göz','category'=>'Arayüz','body'=>'<path d="M3 12s3.2-5 9-5 9 5 9 5-3.2 5-9 5-9-5-9-5Z"/><circle cx="12" cy="12" r="2.5"/>'),
             'home'=>array('label'=>'Ana Sayfa','category'=>'Genel','body'=>'<path d="m3 11 9-7 9 7"/><path d="M5 10v10h14V10M9 20v-6h6v6"/>'),
             'user'=>array('label'=>'Kullanıcı','category'=>'Genel','body'=>'<circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4.2 3.5-6 8-6s7.2 1.8 8 6"/>'),
+            'article'=>array('label'=>'Makale','category'=>'İçerik','body'=>'<path d="M6 3h9l3 3v15H6V3Z"/><path d="M14 3v5h5M9 12h6M9 16h6"/>'),
             'users'=>array('label'=>'Kullanıcılar','category'=>'Genel','body'=>'<circle cx="9" cy="8" r="3"/><path d="M3 20c.5-3.7 2.6-5.5 6-5.5S14.5 16.3 15 20"/><path d="M15 5.5c2.3.2 3.5 1.5 3.5 3.5S17.3 12.3 15 12.5M16 15c2.7.3 4.2 1.9 4.7 5"/>'),
             'heart'=>array('label'=>'Kalp','category'=>'Genel','body'=>'<path d="M20.5 9.5c0 5-8.5 10-8.5 10s-8.5-5-8.5-10A4.7 4.7 0 0 1 12 6.7a4.7 4.7 0 0 1 8.5 2.8Z"/>'),
             'star'=>array('label'=>'Yıldız','category'=>'Genel','body'=>'<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/>'),

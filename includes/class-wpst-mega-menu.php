@@ -91,6 +91,9 @@ final class WPST_Mega_Menu {
     }
 
     private static function icon_svg( $icon ) {
+        if ( class_exists('WPST_Icon_Library') && WPST_Icon_Library::exists($icon) ) {
+            return WPST_Icon_Library::svg($icon,array('size'=>22,'class'=>'wpst-menu-icon-svg'));
+        }
         $map = array(
             'star' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z"/></svg>',
             'bolt' => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-12h-6l1-8Z"/></svg>',
@@ -724,6 +727,7 @@ final class WPST_Mega_Menu {
     }
 
     public static function link_attrs($atts,$item,$args,$depth) {
+        if ( !empty($args->wpst_mobile_drawer) ) $atts['class']=trim((isset($atts['class'])?$atts['class'].' ':'').'wps-mobile-drawer__item');
         if ( 0 !== (int)$depth ) return $atts;
 
         $cfg = self::item_config((int)$item->ID);
@@ -820,6 +824,10 @@ final class WPST_Mega_Menu {
         wp_enqueue_media();
         wp_enqueue_style('wpst-mega-menu-admin',WPST_URL.'assets/css/mega-menu-admin.css',array(),WPST_VERSION);
         wp_enqueue_script('wpst-mega-menu-admin',WPST_URL.'assets/js/mega-menu-admin.js',array('jquery'),WPST_VERSION,true);
+        if($is_nav && class_exists('WPST_Icon_Library')){
+            $svgs=array();foreach(WPST_Icon_Library::options() as $slug=>$label)$svgs[$slug]=WPST_Icon_Library::svg($slug,array('size'=>22,'class'=>'wpst-menu-icon-svg'));
+            wp_localize_script('wpst-mega-menu-admin','wpstMenuIcons',array('svgs'=>$svgs));
+        }
     }
 
     private static function has_enabled_mega_menu() {
@@ -846,7 +854,10 @@ final class WPST_Mega_Menu {
 
     // Appearance > Menus integration: compact, advanced options without forcing the WPSoft page.
     public static function menu_item_fields($item_id,$menu_item,$depth,$args,$current_object_id) {
-        if ( (int)$depth !== 0 ) return;
+        if ( (int)$depth !== 0 ) {
+            self::render_native_icon_field($item_id);
+            return;
+        }
 
         $cfg = self::item_config($item_id);
         $templates = self::menu_templates();
@@ -870,9 +881,7 @@ final class WPST_Mega_Menu {
         echo '<p class="description description-wide"><strong>WPSoft Menü Görünümü</strong></p>';
         echo '<p class="description description-thin"><label>Badge<br><input type="text" name="wpst_mega_item_meta['.(int)$item_id.'][badge]" value="'.esc_attr($meta['badge']).'" placeholder="Yeni"></label></p>';
         echo '<p class="description description-thin"><label>Badge Rengi<br><input type="color" name="wpst_mega_item_meta['.(int)$item_id.'][badge_color]" value="'.esc_attr($meta['badge_color']).'"></label></p>';
-        echo '<p class="description description-wide"><label>İkon<br><select name="wpst_mega_item_meta['.(int)$item_id.'][icon]" style="width:100%"><option value="">İkon yok</option>';
-        foreach(array('star'=>'Yıldız','bolt'=>'Hız','grid'=>'Grid','briefcase'=>'Çanta','cart'=>'Sepet','location'=>'Konum','heart'=>'Kalp','code'=>'Kod','support'=>'Destek','chart'=>'Analitik') as $ik=>$il) echo '<option value="'.esc_attr($ik).'" '.selected($meta['icon'],$ik,false).'>'.esc_html($il).'</option>';
-        echo '</select></label></p>';
+        self::render_native_icon_field($item_id,$meta['icon'],false);
         echo '<p class="description description-wide"><label>Kısa Açıklama<br><input type="text" style="width:100%" name="wpst_mega_item_meta['.(int)$item_id.'][description]" value="'.esc_attr($meta['description']).'" placeholder="Kısa açıklama"></label></p>';
         echo '<p class="description description-wide"><label><input type="checkbox" name="wpst_mega_item_meta['.(int)$item_id.'][column_title]" value="1" '.checked(!empty($meta['column_title']),true,false).'> Bu öğeyi kolon başlığı gibi göster</label></p>';
 
@@ -888,10 +897,17 @@ final class WPST_Mega_Menu {
 
     public static function save_menu_item_fields($menu_id,$menu_item_db_id,$args) {
         if ( ! current_user_can('edit_theme_options') ) return;
+        if ( empty($_POST['wpst_menu_icon_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['wpst_menu_icon_nonce'])),'wpst_menu_icon') ) return;
+        $id = absint($menu_item_db_id);
+        $meta_all = isset($_POST['wpst_mega_item_meta']) && is_array($_POST['wpst_mega_item_meta']) ? wp_unslash($_POST['wpst_mega_item_meta']) : array();
+        if(isset($meta_all[$id]) && is_array($meta_all[$id])){
+            $icon=isset($meta_all[$id]['icon'])?sanitize_key($meta_all[$id]['icon']):'';
+            if($icon && !self::icon_svg($icon))$icon='';
+            if($icon)update_post_meta($id,'_wpst_mega_icon',$icon);else delete_post_meta($id,'_wpst_mega_icon');
+        }
         if ( empty($_POST['wpst_mega_native']) || !is_array($_POST['wpst_mega_native']) ) return;
 
         $all = self::settings();
-        $id = absint($menu_item_db_id);
 
         $raw_all = wp_unslash($_POST['wpst_mega_native']);
         if ( !isset($raw_all[$id]) || !is_array($raw_all[$id]) ) return;
@@ -925,13 +941,12 @@ final class WPST_Mega_Menu {
         update_option(self::OPTION,$all);
 
         if ( isset($_POST['wpst_mega_item_meta']) && is_array($_POST['wpst_mega_item_meta']) ) {
-            $meta_all = wp_unslash($_POST['wpst_mega_item_meta']);
             if ( isset($meta_all[$id]) && is_array($meta_all[$id]) ) {
                 $meta = $meta_all[$id];
                 update_post_meta($id,'_wpst_mega_badge',isset($meta['badge'])?sanitize_text_field($meta['badge']):'');
                 $badge_color = isset($meta['badge_color']) ? sanitize_hex_color($meta['badge_color']) : '';
                 update_post_meta($id,'_wpst_mega_badge_color',$badge_color ?: '#2563eb');
-                update_post_meta($id,'_wpst_mega_icon',isset($meta['icon'])?sanitize_key($meta['icon']):'');
+                // Icon is saved above independently, including submenu items.
                 update_post_meta($id,'_wpst_mega_image_id',isset($meta['image_id'])?absint($meta['image_id']):0);
                 update_post_meta($id,'_wpst_mega_column_title',!empty($meta['column_title'])?'1':'0');
                 update_post_meta($id,'_wpst_mega_description',isset($meta['description'])?sanitize_text_field($meta['description']):'');
@@ -939,18 +954,67 @@ final class WPST_Mega_Menu {
         }
     }
 
+    private static function render_native_icon_field($item_id,$selected='',$wrap=true){
+        if(''===$selected)$selected=sanitize_key(get_post_meta(absint($item_id),'_wpst_mega_icon',true));
+        $icons=class_exists('WPST_Icon_Library')?WPST_Icon_Library::options():array('star'=>'Yıldız','briefcase'=>'Çanta','file'=>'Dosya');
+        if($selected && !isset($icons[$selected]))$icons[$selected]=ucwords(str_replace(array('-','_'),' ',$selected));
+        if($wrap)echo'<div class="wpst-native-mega-fields wpst-native-icon-only">';
+        echo'<input type="hidden" name="wpst_menu_icon_nonce" value="'.esc_attr(wp_create_nonce('wpst_menu_icon')).'">';
+        echo'<div class="wpst-menu-icon-field" data-item-id="'.absint($item_id).'">';
+        echo'<p class="description description-wide"><strong>WPSoft Menü İkonu</strong><br><span>Bu ikon WPSoft Navigation mobil menüsünde ve desteklenen WPSoft menülerinde kullanılır.</span></p>';
+        echo'<div class="wpst-menu-icon-picker"><span class="wpst-menu-icon-preview">'.($selected?self::icon_svg($selected):'<span class="dashicons dashicons-minus"></span>').'</span><select class="wpst-menu-icon-select" name="wpst_mega_item_meta['.absint($item_id).'][icon]"><option value="">İkon yok</option>';
+        foreach($icons as $slug=>$label)echo'<option value="'.esc_attr($slug).'" '.selected($selected,$slug,false).'>'.esc_html($label).'</option>';
+        echo'</select><button type="button" class="button wpst-menu-icon-remove">İkonu Kaldır</button></div></div>';
+        if($wrap)echo'</div>';
+    }
+
     public static function decorate_menu_item_title($title,$item,$args,$depth) {
         $meta = self::item_meta($item->ID);
         $prefix = '';
-        if ( $meta['icon'] ) {
-            $svg = self::icon_svg($meta['icon']);
-            if($svg) $prefix .= '<span class="wpst-menu-item-icon">'.$svg.'</span>';
+        $is_mobile = ! empty($args->wpst_mobile_drawer);
+        $is_mega = self::is_mega_item_context($item);
+        $icon = ($is_mobile || $is_mega) ? $meta['icon'] : '';
+        if(!$icon && $is_mobile)$icon=self::default_menu_icon($item);
+        if ( $icon ) {
+            $svg = self::icon_svg($icon);
+            if($svg){
+                $icon_markup = '<span class="wpst-menu-item-icon">'.$svg.'</span>';
+                $prefix .= $is_mobile ? '<span class="wps-mobile-drawer__icon">'.$icon_markup.'</span>' : $icon_markup;
+            }
         }
         $suffix = '';
         if ( $meta['badge'] ) {
             $suffix .= '<span class="wpst-menu-badge" style="--wpst-badge-color:'.esc_attr($meta['badge_color']).'">'.esc_html($meta['badge']).'</span>';
         }
         return $prefix . '<span class="wpst-menu-item-label">'.$title.'</span>' . $suffix;
+    }
+
+    private static function is_mega_item_context($item) {
+        $seen = array();
+        $current = $item;
+        while ( $current && ! empty($current->ID) && ! isset($seen[(int)$current->ID]) ) {
+            $seen[(int)$current->ID] = true;
+            $cfg = self::item_config((int)$current->ID);
+            if ( ! empty($cfg['enabled']) ) return true;
+            $parent_id = ! empty($current->menu_item_parent) ? absint($current->menu_item_parent) : 0;
+            if ( ! $parent_id ) break;
+            $current = wp_setup_nav_menu_item(get_post($parent_id));
+        }
+        return false;
+    }
+
+    private static function default_menu_icon($item){
+        $home=untrailingslashit(home_url('/'));$url=isset($item->url)?untrailingslashit((string)$item->url):'';
+        if($url===$home)return'home';
+        if(absint($item->object_id)===absint(get_option('page_for_posts')))return'article';
+        $slug='';if(!empty($item->object_id)){$post=get_post(absint($item->object_id));if($post)$slug=(string)$post->post_name;}
+        if(!$slug&&$url){$path=(string)wp_parse_url($url,PHP_URL_PATH);$slug=basename(untrailingslashit($path));}
+        $slug=sanitize_title(remove_accents($slug));
+        if(in_array($slug,array('hakkimizda','about'),true))return'user';
+        if(in_array($slug,array('hizmetlerimiz','hizmetler','services'),true))return'briefcase';
+        if(in_array($slug,array('iletisim','contact'),true))return'mail';
+        if('blog'===$slug)return'article';
+        return'file';
     }
 
     public static function decorate_menu_item_output($item_output,$item,$depth,$args) {

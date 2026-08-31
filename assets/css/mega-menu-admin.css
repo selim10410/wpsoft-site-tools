@@ -59,3 +59,10 @@
 .wpst-mode-dynamic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px;border:1px solid #dbeafe;border-radius:14px;background:#f8fbff}
 .wpst-mode-dynamic label{display:grid;gap:6px}.wpst-mode-dynamic span{font-size:10px;font-weight:850;color:#475569}
 @media(max-width:1000px){.wpst-mode-dynamic{grid-template-columns:1fr 1fr}}@media(max-width:700px){.wpst-mode-dynamic{grid-template-columns:1fr}}
+
+/* Appearance > Menus: WPSoft icon selector. */
+.wpst-native-icon-only{margin:10px 0;padding:10px 12px;border:1px solid #dcdcde;border-radius:8px;background:#f8fafc}
+.wpst-menu-icon-picker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.wpst-menu-icon-preview{display:grid;place-items:center;width:42px;height:42px;border:1px solid #c3c4c7;border-radius:8px;background:#fff;color:#1d2327}
+.wpst-menu-icon-preview svg{display:block;width:22px;height:22px;max-width:22px;max-height:22px}
+.wpst-menu-icon-select{min-width:190px;max-width:280px}

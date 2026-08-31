@@ -55,4 +55,12 @@ $(document).on('click','.wpst-menu-image-remove',function(e){
  wrap.find('.wpst-menu-image-id').val('');
  wrap.find('.wpst-menu-image-preview').html('<span>Görsel yok</span>');
 });
+$(document).on('change','.wpst-menu-icon-select',function(){
+ var select=$(this),value=select.val(),preview=select.closest('.wpst-menu-icon-field').find('.wpst-menu-icon-preview');
+ var svg=window.wpstMenuIcons&&wpstMenuIcons.svgs?wpstMenuIcons.svgs[value]:'';
+ preview.html(svg||'<span class="dashicons dashicons-minus"></span>');
+});
+$(document).on('click','.wpst-menu-icon-remove',function(e){
+ e.preventDefault();var field=$(this).closest('.wpst-menu-icon-field');field.find('.wpst-menu-icon-select').val('').trigger('change');
+});
 })(jQuery);

@@ -89,6 +89,18 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   ));
   $this->end_controls_section();
 
+  $this->start_controls_section('mobile_footer_content',array('label'=>'Mobil Menü Alt Alanı'));
+  $this->add_control('mobile_logo',array('label'=>'Mobil Logo','type'=>\Elementor\Controls_Manager::MEDIA,'description'=>'Boş bırakılırsa Header Builder veya site logosu kullanılır.'));
+  $this->add_responsive_control('mobile_logo_width',array('label'=>'Mobil Logo Genişliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>40,'max'=>240)),'default'=>array('unit'=>'px','size'=>150),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer .wpst-nav-mobile-brand img'=>'width:{{SIZE}}{{UNIT}};max-width:{{SIZE}}{{UNIT}};')));
+  $this->add_responsive_control('mobile_logo_height',array('label'=>'Mobil Logo Maks. Yüksekliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>24,'max'=>100)),'default'=>array('unit'=>'px','size'=>54),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer .wpst-nav-mobile-brand img'=>'max-height:{{SIZE}}{{UNIT}};')));
+  $this->add_control('mobile_search_show',array('label'=>'Aramayı Göster','type'=>\Elementor\Controls_Manager::SWITCHER,'return_value'=>'yes','default'=>''));
+  $this->add_control('mobile_cta_subtitle',array('label'=>'CTA Alt Metin','type'=>\Elementor\Controls_Manager::TEXT,'condition'=>array('mobile_cta_enabled'=>'yes')));
+  $this->add_control('mobile_cta_phone',array('label'=>'CTA Telefon','type'=>\Elementor\Controls_Manager::TEXT,'condition'=>array('mobile_cta_enabled'=>'yes')));
+  $this->add_control('mobile_cta_icon',array('label'=>'CTA İkon','type'=>\Elementor\Controls_Manager::ICONS,'condition'=>array('mobile_cta_enabled'=>'yes')));
+  $this->add_control('mobile_social_show',array('label'=>'Sosyal Medyayı Göster','type'=>\Elementor\Controls_Manager::SWITCHER,'return_value'=>'yes','default'=>''));
+  foreach(array('facebook'=>'Facebook','instagram'=>'Instagram','linkedin'=>'LinkedIn','youtube'=>'YouTube') as $network=>$label)$this->add_control('mobile_social_'.$network,array('label'=>$label.' URL','type'=>\Elementor\Controls_Manager::URL,'condition'=>array('mobile_social_show'=>'yes')));
+  $this->end_controls_section();
+
   $this->start_controls_section('layout',array('label'=>'Yerleşim','tab'=>\Elementor\Controls_Manager::TAB_STYLE));
   $this->add_responsive_control('align',array(
    'label'=>'Hizalama','type'=>\Elementor\Controls_Manager::CHOOSE,'default'=>'center',
@@ -242,14 +254,55 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   ));
   $this->add_control('hamburger_color',array('label'=>'Hamburger Rengi','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#0f172a','selectors'=>array('{{WRAPPER}} .wpst-nav-toggle'=>'--wpst-nav-toggle-color:{{VALUE}};')));
   $this->add_control('hamburger_bg',array('label'=>'Hamburger Arka Plan','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'rgba(148,163,184,.10)','selectors'=>array('{{WRAPPER}} .wpst-nav-toggle'=>'--wpst-nav-toggle-bg:{{VALUE}};')));
-  $this->add_control('mobile_panel_bg',array('label'=>'Panel Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#ffffff','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-bg:{{VALUE}};')));
-  $this->add_control('mobile_text_color',array('label'=>'Mobil Menü Rengi','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#0f172a','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-color:{{VALUE}};')));
-  $this->add_control('mobile_hover_bg',array('label'=>'Mobil Hover Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#f8fafc','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-hover:{{VALUE}};')));
+  $this->add_control('mobile_heading_panel',array('label'=>'Panel','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_control('mobile_panel_bg',array('label'=>'Panel Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-bg:{{VALUE}};')));
+  $this->add_control('mobile_heading_items',array('label'=>'Menü Öğeleri','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_control('mobile_text_color',array('label'=>'Mobil Menü Yazı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-menu-text:{{VALUE}};')));
+  $this->add_control('mobile_hover_text_color',array('label'=>'Mobil Hover Yazı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-menu-hover-text:{{VALUE}};')));
+  $this->add_control('mobile_submenu_text_color',array('label'=>'Alt Menü Yazı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-menu-submenu-text:{{VALUE}};')));
+  $this->add_control('mobile_hover_bg',array('label'=>'Mobil Hover Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-hover:{{VALUE}};')));
   $this->add_control('mobile_overlay_color',array('label'=>'Overlay Rengi','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'rgba(15,23,42,.46)','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-overlay-bg:{{VALUE}};')));
   $this->add_control('mobile_cta_bg',array('label'=>'CTA Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#2563eb','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-cta-bg:{{VALUE}};')));
   $this->add_control('mobile_cta_color',array('label'=>'CTA Yazı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#ffffff','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-cta-color:{{VALUE}};')));
   $this->add_control('mobile_cta_hover_bg',array('label'=>'CTA Hover Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'default'=>'#1d4ed8','selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-cta-hover-bg:{{VALUE}};')));
-  $this->add_responsive_control('mobile_panel_width',array('label'=>'Panel Genişliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>240,'max'=>480)),'default'=>array('unit'=>'px','size'=>340),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-width:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_panel_width',array('label'=>'Panel Genişliği','type'=>\Elementor\Controls_Manager::SLIDER,'size_units'=>array('%','px'),'range'=>array('%'=>array('min'=>80,'max'=>96),'px'=>array('min'=>240,'max'=>480)),'default'=>array('unit'=>'%','size'=>90),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wpst-nav-mobile-width:{{SIZE}}{{UNIT}};')));
+  $this->add_responsive_control('mobile_panel_max_width',array('label'=>'Panel Maksimum Genişliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>300,'max'=>520)),'default'=>array('unit'=>'px','size'=>410),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-max-width:{{SIZE}}px;')));
+  $this->add_control('mobile_heading_active',array('label'=>'Aktif Öğe','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_control('mobile_active_bg',array('label'=>'Aktif Öğe Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-active-bg:{{VALUE}};')));
+  $this->add_control('mobile_active_color',array('label'=>'Aktif Yazı Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-active-color:{{VALUE}};')));
+  $this->add_control('mobile_chevron_color',array('label'=>'Chevron Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-chevron:{{VALUE}};')));
+  $this->add_control('mobile_close_bg',array('label'=>'Kapatma Butonu Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-close-bg:{{VALUE}};')));
+  $this->add_control('mobile_close_color',array('label'=>'Kapatma Butonu Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-close-color:{{VALUE}};')));
+  $this->add_control('mobile_surface_color',array('label'=>'Kart Yüzeyi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-nav-surface:{{VALUE}};')));
+  $this->add_control('mobile_muted_color',array('label'=>'İkincil Yazı / Chevron','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-nav-muted:{{VALUE}};')));
+  $this->add_control('mobile_search_style',array('label'=>'Arama Alanı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-nav-search-bg:{{VALUE}};')));
+  $this->add_control('mobile_heading_icons',array('label'=>'İkonlar','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_responsive_control('mobile_icon_box_size',array('label'=>'İkon Kutusu Boyutu','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>36,'max'=>58)),'default'=>array('unit'=>'px','size'=>46),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-nav-icon-box:{{SIZE}}px;')));
+  $this->add_control('mobile_icon_color',array('label'=>'İkon Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-color:{{VALUE}};')));
+  $this->add_control('mobile_icon_active_color',array('label'=>'Aktif İkon Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-active-color:{{VALUE}};')));
+  $this->add_control('mobile_icon_bg',array('label'=>'İkon Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-bg:{{VALUE}};')));
+  $this->add_control('mobile_icon_active_bg',array('label'=>'Aktif İkon Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-active-bg:{{VALUE}};')));
+  $this->add_responsive_control('mobile_icon_size',array('label'=>'İkon Boyutu','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>14,'max'=>30)),'default'=>array('unit'=>'px','size'=>20),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-size:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_icon_radius',array('label'=>'İkon Kutusu Radius','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>28)),'default'=>array('unit'=>'px','size'=>13),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-icon-radius:{{SIZE}}px;')));
+  $this->add_control('mobile_heading_cta',array('label'=>'CTA','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_control('mobile_cta_title_color',array('label'=>'CTA Başlık Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-cta-title:{{VALUE}};')));
+  $this->add_control('mobile_cta_subtitle_color',array('label'=>'CTA Alt Metin Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-cta-subtitle:{{VALUE}};')));
+  $this->add_control('mobile_cta_icon_color',array('label'=>'CTA İkon Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-cta-icon-color:{{VALUE}};')));
+  $this->add_control('mobile_cta_icon_bg',array('label'=>'CTA İkon Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-cta-icon-bg:{{VALUE}};')));
+  $this->add_control('mobile_heading_social',array('label'=>'Sosyal Medya','type'=>\Elementor\Controls_Manager::HEADING,'separator'=>'before'));
+  $this->add_control('mobile_social_color',array('label'=>'Sosyal İkon Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-color:{{VALUE}};')));
+  $this->add_control('mobile_social_hover_color',array('label'=>'Sosyal Hover Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-hover-color:{{VALUE}};')));
+  $this->add_control('mobile_social_bg',array('label'=>'Sosyal Buton Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-bg:{{VALUE}};')));
+  $this->add_control('mobile_social_hover_bg',array('label'=>'Sosyal Hover Arka Planı','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-hover-bg:{{VALUE}};')));
+  $this->add_control('mobile_social_border',array('label'=>'Sosyal Border Rengi','type'=>\Elementor\Controls_Manager::COLOR,'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-border:{{VALUE}};')));
+  $this->add_responsive_control('mobile_social_size',array('label'=>'Sosyal Buton Boyutu','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>36,'max'=>56)),'default'=>array('unit'=>'px','size'=>44),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-size:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_social_icon_size',array('label'=>'Sosyal İkon Boyutu','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>14,'max'=>28)),'default'=>array('unit'=>'px','size'=>20),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-icon-size:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_social_gap',array('label'=>'Sosyal Buton Aralığı','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>24)),'default'=>array('unit'=>'px','size'=>10),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-gap:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_social_radius',array('label'=>'Sosyal Buton Radius','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>28)),'default'=>array('unit'=>'px','size'=>13),'selectors'=>array('{{WRAPPER}} .wps-mobile-drawer'=>'--wps-mobile-social-radius:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_item_height',array('label'=>'Mobil Öğe Yüksekliği','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>48,'max'=>76)),'default'=>array('unit'=>'px','size'=>58),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-item-height:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_item_gap',array('label'=>'Mobil Öğe Aralığı','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>16)),'default'=>array('unit'=>'px','size'=>6),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-gap:{{SIZE}}px;')));
+  $this->add_responsive_control('mobile_item_radius',array('label'=>'Aktif Öğe Köşesi','type'=>\Elementor\Controls_Manager::SLIDER,'range'=>array('px'=>array('min'=>0,'max'=>28)),'default'=>array('unit'=>'px','size'=>16),'selectors'=>array('{{WRAPPER}} .wpst-navigation'=>'--wps-mobile-menu-radius:{{SIZE}}px;')));
+  $this->add_group_control(\Elementor\Group_Control_Typography::get_type(),array('name'=>'mobile_typography','label'=>'Mobil Menü Tipografi','selector'=>'{{WRAPPER}} .wpst-nav-mobile-panel .wpst-navigation-menu a'));
   $this->end_controls_section();
 
   $this->standard_responsive_controls();
@@ -257,6 +310,8 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
 
  protected function render(){
   $s=$this->get_settings_for_display();
+  $global=get_option('wpst_settings',array());
+  if(!is_array($global))$global=array();
   /*
    * Elementor Header source isolation:
    * Never synthesize mobile menu/CTA data from implicit defaults. Older Header
@@ -283,13 +338,27 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   // when the same template is used as the mobile header.
   $nav_style=array();
   $color_vars=array(
-   '--wpst-nav-mobile-bg'=>($s['mobile_panel_bg']??''),
+   '--wps-mobile-menu-bg'=>($s['mobile_panel_bg']??''),
    '--wpst-nav-mobile-color'=>($s['mobile_text_color']??''),
    '--wpst-nav-mobile-hover'=>($s['mobile_hover_bg']??''),
    '--wpst-nav-overlay-bg'=>($s['mobile_overlay_color']??''),
    '--wpst-nav-mobile-cta-bg'=>($s['mobile_cta_bg']??''),
    '--wpst-nav-mobile-cta-color'=>($s['mobile_cta_color']??''),
    '--wpst-nav-mobile-cta-hover-bg'=>($s['mobile_cta_hover_bg']??''),
+   '--wps-mobile-menu-text'=>($s['mobile_text_color']??''),
+   '--wps-mobile-menu-hover-text'=>($s['mobile_hover_text_color']??''),
+   '--wps-mobile-menu-submenu-text'=>($s['mobile_submenu_text_color']??''),
+   '--wps-mobile-menu-active-color'=>($s['mobile_active_color']??''),
+   '--wps-mobile-menu-active-bg'=>($s['mobile_active_bg']??''),
+   '--wps-mobile-icon-color'=>($s['mobile_icon_color']??''),
+   '--wps-mobile-icon-active-color'=>($s['mobile_icon_active_color']??''),
+   '--wps-mobile-icon-bg'=>($s['mobile_icon_bg']??''),
+   '--wps-mobile-icon-active-bg'=>($s['mobile_icon_active_bg']??''),
+   '--wps-mobile-cta-title'=>($s['mobile_cta_title_color']??''),
+   '--wps-mobile-cta-subtitle'=>($s['mobile_cta_subtitle_color']??''),
+   '--wps-mobile-social-color'=>($s['mobile_social_color']??''),
+   '--wps-mobile-social-hover-color'=>($s['mobile_social_hover_color']??''),
+   '--wps-mobile-social-bg'=>($s['mobile_social_bg']??''),
   );
   foreach($color_vars as $var=>$value){
    if(is_string($value) && ''!==trim($value))$nav_style[]=$var.':'.sanitize_hex_color($value);
@@ -306,30 +375,71 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
    $unit=!empty($s['mobile_panel_width']['unit'])?$s['mobile_panel_width']['unit']:'px';
    $nav_style[]='--wpst-nav-mobile-width:'.floatval($s['mobile_panel_width']['size']).preg_replace('/[^a-z%]/i','',$unit);
   }
+  foreach(array('mobile_logo_width'=>'--wps-mobile-logo-width','mobile_logo_height'=>'--wps-mobile-logo-height','mobile_icon_size'=>'--wps-mobile-icon-size','mobile_icon_box_size'=>'--wps-mobile-nav-icon-box','mobile_social_size'=>'--wps-mobile-social-size','mobile_social_icon_size'=>'--wps-mobile-social-icon-size','mobile_social_gap'=>'--wps-mobile-social-gap','mobile_social_radius'=>'--wps-mobile-social-radius') as $key=>$var){if(!empty($s[$key]['size'])){$unit=!empty($s[$key]['unit'])?$s[$key]['unit']:'px';$nav_style[]=$var.':'.floatval($s[$key]['size']).preg_replace('/[^a-z%]/i','',$unit);}}
   $style_attr=!empty($nav_style)?' style="'.esc_attr(implode(';',$nav_style)).'"':'';
 
-  echo'<nav class="wpst-navigation"'.$style_attr.' aria-label="'.esc_attr($aria_label).'" data-wpst-nav data-wpst-menu-id="'.absint($menu_id).'" data-wpst-nav-fallback="'.esc_attr($fallback).'">';
+  echo'<nav class="wpst-navigation"'.$style_attr.' aria-label="'.esc_attr($aria_label).'" data-wpst-nav data-home-url="'.esc_url(home_url('/')).'" data-wpst-menu-id="'.absint($menu_id).'" data-wpst-nav-fallback="'.esc_attr($fallback).'">';
+  echo'<div class="wpst-nav-desktop-host">';$this->render_menu_markup($menu_id,$fallback,false);echo'</div>';
   echo'<button type="button" class="wpst-nav-toggle" aria-expanded="false" aria-controls="'.esc_attr($uid).'"><span class="wpst-nav-toggle-bars"><i></i><i></i><i></i></span><span class="screen-reader-text">Menüyü aç</span></button>';
   echo'<div class="wpst-nav-overlay" aria-hidden="true"></div>';
-  echo'<div class="wpst-nav-mobile-panel" id="'.esc_attr($uid).'">';
-  echo'<div class="wpst-nav-mobile-head"><button type="button" class="wpst-nav-close" aria-label="Menüyü kapat">×</button></div>';
-  echo'<div class="wpst-nav-menu-host">';
-
-  if($menu_id){
-   wp_nav_menu(array('menu'=>$menu_id,'container'=>false,'menu_class'=>'wpst-navigation-menu','fallback_cb'=>false,'depth'=>4));
-  }elseif('pages'===$fallback){
-   echo'<ul class="wpst-navigation-menu">'; wp_list_pages(array('title_li'=>'','depth'=>2)); echo'</ul>';
-  }elseif(\Elementor\Plugin::$instance->editor->is_edit_mode()){
-   echo'<div class="wpst-navigation-empty">Navigasyon için bir WordPress menüsü seçin.</div>';
+  echo'<div class="wpst-nav-mobile-panel wps-mobile-drawer" id="'.esc_attr($uid).'" role="dialog" aria-modal="true" aria-label="'.esc_attr($aria_label).'" aria-hidden="true" tabindex="-1">';
+  echo'<div class="wpst-nav-mobile-head"><div class="wpst-nav-mobile-brand wps-mobile-drawer__branding">';
+  $widget_logo_id=!empty($s['mobile_logo']['id'])?absint($s['mobile_logo']['id']):0;
+  $widget_logo_url=!empty($s['mobile_logo']['url'])?esc_url($s['mobile_logo']['url']):'';
+  $logo_id=$widget_logo_id?:(!empty($global['header_logo_id'])?absint($global['header_logo_id']):0);
+  if($logo_id){echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-drawer-logo" data-widget-logo="'.($widget_logo_id?'1':'0').'">'.wp_get_attachment_image($logo_id,'full',false,array('class'=>'wpst-site-logo-image','alt'=>get_bloginfo('name'))).'</a>';}
+  elseif($widget_logo_url){echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-drawer-logo" data-widget-logo="1"><img class="wpst-site-logo-image" src="'.esc_url($widget_logo_url).'" alt="'.esc_attr(get_bloginfo('name')).'"></a>';}
+  elseif(has_custom_logo()){the_custom_logo();}else{echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-site-title">'.esc_html(get_bloginfo('name')).'</a>';}
+  echo'</div><button type="button" class="wpst-nav-close" aria-label="Menüyü kapat"><span aria-hidden="true"></span></button></div>';
+  $search_show=array_key_exists('mobile_search_show',$raw)?'yes'===($s['mobile_search_show']??''):!empty($global['header_mobile_search']);
+  if($search_show)echo'<div class="wps-mobile-drawer__search"><span aria-hidden="true"></span><input type="search" class="wps-mobile-drawer__search-input" aria-label="Menüde ara" placeholder="'.esc_attr__('Menüde ara…','wpsoft-site-tools').'" autocomplete="off"></div>';
+  echo'<div class="wpst-nav-menu-host wps-mobile-drawer__menu">';$this->render_menu_markup($menu_id,$fallback,true);echo'</div>';
+  $cta=$this->resolve_mobile_cta($s,$raw,$global);
+  if($cta['enabled']){
+    $target=$cta['is_external']?' target="_blank"':'';
+    $rel=$cta['nofollow']?' rel="nofollow noopener"':($cta['is_external']?' rel="noopener"':'');
+    echo'<div class="wpst-nav-mobile-footer"><a class="wpst-nav-mobile-cta wps-mobile-drawer__cta" href="'.esc_url($cta['url']).'"'.$target.$rel.'><span class="wps-mobile-drawer__cta-icon" aria-hidden="true">'.$cta['icon'].'</span><span class="wps-mobile-drawer__cta-copy"><strong>'.esc_html($cta['text']).'</strong>';
+    if($cta['subtitle'])echo'<small>'.esc_html($cta['subtitle']).'</small>';
+    echo'</span><i aria-hidden="true">→</i></a></div>';
   }
-
-  echo'</div>';
-  if(array_key_exists('mobile_cta_enabled',$raw) && 'yes'===($s['mobile_cta_enabled']??'') && !empty($s['mobile_cta_text'])){
-    $cta_url=!empty($s['mobile_cta_url']['url'])?$s['mobile_cta_url']['url']:'#iletisim';
-    $target=!empty($s['mobile_cta_url']['is_external'])?' target="_blank"':'';
-    $rel=!empty($s['mobile_cta_url']['nofollow'])?' rel="nofollow noopener"':(!empty($s['mobile_cta_url']['is_external'])?' rel="noopener"':'');
-    echo'<div class="wpst-nav-mobile-footer"><a class="wpst-nav-mobile-cta" href="'.esc_url($cta_url).'"'.$target.$rel.'><span>'.esc_html($s['mobile_cta_text']).'</span><i>→</i></a></div>';
-  }
+  $social_show=array_key_exists('mobile_social_show',$raw)?'yes'===($s['mobile_social_show']??''):!empty($global['header_mobile_social_enabled']);
+  $socials=array();foreach(array('facebook','instagram','linkedin','youtube') as $network){$widget_url=$s['mobile_social_'.$network]['url']??'';$url=$widget_url?:($global['header_mobile_social_'.$network]??'');if($url)$socials[$network]=$url;}
+  if($social_show&&$socials){echo'<div class="wps-mobile-drawer__socials" aria-label="'.esc_attr__('Sosyal medya','wpsoft-site-tools').'">';foreach($socials as $network=>$url)echo'<a class="is-'.esc_attr($network).'" href="'.esc_url($url).'" target="_blank" rel="noopener noreferrer" aria-label="'.esc_attr(ucfirst($network)).'">'.$this->social_icon($network).'</a>';echo'</div>';}
   echo'</div></nav>';
+ }
+
+ private function render_menu_markup($menu_id,$fallback,$mobile){
+  if($menu_id){wp_nav_menu(array('menu'=>$menu_id,'container'=>false,'menu_class'=>'wpst-navigation-menu','fallback_cb'=>false,'depth'=>4,'wpst_mobile_drawer'=>$mobile));return;}
+  if('pages'===$fallback){echo'<ul class="wpst-navigation-menu">';wp_list_pages(array('title_li'=>'','depth'=>2));echo'</ul>';return;}
+  if(!$mobile&&\Elementor\Plugin::$instance->editor->is_edit_mode())echo'<div class="wpst-navigation-empty">Navigasyon için bir WordPress menüsü seçin.</div>';
+ }
+
+ private function resolve_mobile_cta($settings,$raw,$global){
+  $explicit=array_key_exists('mobile_cta_enabled',$raw) || $this->is_enabled($settings['mobile_cta_enabled']??false);
+  $use_widget=$explicit && $this->is_enabled($settings['mobile_cta_enabled']??false);
+  $use_global=!$explicit && $this->is_enabled($global['header_mobile_cta_enabled']??false);
+  $link=$use_widget && is_array($settings['mobile_cta_url']??null)?$settings['mobile_cta_url']:array('url'=>(string)($global['header_mobile_cta_url']??''));
+  $text=trim((string)($use_widget?($settings['mobile_cta_text']??''):($use_global?($global['header_mobile_cta_text']??''):'')));
+  $icon='';
+  if($use_widget&&!empty($settings['mobile_cta_icon']['value'])){ob_start();\Elementor\Icons_Manager::render_icon($settings['mobile_cta_icon'],array('aria-hidden'=>'true'));$icon=ob_get_clean();}
+  return array(
+   'enabled'=>($use_widget||$use_global)&&''!==$text,
+   'text'=>$text,
+   'subtitle'=>(string)($use_widget?($settings['mobile_cta_subtitle']??''):($global['header_mobile_contact_title']??'')),
+   'url'=>(string)($link['url']??''),
+   'is_external'=>$this->is_enabled($link['is_external']??false),
+   'nofollow'=>$this->is_enabled($link['nofollow']??false),
+   'icon'=>$icon,
+  );
+ }
+
+ private function is_enabled($value){
+  if(true===$value||1===$value||'1'===$value)return true;
+  return is_string($value)&&in_array(strtolower(trim($value)),array('yes','true','on'),true);
+ }
+
+ private function social_icon($network){
+  $paths=array('facebook'=>'<path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.7.3-1 1-1Z"/>','instagram'=>'<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/>','linkedin'=>'<path d="M6 9v12M6 5v.01M10 21V9h4v2c1-3 7-3 7 3v7M3 9h6"/>','youtube'=>'<path d="M22 12s0-5-1-6-4-1-9-1-8 0-9 1-1 6-1 6 0 5 1 6 4 1 9 1 8 0 9-1 1-6 1-6Z"/><path d="m10 9 5 3-5 3Z"/>');
+  return isset($paths[$network])?'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'.$paths[$network].'</svg>':'';
  }
 }
