@@ -2321,7 +2321,7 @@ final class WPST_Plugin {
         }
         if ( 'menu' === $type ) {
             $menu_id = ! empty( $item['menu'] ) ? absint( $item['menu'] ) : 0;
-            $args = array( 'container'=>false, 'menu_class'=>'wpst-q-menu', 'fallback_cb'=>false, 'echo'=>false, 'wpst_exclude_labels'=>isset( $settings['_wpst_button_labels'] ) ? $settings['_wpst_button_labels'] : array() );
+            $args = array( 'container'=>false, 'menu_class'=>'wpst-q-menu', 'fallback_cb'=>false, 'echo'=>false, 'wpst_navigation'=>'1', 'wpst_exclude_labels'=>isset( $settings['_wpst_button_labels'] ) ? $settings['_wpst_button_labels'] : array() );
             if ( $menu_id ) $args['menu'] = $menu_id;
             $menu_html = wp_nav_menu( $args );
             if ( ! $menu_html ) {

@@ -411,7 +411,7 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
  }
 
  private function render_menu_markup($menu_id,$fallback,$mobile){
-  if($menu_id){wp_nav_menu(array('menu'=>$menu_id,'container'=>false,'menu_class'=>'wpst-navigation-menu','fallback_cb'=>false,'depth'=>4,'wpst_mobile_drawer'=>$mobile));return;}
+  if($menu_id){wp_nav_menu(array('menu'=>$menu_id,'container'=>false,'menu_class'=>'wpst-navigation-menu','fallback_cb'=>false,'depth'=>4,'wpst_navigation'=>'1','wpst_mobile_drawer'=>$mobile));return;}
   if('pages'===$fallback){echo'<ul class="wpst-navigation-menu">';wp_list_pages(array('title_li'=>'','depth'=>2));echo'</ul>';return;}
   if(!$mobile&&\Elementor\Plugin::$instance->editor->is_edit_mode())echo'<div class="wpst-navigation-empty">Navigasyon için bir WordPress menüsü seçin.</div>';
  }

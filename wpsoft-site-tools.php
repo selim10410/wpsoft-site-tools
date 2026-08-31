@@ -3,12 +3,12 @@ require_once __DIR__ . '/includes/class-wpst-header-footer-templates.php';
 /**
  * Plugin Name: WPSoft Site Tools
  * Description: Sürükle-bırak hızlı tasarım veya Elementor şablonlarıyla header ve footer yönetimi sağlar.
- * Version: 3.3.10
+ * Version: 3.3.11
  * Author: WPSoft
  * Text Domain: wpsoft-site-tools
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-define( 'WPST_VERSION', '3.3.10' );
+define( 'WPST_VERSION', '3.3.11' );
 define( 'WPST_FILE', __FILE__ );
 define( 'WPST_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPST_URL', plugin_dir_url( __FILE__ ) );

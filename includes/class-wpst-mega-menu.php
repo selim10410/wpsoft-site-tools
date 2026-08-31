@@ -25,6 +25,9 @@ final class WPST_Mega_Menu {
         // Native Appearance > Menus integration.
         add_action( 'wp_nav_menu_item_custom_fields', array( __CLASS__, 'menu_item_fields' ), 20, 5 );
         add_action( 'wp_update_nav_menu_item', array( __CLASS__, 'save_menu_item_fields' ), 20, 3 );
+        add_filter( 'upload_mimes', array( __CLASS__, 'icon_upload_mimes' ) );
+        add_filter( 'wp_handle_upload_prefilter', array( __CLASS__, 'sanitize_icon_upload' ) );
+        add_filter( 'wp_check_filetype_and_ext', array( __CLASS__, 'check_svg_filetype' ), 10, 5 );
     }
 
     public static function menu() {
@@ -80,10 +83,17 @@ final class WPST_Mega_Menu {
 
     private static function item_meta( $item_id ) {
         $id = absint($item_id);
+        $source = sanitize_key((string)get_post_meta($id,'_wpst_menu_icon_source',true));
+        if(!in_array($source,array('internal','custom'),true))$source='internal';
         return array(
             'badge' => sanitize_text_field( get_post_meta($id,'_wpst_mega_badge',true) ),
             'badge_color' => sanitize_hex_color( get_post_meta($id,'_wpst_mega_badge_color',true) ) ?: '#2563eb',
             'icon' => sanitize_text_field( get_post_meta($id,'_wpst_mega_icon',true) ),
+            'icon_source' => $source,
+            'icon_attachment_id' => absint(get_post_meta($id,'_wpst_menu_icon_attachment_id',true)),
+            'icon_type' => sanitize_key((string)get_post_meta($id,'_wpst_menu_icon_type',true)),
+            'icon_show_desktop' => metadata_exists('post',$id,'_wpst_menu_icon_show_desktop') ? ('1'===get_post_meta($id,'_wpst_menu_icon_show_desktop',true)) : false,
+            'icon_show_mobile' => metadata_exists('post',$id,'_wpst_menu_icon_show_mobile') ? ('1'===get_post_meta($id,'_wpst_menu_icon_show_mobile',true)) : true,
             'image_id' => absint( get_post_meta($id,'_wpst_mega_image_id',true) ),
             'column_title' => get_post_meta($id,'_wpst_mega_column_title',true) === '1' ? 1 : 0,
             'description' => sanitize_text_field( get_post_meta($id,'_wpst_mega_description',true) ),
@@ -904,6 +914,16 @@ final class WPST_Mega_Menu {
             $icon=isset($meta_all[$id]['icon'])?sanitize_key($meta_all[$id]['icon']):'';
             if($icon && !self::icon_svg($icon))$icon='';
             if($icon)update_post_meta($id,'_wpst_mega_icon',$icon);else delete_post_meta($id,'_wpst_mega_icon');
+
+            $source=isset($meta_all[$id]['icon_source'])?sanitize_key($meta_all[$id]['icon_source']):'internal';
+            if(!in_array($source,array('internal','custom'),true))$source='internal';
+            $attachment_id=isset($meta_all[$id]['icon_attachment_id'])?absint($meta_all[$id]['icon_attachment_id']):0;
+            $custom=self::custom_icon_data($attachment_id);
+            if(!$custom){$attachment_id=0;$icon_type='';}else{$icon_type=$custom['type'];}
+            update_post_meta($id,'_wpst_menu_icon_source',$source);
+            if($attachment_id){update_post_meta($id,'_wpst_menu_icon_attachment_id',$attachment_id);update_post_meta($id,'_wpst_menu_icon_type',$icon_type);}else{delete_post_meta($id,'_wpst_menu_icon_attachment_id');delete_post_meta($id,'_wpst_menu_icon_type');}
+            update_post_meta($id,'_wpst_menu_icon_show_desktop',!empty($meta_all[$id]['icon_show_desktop'])?'1':'0');
+            update_post_meta($id,'_wpst_menu_icon_show_mobile',!empty($meta_all[$id]['icon_show_mobile'])?'1':'0');
         }
         if ( empty($_POST['wpst_mega_native']) || !is_array($_POST['wpst_mega_native']) ) return;
 
@@ -955,16 +975,22 @@ final class WPST_Mega_Menu {
     }
 
     private static function render_native_icon_field($item_id,$selected='',$wrap=true){
-        if(''===$selected)$selected=sanitize_key(get_post_meta(absint($item_id),'_wpst_mega_icon',true));
+        $meta=self::item_meta($item_id);
+        if(''===$selected)$selected=sanitize_key($meta['icon']);
         $icons=class_exists('WPST_Icon_Library')?WPST_Icon_Library::options():array('star'=>'Yıldız','briefcase'=>'Çanta','file'=>'Dosya');
         if($selected && !isset($icons[$selected]))$icons[$selected]=ucwords(str_replace(array('-','_'),' ',$selected));
+        $custom=self::custom_icon_data($meta['icon_attachment_id']);
         if($wrap)echo'<div class="wpst-native-mega-fields wpst-native-icon-only">';
         echo'<input type="hidden" name="wpst_menu_icon_nonce" value="'.esc_attr(wp_create_nonce('wpst_menu_icon')).'">';
-        echo'<div class="wpst-menu-icon-field" data-item-id="'.absint($item_id).'">';
-        echo'<p class="description description-wide"><strong>WPSoft Menü İkonu</strong><br><span>Bu ikon WPSoft Navigation mobil menüsünde ve desteklenen WPSoft menülerinde kullanılır.</span></p>';
-        echo'<div class="wpst-menu-icon-picker"><span class="wpst-menu-icon-preview">'.($selected?self::icon_svg($selected):'<span class="dashicons dashicons-minus"></span>').'</span><select class="wpst-menu-icon-select" name="wpst_mega_item_meta['.absint($item_id).'][icon]"><option value="">İkon yok</option>';
+        echo'<div class="wpst-menu-icon-field" data-item-id="'.absint($item_id).'" data-icon-source="'.esc_attr($meta['icon_source']).'">';
+        echo'<p class="description description-wide"><strong>WPSoft Menü İkonu</strong><br><span>WPSoft kütüphanesini veya transparan SVG/PNG dosyasını kullanın.</span></p>';
+        echo'<div class="wpst-menu-icon-source"><label><input type="radio" name="wpst_mega_item_meta['.absint($item_id).'][icon_source]" value="internal" '.checked($meta['icon_source'],'internal',false).'> WPSoft İkonu</label><label><input type="radio" name="wpst_mega_item_meta['.absint($item_id).'][icon_source]" value="custom" '.checked($meta['icon_source'],'custom',false).'> Özel SVG/PNG</label></div>';
+        echo'<div class="wpst-menu-icon-pane is-internal"><div class="wpst-menu-icon-picker"><span class="wpst-menu-icon-preview">'.($selected?self::icon_svg($selected):'<span class="dashicons dashicons-minus"></span>').'</span><select class="wpst-menu-icon-select" name="wpst_mega_item_meta['.absint($item_id).'][icon]"><option value="">İkon yok</option>';
         foreach($icons as $slug=>$label)echo'<option value="'.esc_attr($slug).'" '.selected($selected,$slug,false).'>'.esc_html($label).'</option>';
         echo'</select><button type="button" class="button wpst-menu-icon-remove">İkonu Kaldır</button></div></div>';
+        echo'<div class="wpst-menu-icon-pane is-custom"><input type="hidden" class="wpst-menu-custom-icon-id" name="wpst_mega_item_meta['.absint($item_id).'][icon_attachment_id]" value="'.absint($meta['icon_attachment_id']).'"><div class="wpst-menu-custom-icon-preview">'.($custom?'<img src="'.esc_url($custom['url']).'" alt="">':'<span>SVG/PNG seçilmedi</span>').'</div><button type="button" class="button wpst-menu-custom-icon-select">Dosya Seç</button> <button type="button" class="button-link-delete wpst-menu-custom-icon-remove">Kaldır</button><p class="description">SVG güvenli biçimde sanitize edilir. PNG için transparan arka plan önerilir.</p></div>';
+        echo'<fieldset class="wpst-menu-icon-visibility"><legend>İkon Görünürlüğü</legend><label><input type="checkbox" name="wpst_mega_item_meta['.absint($item_id).'][icon_show_desktop]" value="1" '.checked($meta['icon_show_desktop'],true,false).'> Masaüstünde Göster</label><label><input type="checkbox" name="wpst_mega_item_meta['.absint($item_id).'][icon_show_mobile]" value="1" '.checked($meta['icon_show_mobile'],true,false).'> Mobilde Göster</label></fieldset>';
+        echo'</div>';
         if($wrap)echo'</div>';
     }
 
@@ -972,21 +998,70 @@ final class WPST_Mega_Menu {
         $meta = self::item_meta($item->ID);
         $prefix = '';
         $is_mobile = ! empty($args->wpst_mobile_drawer);
-        $is_mega = self::is_mega_item_context($item);
-        $icon = ($is_mobile || $is_mega) ? $meta['icon'] : '';
-        if(!$icon && $is_mobile)$icon=self::default_menu_icon($item);
-        if ( $icon ) {
-            $svg = self::icon_svg($icon);
-            if($svg){
-                $icon_markup = '<span class="wpst-menu-item-icon">'.$svg.'</span>';
-                $prefix .= $is_mobile ? '<span class="wps-mobile-drawer__icon">'.$icon_markup.'</span>' : $icon_markup;
-            }
+        $is_wpst_navigation=!empty($args->wpst_navigation);
+        $is_mega=self::is_mega_item_context($item);
+        $show_icon=$is_mobile?$meta['icon_show_mobile']:(($is_wpst_navigation||$is_mega)&&$meta['icon_show_desktop']);
+        if($show_icon){
+            $icon_markup=self::resolved_icon_markup($item,$meta,$is_mobile);
+            if($icon_markup)$prefix.=$is_mobile?'<span class="wps-mobile-drawer__icon">'.$icon_markup.'</span>':$icon_markup;
         }
         $suffix = '';
         if ( $meta['badge'] ) {
             $suffix .= '<span class="wpst-menu-badge" style="--wpst-badge-color:'.esc_attr($meta['badge_color']).'">'.esc_html($meta['badge']).'</span>';
         }
         return $prefix . '<span class="wpst-menu-item-label">'.$title.'</span>' . $suffix;
+    }
+
+    public static function icon_upload_mimes($mimes){
+        if(current_user_can('edit_theme_options'))$mimes['svg']='image/svg+xml';
+        return$mimes;
+    }
+
+    public static function sanitize_icon_upload($file){
+        if(empty($file['name'])||'svg'!==strtolower((string)pathinfo($file['name'],PATHINFO_EXTENSION)))return$file;
+        if(!current_user_can('edit_theme_options')){$file['error']='SVG yüklemek için menü düzenleme yetkisi gerekir.';return$file;}
+        $raw=!empty($file['tmp_name'])?file_get_contents($file['tmp_name']):false;
+        if(false===$raw||false===stripos($raw,'<svg')){$file['error']='Geçersiz SVG dosyası.';return$file;}
+        $allowed=array(
+            'svg'=>array('xmlns'=>true,'viewbox'=>true,'viewBox'=>true,'width'=>true,'height'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true,'stroke-linecap'=>true,'stroke-linejoin'=>true,'role'=>true,'aria-hidden'=>true,'focusable'=>true),
+            'g'=>array('fill'=>true,'stroke'=>true,'stroke-width'=>true,'transform'=>true,'opacity'=>true),
+            'path'=>array('d'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true,'stroke-linecap'=>true,'stroke-linejoin'=>true,'fill-rule'=>true,'clip-rule'=>true,'opacity'=>true,'transform'=>true),
+            'circle'=>array('cx'=>true,'cy'=>true,'r'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true,'opacity'=>true),
+            'ellipse'=>array('cx'=>true,'cy'=>true,'rx'=>true,'ry'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true),
+            'rect'=>array('x'=>true,'y'=>true,'width'=>true,'height'=>true,'rx'=>true,'ry'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true),
+            'line'=>array('x1'=>true,'y1'=>true,'x2'=>true,'y2'=>true,'stroke'=>true,'stroke-width'=>true,'stroke-linecap'=>true),
+            'polyline'=>array('points'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true,'stroke-linecap'=>true,'stroke-linejoin'=>true),
+            'polygon'=>array('points'=>true,'fill'=>true,'stroke'=>true,'stroke-width'=>true,'stroke-linejoin'=>true),
+            'title'=>array(),'desc'=>array()
+        );
+        $clean=wp_kses($raw,$allowed);
+        if(false===stripos($clean,'<svg')){$file['error']='SVG güvenlik doğrulamasından geçemedi.';return$file;}
+        if(false===file_put_contents($file['tmp_name'],$clean))$file['error']='SVG güvenli biçimde kaydedilemedi.';
+        return$file;
+    }
+
+    public static function check_svg_filetype($data,$file,$filename,$mimes,$real_mime=''){
+        if(current_user_can('edit_theme_options')&&'svg'===strtolower((string)pathinfo($filename,PATHINFO_EXTENSION))){$data['ext']='svg';$data['type']='image/svg+xml';$data['proper_filename']=$filename;}
+        return$data;
+    }
+
+    private static function custom_icon_data($attachment_id){
+        $id=absint($attachment_id);if(!$id)return array();
+        $mime=(string)get_post_mime_type($id);
+        if(!in_array($mime,array('image/png','image/svg+xml'),true))return array();
+        $url=wp_get_attachment_url($id);if(!$url)return array();
+        return array('id'=>$id,'mime'=>$mime,'type'=>'image/svg+xml'===$mime?'svg':'png','url'=>$url);
+    }
+
+    private static function resolved_icon_markup($item,$meta,$allow_semantic){
+        if('custom'===$meta['icon_source']){
+            $custom=self::custom_icon_data($meta['icon_attachment_id']);
+            if($custom)return'<span class="wpst-menu-item-icon wpst-menu-item-icon--custom wpst-menu-item-icon--'.esc_attr($custom['type']).'"><img src="'.esc_url($custom['url']).'" alt="" decoding="async"></span>';
+        }
+        $key=sanitize_key((string)$meta['icon']);
+        if(!$key&&$allow_semantic)$key=self::default_menu_icon($item);
+        $svg=$key?self::icon_svg($key):'';
+        return$svg?'<span class="wpst-menu-item-icon wpst-menu-item-icon--internal" data-wpst-icon="'.esc_attr($key).'">'.$svg.'</span>':'';
     }
 
     private static function is_mega_item_context($item) {

@@ -164,7 +164,9 @@
  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:10px;color:#334155!important;font-size:13px;font-weight:650;line-height:1.35;transition:.16s ease}
  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a:hover,.wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu a:focus-visible{background:#f8fafc;color:#0f172a!important;transform:translateX(2px)}
  .wpsoft-site-header .wpst-q-menu>li:not(.wpst-mega-enabled)>.sub-menu .sub-menu{top:-9px;left:calc(100% + 8px)}
- .wpsoft-site-header .wpst-q-menu .wpst-menu-item-icon{width:18px;height:18px;margin-right:1px;color:currentColor}
+ .wpsoft-site-header .wpst-q-menu .wpst-menu-item-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:7px;color:currentColor;vertical-align:middle}
+ .wpsoft-site-header .wpst-q-menu .wpst-menu-item-icon--internal svg{display:block;width:17px;height:17px}
+ .wpsoft-site-header .wpst-q-menu .wpst-menu-item-icon--custom img{display:block;width:17px;height:17px;max-width:17px;max-height:17px;object-fit:contain;background:transparent}
 }
 
 /* Final header state rules live in wpst-06-header-canonical.css. */

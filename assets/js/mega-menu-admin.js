@@ -63,4 +63,28 @@ $(document).on('change','.wpst-menu-icon-select',function(){
 $(document).on('click','.wpst-menu-icon-remove',function(e){
  e.preventDefault();var field=$(this).closest('.wpst-menu-icon-field');field.find('.wpst-menu-icon-select').val('').trigger('change');
 });
+function syncIconSource(field){
+ var source=field.find('input[type="radio"][name$="[icon_source]"]:checked').val()||'internal';
+ field.attr('data-icon-source',source);
+ field.find('.wpst-menu-icon-pane.is-internal').toggle(source==='internal');
+ field.find('.wpst-menu-icon-pane.is-custom').toggle(source==='custom');
+}
+$('.wpst-menu-icon-field').each(function(){syncIconSource($(this));});
+$(document).on('change','.wpst-menu-icon-source input',function(){syncIconSource($(this).closest('.wpst-menu-icon-field'));});
+$(document).on('click','.wpst-menu-custom-icon-select',function(e){
+ e.preventDefault();
+ var field=$(this).closest('.wpst-menu-icon-field');
+ var frame=wp.media({title:'Özel Menü İkonu',button:{text:'İkonu Kullan'},library:{type:['image/png','image/svg+xml']},multiple:false});
+ frame.on('select',function(){
+  var att=frame.state().get('selection').first().toJSON();
+  if(['image/png','image/svg+xml'].indexOf(att.mime)<0){window.alert('Yalnız SVG veya PNG seçebilirsiniz.');return;}
+  field.find('.wpst-menu-custom-icon-id').val(att.id);
+  var img=$('<img>',{src:att.url,alt:''});
+  field.find('.wpst-menu-custom-icon-preview').empty().append(img);
+ });
+ frame.open();
+});
+$(document).on('click','.wpst-menu-custom-icon-remove',function(e){
+ e.preventDefault();var field=$(this).closest('.wpst-menu-icon-field');field.find('.wpst-menu-custom-icon-id').val('');field.find('.wpst-menu-custom-icon-preview').html('<span>SVG/PNG seçilmedi</span>');
+});
 })(jQuery);

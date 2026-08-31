@@ -45,7 +45,8 @@
 /* WPSoft Mega Menu v2 */
 @media (min-width:901px){
  .wpst-mega-enabled .wpst-menu-item-icon{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:7px;color:#2563eb;vertical-align:middle}
- .wpst-mega-enabled .wpst-menu-item-icon svg{width:17px;height:17px;fill:currentColor}
+ .wpst-mega-enabled .wpst-menu-item-icon--internal svg{width:17px;height:17px;fill:currentColor}
+ .wpst-mega-enabled .wpst-menu-item-icon--custom img{display:block;width:17px;height:17px;max-width:17px;max-height:17px;object-fit:contain;background:transparent}
 }
 .wpst-menu-item-label{vertical-align:middle}
 .wpst-menu-badge{display:inline-flex;margin-left:7px;padding:3px 6px;border-radius:999px;background:var(--wpst-badge-color,#2563eb);color:#fff;font-size:8px;font-weight:900;letter-spacing:.04em;vertical-align:middle}
