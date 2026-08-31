@@ -5013,19 +5013,22 @@ html.wpst-nav-lock,html.wpst-nav-lock body{overflow:hidden!important}
   }
 }
 
-/* Mobile drawer header: no brand / WPSoft / Menü text */
+/* Mobile drawer header: server-rendered widget branding + close control. */
 @media(max-width:1024px){
   .wpst-nav-mobile-hamburger .wpst-nav-mobile-head{
     min-height:52px;
     display:flex;
-    justify-content:flex-end;
+    justify-content:space-between;
     align-items:center;
+    gap:16px;
     padding:7px 7px 7px 10px;
     border:0;
     background:transparent;
   }
   .wpst-nav-mobile-brand{
-    display:none!important;
+    display:flex;
+    flex:1 1 auto;
+    min-width:0;
   }
   .wpst-nav-mobile-hamburger .wpst-nav-close{
     width:40px;
@@ -5537,10 +5540,10 @@ html.wpst-nav-lock,html.wpst-nav-lock body{overflow:hidden!important}
     background:var(--wpst-nav-dropdown-hover,transparent)!important;
   }
 
-  /* Elementor header'da mobil icin ikinci bir CTA/tasarim uretilmez. */
+  /* Navigation widget owns its server-rendered drawer CTA. */
   .wpst-hybrid-header-mobile[data-wpst-header-source="elementor"]
-  .elementor-widget-wpsoft-navigation .wpst-nav-mobile-footer{
-    display:none!important;
+  .elementor-widget-wpsoft-navigation .wps-mobile-drawer .wpst-nav-mobile-footer{
+    display:block!important;
   }
 }
 
@@ -7673,7 +7676,7 @@ body.wpst-widget-button-sunset .elementor-widget.wpst-preset-global{
 /* Elementor-controlled mobile drawer tokens and editor-safe icon bounds. */
 @media(max-width:1024px){
  .wpst-nav-mobile-hamburger .wps-mobile-drawer{--wps-mobile-menu-hover-text:#fff;--wps-mobile-menu-submenu-text:rgba(238,242,255,.82);--wps-mobile-icon-size:20px;--wps-mobile-icon-color:#a9b9ee;--wps-mobile-icon-bg:rgba(91,110,200,.10);--wps-mobile-icon-active-color:#fff;--wps-mobile-icon-active-bg:rgba(255,255,255,.14);--wps-mobile-icon-radius:13px;--wps-mobile-cta-title:#fff;--wps-mobile-cta-subtitle:rgba(235,240,255,.72);--wps-mobile-social-color:#eef2ff;--wps-mobile-social-hover-color:#fff;--wps-mobile-social-bg:rgba(255,255,255,.04);--wps-mobile-social-size:44px}
- .wps-mobile-drawer .wpst-nav-mobile-head{display:flex;align-items:center;justify-content:space-between;gap:16px}.wps-mobile-drawer .wps-mobile-drawer__branding{display:flex;align-items:center;min-width:0}.wps-mobile-drawer .wpst-nav-mobile-brand img{display:block;width:auto;max-width:150px;max-height:54px;height:auto;object-fit:contain}
+ .wps-mobile-drawer .wpst-nav-mobile-head{display:flex;align-items:center;justify-content:space-between;gap:16px}.wps-mobile-drawer .wps-mobile-drawer__branding{display:flex!important;align-items:center;flex:1 1 auto;min-width:0}.wps-mobile-drawer .wpst-nav-drawer-logo{display:flex;align-items:center;max-width:100%}.wps-mobile-drawer .wpst-nav-mobile-brand img{display:block!important;width:auto;height:auto!important;max-width:var(--wps-mobile-logo-width,150px);max-height:var(--wps-mobile-logo-height,54px);object-fit:contain;opacity:1!important;visibility:visible!important}
  .wpst-nav-mobile-hamburger .wps-mobile-drawer .wpst-navigation-menu li>a.wps-mobile-drawer__item{color:var(--wps-mobile-menu-text,#eef2ff)!important}
  .wpst-nav-mobile-hamburger .wps-mobile-drawer .wpst-navigation-menu li>a.wps-mobile-drawer__item:hover,.wpst-nav-mobile-hamburger .wps-mobile-drawer .wpst-navigation-menu li>a.wps-mobile-drawer__item:focus-visible{color:var(--wps-mobile-menu-hover-text,#fff)!important}
  .wpst-nav-mobile-hamburger .wps-mobile-drawer .wpst-navigation-menu .sub-menu li>a.wps-mobile-drawer__item{color:var(--wps-mobile-menu-submenu-text,rgba(238,242,255,.82))!important}

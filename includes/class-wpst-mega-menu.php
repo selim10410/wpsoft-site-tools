@@ -1007,13 +1007,18 @@ final class WPST_Mega_Menu {
         $home=untrailingslashit(home_url('/'));$url=isset($item->url)?untrailingslashit((string)$item->url):'';
         if($url===$home)return'home';
         if(absint($item->object_id)===absint(get_option('page_for_posts')))return'article';
-        $slug='';if(!empty($item->object_id)){$post=get_post(absint($item->object_id));if($post)$slug=(string)$post->post_name;}
-        if(!$slug&&$url){$path=(string)wp_parse_url($url,PHP_URL_PATH);$slug=basename(untrailingslashit($path));}
-        $slug=sanitize_title(remove_accents($slug));
-        if(in_array($slug,array('hakkimizda','about'),true))return'user';
-        if(in_array($slug,array('hizmetlerimiz','hizmetler','services'),true))return'briefcase';
-        if(in_array($slug,array('iletisim','contact'),true))return'mail';
-        if('blog'===$slug)return'article';
+        if('post_type_archive'===($item->type??'')&&'post'===($item->object??''))return'article';
+        $candidates=array();
+        if(!empty($item->object_id)){$post=get_post(absint($item->object_id));if($post)$candidates[]=(string)$post->post_name;}
+        if($url){$path=(string)wp_parse_url($url,PHP_URL_PATH);$candidates[]=basename(untrailingslashit(rawurldecode($path)));}
+        if(isset($item->title))$candidates[]=(string)$item->title;
+        foreach($candidates as $candidate){
+            $slug=sanitize_title(remove_accents(wp_strip_all_tags($candidate)));
+            if(in_array($slug,array('hakkimizda','about'),true))return'user';
+            if(in_array($slug,array('hizmetlerimiz','hizmetler','services'),true))return'briefcase';
+            if(in_array($slug,array('iletisim','contact','contact-us','contactus'),true))return'mail';
+            if(in_array($slug,array('blog','posts','articles'),true))return'article';
+        }
         return'file';
     }
 

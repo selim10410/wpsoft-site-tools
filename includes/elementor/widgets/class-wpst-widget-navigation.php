@@ -386,9 +386,11 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   echo'<div class="wpst-nav-mobile-head"><div class="wpst-nav-mobile-brand wps-mobile-drawer__branding">';
   $widget_logo_id=!empty($s['mobile_logo']['id'])?absint($s['mobile_logo']['id']):0;
   $widget_logo_url=!empty($s['mobile_logo']['url'])?esc_url($s['mobile_logo']['url']):'';
-  $logo_id=$widget_logo_id?:(!empty($global['header_logo_id'])?absint($global['header_logo_id']):0);
-  if($logo_id){echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-drawer-logo" data-widget-logo="'.($widget_logo_id?'1':'0').'">'.wp_get_attachment_image($logo_id,'full',false,array('class'=>'wpst-site-logo-image','alt'=>get_bloginfo('name'))).'</a>';}
-  elseif($widget_logo_url){echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-drawer-logo" data-widget-logo="1"><img class="wpst-site-logo-image" src="'.esc_url($widget_logo_url).'" alt="'.esc_attr(get_bloginfo('name')).'"></a>';}
+  $has_widget_logo=$widget_logo_id||$widget_logo_url;
+  $logo_id=$widget_logo_id?:(!$has_widget_logo&&!empty($global['header_logo_id'])?absint($global['header_logo_id']):0);
+  $logo_html=$logo_id?wp_get_attachment_image($logo_id,'full',false,array('class'=>'wpst-site-logo-image','alt'=>get_bloginfo('name'))):'';
+  if(!$logo_html&&$widget_logo_url)$logo_html='<img class="wpst-site-logo-image" src="'.esc_url($widget_logo_url).'" alt="'.esc_attr(get_bloginfo('name')).'">';
+  if($logo_html){echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-drawer-logo" data-widget-logo="'.($has_widget_logo?'1':'0').'">'.$logo_html.'</a>';}
   elseif(has_custom_logo()){the_custom_logo();}else{echo'<a href="'.esc_url(home_url('/')).'" class="wpst-nav-site-title">'.esc_html(get_bloginfo('name')).'</a>';}
   echo'</div><button type="button" class="wpst-nav-close" aria-label="Menüyü kapat"><span aria-hidden="true"></span></button></div>';
   $search_show=array_key_exists('mobile_search_show',$raw)?'yes'===($s['mobile_search_show']??''):!empty($global['header_mobile_search']);
@@ -419,6 +421,7 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   $use_widget=$explicit && $this->is_enabled($settings['mobile_cta_enabled']??false);
   $use_global=!$explicit && $this->is_enabled($global['header_mobile_cta_enabled']??false);
   $link=$use_widget && is_array($settings['mobile_cta_url']??null)?$settings['mobile_cta_url']:array('url'=>(string)($global['header_mobile_cta_url']??''));
+  if($use_widget&&empty($link['url']))$link['url']='#iletisim';
   $text=trim((string)($use_widget?($settings['mobile_cta_text']??''):($use_global?($global['header_mobile_cta_text']??''):'')));
   $icon='';
   if($use_widget&&!empty($settings['mobile_cta_icon']['value'])){ob_start();\Elementor\Icons_Manager::render_icon($settings['mobile_cta_icon'],array('aria-hidden'=>'true'));$icon=ob_get_clean();}
