@@ -471,7 +471,7 @@ function initCarousels(root){
         if(w.dataset.wpstReady === '1') return;
         w.dataset.wpstReady = '1';
 
-        var track = w.querySelector('.wpst-ew-carousel-track,.wpst-ew-card-carousel-track,.wpst-team-pro');
+        var track = w.querySelector('.wpst-ew-carousel-track,.wpst-ew-card-carousel-track,.wpst-ew-service-carousel-track,.wpst-team-pro');
         if(!track || !track.children.length) return;
 
         w.style.setProperty('--wpst-carousel-visible-desktop',w.dataset.visible||'3');

@@ -1427,10 +1427,33 @@ abstract class WPST_Elementor_Widget_Base extends \Elementor\Widget_Base {
     }
 
     protected function render_link_attrs( $link ) {
+        $link = is_array( $link ) ? $link : array();
         $url = ! empty( $link['url'] ) ? $link['url'] : '#';
         $attrs = ' href="' . esc_url( $url ) . '"';
-        if ( ! empty( $link['is_external'] ) ) $attrs .= ' target="_blank"';
-        if ( ! empty( $link['nofollow'] ) ) $attrs .= ' rel="nofollow"';
+        $rel = array();
+
+        if ( ! empty( $link['is_external'] ) ) {
+            $attrs .= ' target="_blank"';
+            $rel[] = 'noopener';
+            $rel[] = 'noreferrer';
+        }
+        if ( ! empty( $link['nofollow'] ) ) $rel[] = 'nofollow';
+
+        if ( ! empty( $link['custom_attributes'] ) && is_string( $link['custom_attributes'] ) ) {
+            foreach ( explode( ',', $link['custom_attributes'] ) as $custom_attribute ) {
+                $parts = array_map( 'trim', explode( '|', $custom_attribute, 2 ) );
+                $name = isset( $parts[0] ) ? strtolower( $parts[0] ) : '';
+                if ( '' === $name || ! preg_match( '/^(?:aria-[a-z0-9_-]+|data-[a-z0-9_-]+|class|id|role|title|download|rel)$/', $name ) ) continue;
+                $value = isset( $parts[1] ) ? $parts[1] : '';
+                if ( 'rel' === $name ) {
+                    $rel = array_merge( $rel, preg_split( '/\s+/', $value, -1, PREG_SPLIT_NO_EMPTY ) );
+                    continue;
+                }
+                $attrs .= ' ' . esc_attr( $name ) . '="' . esc_attr( $value ) . '"';
+            }
+        }
+
+        if ( $rel ) $attrs .= ' rel="' . esc_attr( implode( ' ', array_unique( array_map( 'sanitize_key', $rel ) ) ) ) . '"';
         return $attrs;
     }
 

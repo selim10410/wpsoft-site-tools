@@ -224,8 +224,9 @@ class WPST_Widget_Video_Gallery_Pro extends WPST_Elementor_Widget_Base {
                 $poster_fallback=$this->youtube_poster_fallback_url($url);
             }
             $embed=$this->embed_url($url);
-            $tag=('new_tab'===$s['open_mode'])?'a':'button';
-            $attrs=('a'===$tag)?' href="'.esc_url($url).'" target="_blank" rel="noopener"':' type="button" data-wpst-video-open data-video="'.esc_url($embed).'"';
+            $has_video=''!==trim((string)$url);
+            $tag=$has_video?(('new_tab'===$s['open_mode'])?'a':'button'):'div';
+            $attrs=('a'===$tag)?' href="'.esc_url($url).'" target="_blank" rel="noopener noreferrer"':(('button'===$tag)?' type="button" data-wpst-video-open data-video="'.esc_url($embed).'"':' aria-disabled="true"');
             echo '<'.$tag.' class="wpst-video-card"'.$attrs.' data-video-index="'.esc_attr($i+1).'">';
             echo '<span class="wpst-video-poster">';
             if($poster){

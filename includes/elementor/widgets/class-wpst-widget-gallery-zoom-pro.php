@@ -181,7 +181,11 @@ class WPST_Widget_Gallery_Zoom_Pro extends WPST_Elementor_Widget_Base {
                 $alt=$id?get_post_meta($id,'_wp_attachment_image_alt',true):'';
                 $tag=('yes'===$s['lightbox'])?'button':'div';
                 echo '<'.$tag.' class="wpst-gallery-zoom-item" '.(('yes'===$s['lightbox'])?'type="button" data-wpst-gallery-open data-full="'.esc_url($url).'" data-alt="'.esc_attr($alt).'" data-caption="'.esc_attr($caption).'" aria-label="'.esc_attr($s['zoom_label']).'"':'').'>';
-                echo '<img src="'.esc_url($url).'" alt="'.esc_attr($alt).'" loading="lazy">';
+                if($id){
+                    echo wp_get_attachment_image($id,'full',false,array('alt'=>$alt,'loading'=>'lazy','decoding'=>'async'));
+                }else{
+                    echo '<img src="'.esc_url($url).'" alt="'.esc_attr($alt).'" loading="lazy" decoding="async">';
+                }
                 echo '<span class="wpst-gallery-zoom-overlay"></span>';
                 if('yes'===$s['lightbox']){
                     echo '<span class="wpst-gallery-zoom-icon" aria-hidden="true">'.(class_exists('WPST_Icon_Library')?WPST_Icon_Library::svg('search',array('size'=>18)):'＋').'</span>';

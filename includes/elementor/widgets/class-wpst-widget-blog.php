@@ -215,7 +215,7 @@ class WPST_Widget_Post_Author extends WPST_Blog_Widget_Base {
     }
     protected function render(){
         $s=$this->get_settings_for_display();$id=$this->post_id();$uid=$id?(int)get_post_field('post_author',$id):0;$name=$uid?get_the_author_meta('display_name',$uid):$s['preview_name'];$bio=$uid?get_the_author_meta('description',$uid):$s['preview_bio'];
-        echo '<div class="wpst-post-author">'.get_avatar($uid?:0,72).'<div><small>'.esc_html($s['label']).'</small><strong>'.esc_html($name).'</strong><p>'.esc_html($bio).'</p></div></div>';
+        echo '<div class="wpst-post-author">'.get_avatar($uid?:0,72,'',$name).'<div><small>'.esc_html($s['label']).'</small><strong>'.esc_html($name).'</strong><p>'.esc_html($bio).'</p></div></div>';
     }
 }
 
@@ -448,7 +448,7 @@ class WPST_Widget_Archive_Author extends WPST_Archive_Widget_Base {
         $s=$this->get_settings_for_display();$uid=is_author()?get_queried_object_id():0;
         $name=$uid?get_the_author_meta('display_name',$uid):$s['preview_name'];
         $bio=$uid?get_the_author_meta('description',$uid):$s['preview_bio'];
-        echo '<div class="wpst-archive-author">'.get_avatar($uid?:0,(int)$s['avatar_size']).'<div><small>'.esc_html($s['label']).'</small><strong>'.esc_html($name).'</strong>';
+        echo '<div class="wpst-archive-author">'.get_avatar($uid?:0,(int)$s['avatar_size'],'',$name).'<div><small>'.esc_html($s['label']).'</small><strong>'.esc_html($name).'</strong>';
         if($bio) echo '<p>'.esc_html($bio).'</p>';
         echo '</div></div>';
     }

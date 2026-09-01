@@ -3001,8 +3001,8 @@
     .wpst-ew-card-prev,.wpst-ew-card-next,
     .wpst-gallery-carousel-prev,.wpst-gallery-carousel-next
   ){
-    min-width:42px;
-    min-height:42px;
+    min-width:44px;
+    min-height:44px;
   }
 
   /* Forms */

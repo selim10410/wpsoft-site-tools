@@ -22,7 +22,7 @@ class WPST_Widget_Image_Slider extends WPST_Elementor_Widget_Base{
    'label'=>'Görsel Linki',
    'type'=>\Elementor\Controls_Manager::URL,
    'placeholder'=>'https://',
-   'options'=>array('url','is_external','nofollow'),
+   'options'=>array('url','is_external','nofollow','custom_attributes'),
    'default'=>array('url'=>'')
   ));
   $r->add_control('alt',array(
@@ -391,15 +391,13 @@ class WPST_Widget_Image_Slider extends WPST_Elementor_Widget_Base{
 
     $link=!empty($item['link'])?(array)$item['link']:array();
     $href=!empty($link['url'])?$link['url']:'';
-    $target=!empty($link['is_external'])?' target="_blank"':'';
-    $rels=array();
-    if(!empty($link['nofollow']))$rels[]='nofollow';
-    if(!empty($link['is_external']))$rels[]='noopener';
-    $rel=$rels?' rel="'.esc_attr(implode(' ',$rels)).'"':'';
-
     echo'<figure class="wpst-image-slider-slide'.($n===0?' is-active':'').'" aria-hidden="'.($n===0?'false':'true').'">';
-    if($href)echo'<a class="wpst-image-slider-link" href="'.esc_url($href).'"'.$target.$rel.' aria-label="'.esc_attr($alt?:'Görsel bağlantısı').'">';
-    echo'<img src="'.esc_url($url).'" alt="'.esc_attr($alt).'" loading="'.($n===0?'eager':'lazy').'" decoding="async">';
+    if($href)echo'<a class="wpst-image-slider-link"'.$this->render_link_attrs($link).' aria-label="'.esc_attr($alt?:'Görsel bağlantısı').'">';
+    if(!empty($img['id'])){
+     echo wp_get_attachment_image((int)$img['id'],'full',false,array('alt'=>$alt,'loading'=>($n===0?'eager':'lazy'),'decoding'=>'async'));
+    }else{
+     echo'<img src="'.esc_url($url).'" alt="'.esc_attr($alt).'" loading="'.($n===0?'eager':'lazy').'" decoding="async">';
+    }
     if($href)echo'</a>';
     echo'</figure>';
     $n++;
