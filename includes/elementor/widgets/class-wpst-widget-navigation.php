@@ -68,6 +68,11 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
    'label'=>'Mobil Overlay','type'=>\Elementor\Controls_Manager::SWITCHER,'return_value'=>'yes','default'=>'yes',
    'prefix_class'=>'wpst-nav-overlay-'
   ));
+  $this->add_control('mobile_design_source',array(
+   'label'=>'Mobil Menü Tasarımı','type'=>\Elementor\Controls_Manager::SELECT,'default'=>'global',
+   'options'=>array('global'=>'Global Tasarımı Kullan','custom'=>'Özel Tasarım'),
+   'description'=>'Global seçim, WPSoft → Global Tasarım → Mobil Menü presetini kullanır.'
+  ));
 
   $this->add_control('mobile_cta_enabled',array(
    'label'=>'Mobil CTA Butonu',
@@ -376,13 +381,23 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
    $nav_style[]='--wpst-nav-mobile-width:'.floatval($s['mobile_panel_width']['size']).preg_replace('/[^a-z%]/i','',$unit);
   }
   foreach(array('mobile_logo_width'=>'--wps-mobile-logo-width','mobile_logo_height'=>'--wps-mobile-logo-height','mobile_icon_size'=>'--wps-mobile-icon-size','mobile_icon_box_size'=>'--wps-mobile-nav-icon-box','mobile_social_size'=>'--wps-mobile-social-size','mobile_social_icon_size'=>'--wps-mobile-social-icon-size','mobile_social_gap'=>'--wps-mobile-social-gap','mobile_social_radius'=>'--wps-mobile-social-radius') as $key=>$var){if(!empty($s[$key]['size'])){$unit=!empty($s[$key]['unit'])?$s[$key]['unit']:'px';$nav_style[]=$var.':'.floatval($s[$key]['size']).preg_replace('/[^a-z%]/i','',$unit);}}
-  $style_attr=!empty($nav_style)?' style="'.esc_attr(implode(';',$nav_style)).'"':'';
+  $mobile_design=$this->resolve_mobile_menu_preset($s,$raw,$global);
+  $design_source=$mobile_design['source'];
+  $preset=$mobile_design['preset'];
+  $style_attr=!empty($nav_style)&&'custom'===$design_source?' style="'.esc_attr(implode(';',$nav_style)).'"':'';
+  $panel_tokens=array();
+  if('global'===$design_source){
+   $global_token_map=array('global_mobile_panel_background'=>'--wps-mobile-menu-bg','global_mobile_item_background'=>'--wps-mobile-nav-surface','global_mobile_text_color'=>'--wps-mobile-menu-text','global_mobile_active_background'=>'--wps-mobile-menu-active-bg','global_mobile_cta_background'=>'--wpst-nav-mobile-cta-bg','global_mobile_icon_background'=>'--wps-mobile-icon-bg','global_mobile_logo_position'=>'--wps-mobile-logo-align');
+   foreach($global_token_map as $key=>$var)if(isset($global[$key])&&''!==trim((string)$global[$key]))$panel_tokens[]=$var.':'.wp_strip_all_tags($global[$key]);
+   foreach(array('global_mobile_panel_padding'=>'--wps-mobile-panel-padding','global_mobile_item_radius'=>'--wps-mobile-menu-radius','global_mobile_item_height'=>'--wps-mobile-menu-item-height','global_mobile_item_gap'=>'--wps-mobile-menu-gap','global_mobile_icon_box_size'=>'--wps-mobile-nav-icon-box','global_mobile_cta_radius'=>'--wps-mobile-cta-radius','global_mobile_text_size'=>'--wps-mobile-text-size') as $key=>$var)if(isset($global[$key])&&''!==(string)$global[$key])$panel_tokens[]=$var.':'.absint($global[$key]).'px';
+  }
+  $panel_style=$panel_tokens?' style="'.esc_attr(implode(';',$panel_tokens)).'"':'';
 
-  echo'<nav class="wpst-navigation"'.$style_attr.' aria-label="'.esc_attr($aria_label).'" data-wpst-nav data-home-url="'.esc_url(home_url('/')).'" data-wpst-menu-id="'.absint($menu_id).'" data-wpst-nav-fallback="'.esc_attr($fallback).'">';
+  echo'<nav class="wpst-navigation wpst-mobile-design--'.esc_attr($design_source).' wpst-mobile-preset--'.esc_attr($preset).'"'.$style_attr.' aria-label="'.esc_attr($aria_label).'" data-wpst-nav data-wpst-mobile-design="'.esc_attr($design_source).'" data-wpst-mobile-preset="'.esc_attr($preset).'" data-home-url="'.esc_url(home_url('/')).'" data-wpst-menu-id="'.absint($menu_id).'" data-wpst-nav-fallback="'.esc_attr($fallback).'">';
   echo'<div class="wpst-nav-desktop-host">';$this->render_menu_markup($menu_id,$fallback,false);echo'</div>';
   echo'<button type="button" class="wpst-nav-toggle" aria-expanded="false" aria-controls="'.esc_attr($uid).'"><span class="wpst-nav-toggle-bars"><i></i><i></i><i></i></span><span class="screen-reader-text">Menüyü aç</span></button>';
   echo'<div class="wpst-nav-overlay" aria-hidden="true"></div>';
-  echo'<div class="wpst-nav-mobile-panel wps-mobile-drawer" id="'.esc_attr($uid).'" role="dialog" aria-modal="true" aria-label="'.esc_attr($aria_label).'" aria-hidden="true" tabindex="-1">';
+  echo'<div class="wpst-nav-mobile-panel wps-mobile-drawer wpst-mobile-design--'.esc_attr($design_source).' wpst-mobile-preset--'.esc_attr($preset).'" data-wpst-mobile-preset="'.esc_attr($preset).'" data-wpst-preset-source="'.esc_attr($design_source).'"'.$panel_style.' id="'.esc_attr($uid).'" role="dialog" aria-modal="true" aria-label="'.esc_attr($aria_label).'" aria-hidden="true" tabindex="-1">';
   echo'<div class="wpst-nav-mobile-head"><div class="wpst-nav-mobile-brand wps-mobile-drawer__branding">';
   $widget_logo_id=!empty($s['mobile_logo']['id'])?absint($s['mobile_logo']['id']):0;
   $widget_logo_url=!empty($s['mobile_logo']['url'])?esc_url($s['mobile_logo']['url']):'';
@@ -408,6 +423,14 @@ class WPST_Widget_Navigation extends WPST_Elementor_Widget_Base{
   $socials=array();foreach(array('facebook','instagram','linkedin','youtube') as $network){$widget_url=$s['mobile_social_'.$network]['url']??'';$url=$widget_url?:($global['header_mobile_social_'.$network]??'');if($url)$socials[$network]=$url;}
   if($social_show&&$socials){echo'<div class="wps-mobile-drawer__socials" aria-label="'.esc_attr__('Sosyal medya','wpsoft-site-tools').'">';foreach($socials as $network=>$url)echo'<a class="is-'.esc_attr($network).'" href="'.esc_url($url).'" target="_blank" rel="noopener noreferrer" aria-label="'.esc_attr(ucfirst($network)).'">'.$this->social_icon($network).'</a>';echo'</div>';}
   echo'</div></nav>';
+ }
+
+ private function resolve_mobile_menu_preset($settings,$raw,$global){
+  $allowed=array('corporate-modern','minimal-light','luxury','creative-gradient','e-commerce','hotel-tourism','professional-dark','classic-clean');
+  $source=isset($raw['mobile_design_source']) && 'custom'===($settings['mobile_design_source']??'global')?'custom':'global';
+  $preset='corporate-modern';
+  if('global'===$source && !empty($global['global_mobile_menu_preset']) && in_array($global['global_mobile_menu_preset'],$allowed,true))$preset=$global['global_mobile_menu_preset'];
+  return array('source'=>$source,'preset'=>$preset);
  }
 
  private function render_menu_markup($menu_id,$fallback,$mobile){
