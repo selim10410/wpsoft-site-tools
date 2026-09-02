@@ -185,7 +185,10 @@ ready(function(){
         });
       });
     });
-    mo.observe(document.body,{childList:true,subtree:true});
+    var observerRoot=document.body||document.documentElement;
+    if(observerRoot&&observerRoot.nodeType===1){
+      mo.observe(observerRoot,{childList:true,subtree:true});
+    }
   }
 
   if(window.elementorFrontend&&window.elementorFrontend.hooks){
