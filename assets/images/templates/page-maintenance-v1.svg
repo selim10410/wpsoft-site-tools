@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" role="img" aria-labelledby="title desc">
+  <title id="title">WPSoft bakım sayfası önizlemesi</title>
+  <desc id="desc">Sade başlık, durum bilgisi ve iletişim aksiyonu içeren bakım sayfası.</desc>
+  <rect width="1440" height="900" fill="#f8fafc"/>
+  <rect x="86" y="72" width="1268" height="756" rx="28" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="166" y="154" width="136" height="30" rx="15" fill="#dbeafe"/>
+  <rect x="166" y="225" width="760" height="48" rx="12" fill="#0f172a"/>
+  <rect x="166" y="293" width="612" height="22" rx="11" fill="#94a3b8"/>
+  <rect x="166" y="329" width="520" height="22" rx="11" fill="#cbd5e1"/>
+  <rect x="166" y="416" width="1108" height="188" rx="20" fill="#f1f5f9" stroke="#dbe3ee"/>
+  <rect x="214" y="463" width="340" height="28" rx="10" fill="#334155"/>
+  <rect x="214" y="511" width="480" height="18" rx="9" fill="#94a3b8"/>
+  <rect x="1012" y="474" width="194" height="54" rx="13" fill="#2563eb"/>
+  <circle cx="190" cy="694" r="20" fill="#e2e8f0"/>
+  <circle cx="246" cy="694" r="20" fill="#e2e8f0"/>
+  <circle cx="302" cy="694" r="20" fill="#e2e8f0"/>
+</svg>

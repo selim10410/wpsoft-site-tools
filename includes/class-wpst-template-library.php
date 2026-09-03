@@ -1282,7 +1282,6 @@ final class WPST_Template_Library {
 
             $is_premium = strpos($key,'-premium') !== false || strpos($key,'-signature') !== false;
             if($is_premium){
-                if('pages'===$kind) $item['category'] = 'Premium Sayfa';
                 $item['is_popular'] = true;
                 $item['is_new'] = true;
                 $item['premium'] = true;
@@ -1301,6 +1300,55 @@ final class WPST_Template_Library {
                 $item['page_family']=self::page_family_for_item($item);
                 if(empty($item['quality']) || in_array($item['quality'],array('Legacy','Standard'),true)) $item['quality']='Modern';
                 $item['page_quality']='Premium Layout';
+
+                $page_haystack=strtolower($key.' '.($item['title']??'').' '.($item['template_role']??''));
+                if(empty($item['category']) || in_array($item['category'],array('Sektör Sayfası','Premium Sayfa','Full Pages','İç Sayfalar','Signature Sayfa'),true)){
+                    if(false!==strpos($page_haystack,'contact') || false!==strpos($page_haystack,'iletişim')) $item['category']='İletişim';
+                    elseif(false!==strpos($page_haystack,'about') || false!==strpos($page_haystack,'hakkımızda')) $item['category']='Hakkımızda';
+                    elseif(false!==strpos($page_haystack,'service-detail')) $item['category']='Hizmet Detay';
+                    elseif(false!==strpos($page_haystack,'service')) $item['category']='Hizmetler';
+                    elseif(false!==strpos($page_haystack,'faq') || false!==strpos($page_haystack,'sss')) $item['category']='SSS';
+                    elseif(false!==strpos($page_haystack,'team') || false!==strpos($page_haystack,'ekip')) $item['category']='Ekibimiz';
+                    elseif(false!==strpos($page_haystack,'reference') || false!==strpos($page_haystack,'referans')) $item['category']='Referanslar';
+                    elseif(false!==strpos($page_haystack,'portfolio-detail')) $item['category']='Portföy Detay';
+                    elseif(false!==strpos($page_haystack,'portfolio')) $item['category']='Portföy';
+                    elseif(false!==strpos($page_haystack,'pricing')) $item['category']='Fiyatlandırma';
+                    elseif(false!==strpos($page_haystack,'404')) $item['category']='404';
+                    elseif(false!==strpos($page_haystack,'coming')) $item['category']='Yakında';
+                    elseif(false!==strpos($page_haystack,'maintenance')) $item['category']='Bakım';
+                    else $item['category']='Ana Sayfa';
+                }
+
+                if(empty($item['style'])){
+                    if(false!==strpos($page_haystack,'minimal')) $item['style']='Minimal';
+                    elseif(false!==strpos($page_haystack,'dark')) $item['style']='Dark';
+                    elseif(false!==strpos($page_haystack,'creative') || false!==strpos($page_haystack,'agency')) $item['style']='Creative';
+                    elseif(false!==strpos($page_haystack,'luxury') || false!==strpos($page_haystack,'hotel')) $item['style']='Luxury';
+                    elseif(false!==strpos($page_haystack,'editorial') || false!==strpos($page_haystack,'magazine')) $item['style']='Editorial';
+                    elseif(false!==strpos($page_haystack,'corporate') || false!==strpos($page_haystack,'industrial')) $item['style']='Kurumsal';
+                    else $item['style']='Modern';
+                }
+
+                // Normalized page-library metadata. Existing scalar fields remain
+                // intact so older editor-library builds keep working unchanged.
+                $item['id']=$item['id']??$key;
+                $item['name']=$item['name']??($item['title']??$key);
+                $item['slug']=$item['slug']??$key;
+                $item['type']=$item['type']??'page';
+                $item['version']=$item['version']??(defined('WPST_VERSION')?WPST_VERSION:'1.0.0');
+                $item['industries']=array_values(array_unique(array_filter(array_map('strval',
+                    isset($item['industries'])?(array)$item['industries']:array($item['sector']??'')
+                ))));
+                $item['styles']=array_values(array_unique(array_filter(array_map('strval',
+                    isset($item['styles'])?(array)$item['styles']:array($item['style']??'Modern')
+                ))));
+                $item['tags']=array_values(array_unique(array_filter(array_map('strval',array_merge(
+                    isset($item['tags'])?(array)$item['tags']:array(),
+                    array($item['category']??'',$item['sector']??'',$item['quality']??'',$item['page_family']??'')
+                )))));
+                $item['widgets']=self::template_widget_types($item['data']);
+                $item['is_featured']=!empty($item['is_featured']) || !empty($item['is_popular']);
+                $item['validation']=self::validate_template_structure($item['data']);
             }
             if('sections'===$kind && !empty($item['data']) && is_array($item['data'])){
                 $item['data']=self::apply_section_quality_data($item['data'],$item);
@@ -1311,6 +1359,128 @@ final class WPST_Template_Library {
             $item['kind'] = $kind;
         }
         unset($item);
+        return $items;
+    }
+
+    private static function template_widget_types($nodes){
+        $types=array();
+        $walk=function($items) use (&$walk,&$types){
+            foreach((array)$items as $node){
+                if(!is_array($node)) continue;
+                if(!empty($node['widgetType'])) $types[]=(string)$node['widgetType'];
+                if(!empty($node['elements']) && is_array($node['elements'])) $walk($node['elements']);
+            }
+        };
+        $walk($nodes);
+        return array_values(array_unique($types));
+    }
+
+    private static function validate_template_structure($nodes){
+        $errors=array();
+        $ids=array();
+        $walk=function($items,$path='root') use (&$walk,&$errors,&$ids){
+            foreach((array)$items as $index=>$node){
+                $at=$path.'.'.$index;
+                if(!is_array($node)){$errors[]=$at.':invalid_node';continue;}
+                $type=(string)($node['elType']??'');
+                if(!in_array($type,array('container','section','column','widget'),true)) $errors[]=$at.':invalid_elType';
+                if('widget'===$type && empty($node['widgetType'])) $errors[]=$at.':missing_widgetType';
+                if(isset($node['id']) && ''!==$node['id']){
+                    $id=(string)$node['id'];
+                    if(isset($ids[$id])) $errors[]=$at.':duplicate_id';
+                    $ids[$id]=true;
+                }
+                if(isset($node['elements']) && !is_array($node['elements'])) $errors[]=$at.':invalid_elements';
+                elseif(!empty($node['elements'])) $walk($node['elements'],$at);
+            }
+        };
+        $walk($nodes);
+        if(class_exists('\\Elementor\\Plugin')){
+            $elementor=\Elementor\Plugin::$instance;
+            $registered=($elementor && isset($elementor->widgets_manager))
+                ? array_keys((array)$elementor->widgets_manager->get_widget_types())
+                : array();
+            foreach(self::template_widget_types($nodes) as $widget_type){
+                if($registered && !in_array($widget_type,$registered,true)) $errors[]='missing_widget:'.$widget_type;
+            }
+        }
+        return array('valid'=>empty($errors),'errors'=>$errors);
+    }
+
+    private static function page_audit_metrics($item){
+        $data=(array)($item['data']??array());
+        $sections=count($data);
+        $widgets=self::template_widget_types($data);
+        $sequence=array();
+        $responsive=0;
+        $spacing=0;
+        $global=0;
+        $widget_nodes=0;
+        $walk=function($nodes) use (&$walk,&$sequence,&$responsive,&$spacing,&$global,&$widget_nodes){
+            foreach((array)$nodes as $node){
+                if(!is_array($node)) continue;
+                $settings=(array)($node['settings']??array());
+                if('container'===($node['elType']??'')){
+                    if(isset($settings['padding']) || isset($settings['gap'])) $spacing++;
+                    if(isset($settings['padding_tablet']) || isset($settings['padding_mobile']) || isset($settings['flex_direction_mobile'])) $responsive++;
+                }
+                if('widget'===($node['elType']??'')){
+                    $widget_nodes++;
+                    $sequence[]=(string)($node['widgetType']??'');
+                    if('yes'===($settings['wpst_use_global_design']??'') || 'global'===($settings['wpst_design_mode']??'')) $global++;
+                }
+                if(!empty($node['elements'])) $walk($node['elements']);
+            }
+        };
+        $walk($data);
+        $first=(array)($data[0]['elements']??array());
+        $first_widget=(string)($first[0]['widgetType']??'');
+        $has_hero=false!==strpos($first_widget,'hero') || false!==strpos($first_widget,'heading') || false!==strpos($first_widget,'finder');
+        $unique=count($widgets);
+        $breakdown=array(
+            'visual_hierarchy'=>$has_hero?15:9,
+            'composition'=>min(15,7+min(8,$unique)),
+            'content_flow'=>$sections>=5?10:($sections>=3?8:6),
+            'typography'=>$has_hero?10:7,
+            'spacing'=>$sections && $spacing>=$sections?10:($spacing?8:5),
+            'responsive'=>$sections && $responsive>=$sections?15:(!empty($item['responsive_ready'])?12:8),
+            'global_design'=>$widget_nodes && $global===$widget_nodes?10:($global?8:5),
+            'sector_relevance'=>!empty($item['sector'])?5:3,
+            'widget_appropriateness'=>$unique?5:0,
+            'originality'=>5
+        );
+        return array(
+            'sections'=>$sections,'widgets'=>$widgets,'widget_sequence'=>$sequence,
+            'layout_signature'=>implode('>',array_filter($sequence)),
+            'breakdown'=>$breakdown,'score'=>array_sum($breakdown)
+        );
+    }
+
+    private static function audit_page_collection($items){
+        foreach($items as $index=>$item) $items[$index]['audit']=self::page_audit_metrics($item);
+        $count=count($items);
+        for($i=0;$i<$count;$i++){
+            $best=0.0;
+            $best_key='';
+            $a=(array)$items[$i]['audit']['widgets'];
+            for($j=0;$j<$count;$j++){
+                if($i===$j) continue;
+                $b=(array)$items[$j]['audit']['widgets'];
+                $union=array_unique(array_merge($a,$b));
+                $intersection=array_intersect($a,$b);
+                $jaccard=$union?count(array_unique($intersection))/count($union):0;
+                $same_sequence=$items[$i]['audit']['layout_signature']!=='' && $items[$i]['audit']['layout_signature']===$items[$j]['audit']['layout_signature'];
+                $similarity=$same_sequence?1.0:$jaccard;
+                if($similarity>$best){$best=$similarity;$best_key=(string)($items[$j]['key']??'');}
+            }
+            $level=$best>=.98?'DUPLICATE-LIKE':($best>=.78?'HIGH':($best>=.52?'MEDIUM':'LOW'));
+            $originality='DUPLICATE-LIKE'===$level?1:('HIGH'===$level?2:('MEDIUM'===$level?4:5));
+            $items[$i]['audit']['breakdown']['originality']=$originality;
+            $items[$i]['audit']['score']=array_sum($items[$i]['audit']['breakdown']);
+            $score=$items[$i]['audit']['score'];
+            $items[$i]['audit']['grade']=$score>=90?'Premium Ready':($score>=85?'Good / Minor Improvement':($score>=75?'Needs Redesign':'Major Redesign'));
+            $items[$i]['audit']['similarity']=array('level'=>$level,'score'=>round($best,2),'closest'=>$best_key);
+        }
         return $items;
     }
 
@@ -4142,6 +4312,38 @@ $pages=array();
             )
         );
 
+        $pages[]=array(
+            'key'=>'page-maintenance-v1','title'=>'Bakım · Calm Status Page',
+            'desc'=>'Planlı bakım sürecini açıkça anlatan, durum bilgisi ve geri dönüş bağlantıları içeren sade yardımcı sayfa.',
+            'preview_image'=>self::preview('page-maintenance-v1.svg'),
+            'category'=>'Bakım','sector'=>'Genel','style'=>'Minimal','premium'=>1,'quality'=>'Signature',
+            'page_quality'=>'Focused Utility Page','collection'=>'Utility Inner Pages','experience'=>'Maintenance',
+            'responsive_ready'=>true,'is_new'=>true,
+            'data'=>array(
+                self::container(array(
+                    self::element('wpsoft-gradient-heading',array(
+                        'layout'=>'display','eyebrow'=>'PLANLI BAKIM','title'=>'Kısa bir bakım çalışması yürütüyoruz.',
+                        'text'=>'Hizmet kalitemizi geliştirmek için sistemlerimizi güncelliyoruz. Çok yakında yeniden buradayız.',
+                        'wpst_entry_motion'=>'fade-up','wpst_entry_duration'=>720,'wpst_entry_distance'=>18,'wpst_entry_easing'=>'smooth'
+                    )),
+                    self::element('wpsoft-info-strip',array(
+                        'title'=>'Desteğe mi ihtiyacınız var?','text'=>'Acil talepleriniz için destek ekibimizle iletişime geçebilirsiniz.',
+                        'button_text'=>'İletişime Geç','button_url'=>array('url'=>'#iletisim')
+                    )),
+                    self::element('wpsoft-footer-social',array())
+                ),array(
+                    '_css_classes'=>'wpst-page-section wpst-page-hero wpst-page-maintenance',
+                    'content_width'=>'boxed','boxed_width'=>array('unit'=>'px','size'=>920,'sizes'=>array()),
+                    'background_background'=>'classic','background_color'=>'#f8fafc',
+                    'min_height'=>array('unit'=>'vh','size'=>76,'sizes'=>array()),
+                    'justify_content'=>'center','gap'=>array('unit'=>'px','size'=>28,'row'=>28,'column'=>28),
+                    'padding'=>array('unit'=>'px','top'=>'72','right'=>'28','bottom'=>'72','left'=>'28','isLinked'=>false),
+                    'padding_tablet'=>array('unit'=>'px','top'=>'56','right'=>'22','bottom'=>'56','left'=>'22','isLinked'=>false),
+                    'padding_mobile'=>array('unit'=>'px','top'=>'42','right'=>'18','bottom'=>'42','left'=>'18','isLinked'=>false)
+                ))
+            )
+        );
+
 
         /* ======================================================
          * v3.3.16 · Independent Inner Page Templates
@@ -5108,7 +5310,7 @@ $pages=array();
         return array(
             'widgets'=>self::library_meta($widgets,'widgets'),
             'sections'=>self::library_meta($sections,'sections'),
-            'pages'=>self::library_meta($pages,'pages'),
+            'pages'=>self::audit_page_collection(self::library_meta($pages,'pages')),
             'headers'=>self::header_library_payload(),
             'footers'=>self::footer_library_payload(),
             'mega_menus'=>self::library_meta(self::mega_menu_templates(),'mega_menus'),

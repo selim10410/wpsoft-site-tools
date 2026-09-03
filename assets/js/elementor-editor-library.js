@@ -10,6 +10,8 @@
     var busy = false;
     var previewObserver = null;
     var observedDoc = null;
+    var lastFocusedElement = null;
+    var lastPreviewTrigger = null;
 
     function esc(s){ return $('<div>').text(s == null ? '' : String(s)).html(); }
 
@@ -353,7 +355,7 @@
     }
 
     function buildCards(type){
-        var list=listForKind(type);
+        var list=listForKind(type).filter(function(item){return !item.validation || item.validation.valid!==false;});
         if(!list.length) return '<div class="wpst-library-empty">Henüz şablon bulunmuyor.</div>';
         return list.map(function(item){
             var kind=item.kind || (type==='all'?'widgets':type);
@@ -363,18 +365,24 @@
             else if(item.premium)badges+='<span class="wpst-lib-badge is-premium">Premium</span>';
             if(item.is_new)badges+='<span class="wpst-lib-badge is-new">Yeni</span>';
             else if(item.is_popular)badges+='<span class="wpst-lib-badge is-popular">Popüler</span>';
+            if(item.is_featured)badges+='<span class="wpst-lib-badge is-featured">Öne Çıkan</span>';
             var qScore=qualityScore(item),qLabel=qualityLabel(item);
             if(item.quality!=='Signature')badges+='<span class="wpst-lib-badge is-curated">'+esc(qLabel)+'</span>';
 
-            return '<article class="wpst-library-card" data-key="'+esc(item.key)+'" data-title="'+esc(item.title||'')+'" data-kind="'+esc(kind)+'" data-source-kind="'+esc(item.source_kind||kind)+'" data-category="'+esc(item.category||'')+'" data-sector="'+esc(item.sector||'')+'" data-style="'+esc(item.style||'')+'" data-new="'+(item.is_new?'1':'0')+'" data-popular="'+(item.is_popular?'1':'0')+'" data-favorite="'+(isFav(item,kind)?'1':'0')+'" data-recent="'+(isRecent(item,kind)?'1':'0')+'" data-premium="'+(item.premium?'1':'0')+'" data-quality="'+esc(item.quality||'Standard')+'" data-quality-score="'+qScore+'" data-signature-ui="'+esc(item.signature_ui||'')+'">' +
+            var industries=Array.isArray(item.industries)?item.industries:[item.sector||''];
+            var styles=Array.isArray(item.styles)?item.styles:[item.style||''];
+            var tags=Array.isArray(item.tags)?item.tags:[];
+            var widgets=Array.isArray(item.widgets)?item.widgets:[];
+            var audit=item.audit||{},auditScore=Number(audit.score||0),similarity=audit.similarity||{};
+            return '<article class="wpst-library-card" data-key="'+esc(item.key)+'" data-title="'+esc(item.title||'')+'" data-kind="'+esc(kind)+'" data-source-kind="'+esc(item.source_kind||kind)+'" data-category="'+esc(item.category||'')+'" data-sector="'+esc(industries.join('|'))+'" data-style="'+esc(styles.join('|'))+'" data-tags="'+esc(tags.join('|'))+'" data-widgets="'+esc(widgets.join('|'))+'" data-new="'+(item.is_new?'1':'0')+'" data-featured="'+(item.is_featured?'1':'0')+'" data-popular="'+(item.is_popular?'1':'0')+'" data-favorite="'+(isFav(item,kind)?'1':'0')+'" data-recent="'+(isRecent(item,kind)?'1':'0')+'" data-premium="'+(item.premium?'1':'0')+'" data-quality="'+esc(item.quality||'Standard')+'" data-quality-score="'+qScore+'" data-audit-score="'+auditScore+'" data-similarity="'+esc(similarity.level||'')+'" data-signature-ui="'+esc(item.signature_ui||'')+'">' +
                 '<div class="wpst-library-preview '+esc(item.preview_class || '')+'">' +
-                    (item.preview_image ? '<img class="wpst-library-preview-img" src="'+esc(item.preview_image)+'" alt="">' : '<div class="wpst-library-preview-ui">' + (item.preview_html || '<span>WPSoft</span>') + '</div>') +
+                    (item.preview_image ? '<img class="wpst-library-preview-img" loading="lazy" decoding="async" src="'+esc(item.preview_image)+'" alt="'+esc((item.title||'WPSoft')+' önizlemesi')+'"><div class="wpst-library-preview-fallback" aria-hidden="true">WPSoft</div>' : '<div class="wpst-library-preview-ui">' + (item.preview_html || '<span>WPSoft</span>') + '</div>') +
                     '<div class="wpst-lib-badges">'+badges+'</div>'+
                     '<button type="button" class="wpst-library-favorite '+(isFav(item,kind)?'is-active':'')+'" aria-label="Favori">♡</button>'+
 
                 '</div>' +
                 '<div class="wpst-library-card-body">' +
-                    '<div class="wpst-library-card-copy"><div class="wpst-library-card-meta"><span>'+esc(kindLabel(kind))+'</span>'+(item.sector?'<b>'+esc(item.sector)+'</b>':'')+'</div><h3>'+esc(item.title)+'</h3><p>'+esc(item.desc || '')+'</p><div class="wpst-library-card-quality"><span>'+esc(qLabel)+'</span><i></i></div></div>' +
+                    '<div class="wpst-library-card-copy"><div class="wpst-library-card-meta"><span>'+esc(kind==='pages'?(item.category||'Sayfa'):kindLabel(kind))+'</span>'+(industries.filter(Boolean).length?'<b>'+esc(industries.filter(Boolean)[0])+'</b>':'')+(kind==='pages'&&styles.filter(Boolean).length?'<b>'+esc(styles.filter(Boolean)[0])+'</b>':'')+'</div><h3>'+esc(item.title)+'</h3><p>'+esc(item.desc || '')+'</p><div class="wpst-library-card-quality"><span>'+esc(kind==='pages'&&auditScore?(auditScore+'/100 · '+(audit.grade||'')):qLabel)+'</span><i></i></div></div>' +
                     '<div class="wpst-library-card-actions"><button type="button" class="wpst-library-preview-large wpst-library-preview-secondary">Önizle</button><button type="button" class="wpst-library-insert">Ekle</button></div>' +
                 '</div>' +
             '</article>';
@@ -398,8 +406,9 @@
                     '<button type="button" data-tab="blog">Blog</button>' +
                     '<button type="button" data-tab="mega_menus">Mega Menü</button>' +
                 '</nav>' +
+                '<section class="wpst-library-pages-intro" aria-labelledby="wpst-pages-title"><div><h2 id="wpst-pages-title">WPSoft Sayfa Şablonları</h2><p>Profesyonel sayfaları tek tıkla Elementor\'a ekleyin.</p></div><span class="wpst-library-pages-count"></span></section>'+
                 '<div class="wpst-library-toolbar wpst-library-toolbar-simple">' +
-                    '<div class="wpst-library-searchbox"><span>⌕</span><input type="search" class="wpst-library-search" placeholder="Şablon, sektör veya kategori ara..."></div>'+
+                    '<div class="wpst-library-searchbox"><span>⌕</span><input type="search" class="wpst-library-search" placeholder="Şablonlarda ara..." aria-label="Şablonlarda ara"></div>'+
                     '<select class="wpst-library-sort" aria-label="Sıralama"><option value="recommended">Kaliteye Göre</option><option value="new">En Yeni</option><option value="popular">Popüler</option><option value="az">A–Z</option></select>'+
                     '<button type="button" class="wpst-library-advanced-toggle">Filtreler <span>⌄</span></button>'+
                     '<span class="wpst-library-result-count"></span>'+
@@ -464,8 +473,8 @@
         var categories={}, sectors={}, styles={};
         source.forEach(function(x){
             if(x.category)categories[x.category]=1;
-            if(x.sector)sectors[x.sector]=1;
-            if(x.style)styles[x.style]=1;
+            (Array.isArray(x.industries)?x.industries:[x.sector]).forEach(function(v){if(v)sectors[v]=1;});
+            (Array.isArray(x.styles)?x.styles:[x.style]).forEach(function(v){if(v)styles[v]=1;});
         });
 
         var cat=modal.find('.wpst-library-category');
@@ -495,7 +504,7 @@
         }
 
         // Sector filtering only makes sense when the current type actually has sector data.
-        sty.toggle(kind==='sections' && Object.keys(styles).length>0);
+        sty.toggle((kind==='sections' || kind==='pages') && Object.keys(styles).length>0);
         sec.toggle(Object.keys(sectors).length>0);
 
         if(resetValues){
@@ -560,11 +569,14 @@
             modal.find('.wpst-library-quickfilters button').removeClass('is-active');
             modal.removeClass('is-advanced-open');
             modal.find('.wpst-library-advanced-toggle').removeClass('is-active').find('span').text('⌄');
-            switchTab('all');
+            switchTab(currentTab);
         });
         modal.on('click', '.wpst-library-insert', function(){
             var $card = $(this).closest('.wpst-library-card');
-            insertItem($card.data('kind'), $card.data('key'));
+            insertItem($card.data('kind'), $card.data('key'), $(this));
+        });
+        modal.on('error','.wpst-library-preview-img',function(){
+            $(this).addClass('is-broken').attr('aria-hidden','true').siblings('.wpst-library-preview-fallback').addClass('is-visible');
         });
         modal.on('click','.wpst-library-favorite',function(e){
             e.preventDefault();e.stopPropagation();
@@ -573,6 +585,7 @@
             if(item){toggleFav(item,kind);switchTab(currentTab);}
         });
         modal.on('click','.wpst-library-preview-large',function(){
+            lastPreviewTrigger=this;
             var card=$(this).closest('.wpst-library-card'),kind=card.data('kind'),key=card.data('key'),item=findPayload(kind,key);
             if(!item)return;
             var img=item.preview_image||'';
@@ -580,8 +593,9 @@
                 '<div class="wpst-library-lightbox-toolbar"><div><strong>Tam Önizleme</strong><small>'+esc(item.quality||'Modern')+(item.signature_ui?' · UI '+esc(item.signature_ui):'')+'</small></div><div class="wpst-library-device-switch"><button type="button" class="is-active" data-preview-device="desktop">Masaüstü</button><button type="button" data-preview-device="tablet">Tablet</button><button type="button" data-preview-device="mobile">Mobil</button></div><button type="button" class="wpst-library-fullscreen-toggle" aria-label="Tam ekran">⛶</button></div>'+
                 '<div class="wpst-library-preview-device is-desktop">'+(img?'<img src="'+esc(img)+'" alt="">':'<div class="wpst-library-lightbox-fallback">WPSoft</div>')+'</div>'+
                 '<div class="wpst-library-lightbox-info"><span>'+esc(kindLabel(kind))+(item.category?' · '+esc(item.category):'')+'</span><h2>'+esc(item.title)+'</h2><p>'+esc(item.desc||'')+'</p><div class="wpst-library-lightbox-actions"><button class="button wpst-library-lightbox-favorite">'+(isFav(item,kind)?'♥ Favorilerde':'♡ Favoriye Ekle')+'</button><button class="button button-primary wpst-library-lightbox-insert">Bu Şablonu Ekle</button></div></div></div></div>');
+            $('.wpst-library-lightbox').last().find('.wpst-library-lightbox-close').trigger('focus');
         });
-        $(document).on('click','.wpst-library-lightbox-close',function(){$('.wpst-library-lightbox').remove();});
+        $(document).on('click','.wpst-library-lightbox-close',function(){$('.wpst-library-lightbox').remove();if(lastPreviewTrigger&&lastPreviewTrigger.focus)lastPreviewTrigger.focus();});
         $(document).on('click','.wpst-library-fullscreen-toggle',function(){
             var lb=$(this).closest('.wpst-library-lightbox');
             lb.toggleClass('is-fullscreen');
@@ -597,7 +611,7 @@
         $(document).on('keydown.wpstLibraryPreview',function(e){
             var lb=$('.wpst-library-lightbox').last();
             if(!lb.length)return;
-            if(e.key==='Escape'){lb.remove();return;}
+            if(e.key==='Escape'){lb.remove();if(lastPreviewTrigger&&lastPreviewTrigger.focus)lastPreviewTrigger.focus();return;}
             if(e.key==='f' || e.key==='F'){lb.find('.wpst-library-fullscreen-toggle').trigger('click');return;}
             if(e.key==='ArrowLeft' || e.key==='ArrowRight'){
                 var btns=lb.find('[data-preview-device]'),active=btns.index(btns.filter('.is-active'));
@@ -616,6 +630,17 @@
             insertItem(lb.data('kind'),lb.data('key'));lb.remove();
         });
         $(document).on('keydown.wpstLibrary', function(e){ if(e.key === 'Escape'){ $('.wpst-library-lightbox').remove(); if(modal && modal.hasClass('is-open')) closeModal(); } });
+        $(document).on('keydown.wpstLibraryTrap',function(e){
+            if(e.key!=='Tab')return;
+            var scope=$('.wpst-library-lightbox').last();
+            if(!scope.length && modal && modal.hasClass('is-open'))scope=modal.find('.wpst-library-modal');
+            if(!scope.length)return;
+            var focusable=scope.find('button:not([disabled]),input:not([disabled]),select:not([disabled]),[href],[tabindex]:not([tabindex="-1"])').filter(':visible');
+            if(!focusable.length)return;
+            var first=focusable.get(0),last=focusable.get(focusable.length-1);
+            if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+            else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+        });
         refreshFilters('all', true);
         return modal;
     }
@@ -639,6 +664,7 @@
 
         // Diagnostic class is useful for UI styling and guarantees a direct Footer state.
         $m.attr('data-active-library-kind',currentTab);
+        $m.find('.wpst-library-pages-count').text(listForKind('pages').length+' şablon');
         renderKindOverview();
     }
 
@@ -675,13 +701,15 @@
                 card.attr('data-category')||'',
                 card.attr('data-sector')||'',
                 card.attr('data-style')||'',
+                card.attr('data-tags')||'',
+                card.attr('data-widgets')||'',
                 card.attr('data-kind')||'',
                 card.attr('data-key')||''
             ].join(' ').toLocaleLowerCase('tr-TR');
             var ok=!q || searchText.indexOf(q)!==-1;
             if(cat && card.attr('data-category')!==cat)ok=false;
-            if(style && card.attr('data-style')!==style)ok=false;
-            if(sector && card.attr('data-sector')!==sector)ok=false;
+            if(style && ('|'+(card.attr('data-style')||'')+'|').indexOf('|'+style+'|')===-1)ok=false;
+            if(sector && ('|'+(card.attr('data-sector')||'')+'|').indexOf('|'+sector+'|')===-1)ok=false;
             if(quality==='recommended' && (card.attr('data-quality')==='Legacy' || Number(card.attr('data-quality-score')||0)<28))ok=false;
             else if(quality && quality!=='recommended' && card.attr('data-quality')!==quality)ok=false;
             if(status==='new' && card.attr('data-new')!=='1')ok=false;
@@ -694,21 +722,22 @@
         });
         sortCards();
         var total=modal.find('.wpst-library-card').length;
-        modal.find('.wpst-library-result-count').text(visible+' / '+total+' sonuç');
+        modal.find('.wpst-library-result-count').text(currentTab==='pages'?(visible+' şablon'):(visible+' / '+total+' sonuç'));
         modal.find('.wpst-library-content').toggleClass('has-no-results',visible===0);
         if(visible===0 && !modal.find('.wpst-library-no-results').length){
-            modal.find('.wpst-library-grid').after('<div class="wpst-library-no-results"><strong>Sonuç bulunamadı.</strong><span>Arama kelimesini veya filtreleri değiştirin.</span><button type="button" data-quick-reset="1">Filtreleri Temizle</button></div>');
+            modal.find('.wpst-library-grid').after('<div class="wpst-library-no-results" role="status"><strong>Bu filtrelere uygun şablon bulunamadı.</strong><span>Arama kelimesini veya filtreleri değiştirin.</span><button type="button" data-quick-reset="1">Filtreleri Temizle</button></div>');
         }
         modal.find('.wpst-library-no-results').toggle(visible===0);
     }
 
     function openModal(tab){
+        lastFocusedElement=document.activeElement;
         var $m = ensureModal();
         switchTab(tab || 'all');
         $m.addClass('is-open').attr('aria-hidden','false');
         setTimeout(function(){ $m.find('.wpst-library-search').trigger('focus'); }, 80);
     }
-    function closeModal(){ if(!modal || busy) return; modal.removeClass('is-open').attr('aria-hidden','true'); }
+    function closeModal(){ if(!modal || busy) return; modal.removeClass('is-open').attr('aria-hidden','true'); if(lastFocusedElement&&lastFocusedElement.focus)lastFocusedElement.focus(); }
     function closeModalForce(){ if(modal) modal.removeClass('is-open').attr('aria-hidden','true'); }
 
     function cloneModel(model){ return JSON.parse(JSON.stringify(model || {})); }
@@ -739,7 +768,7 @@
         return null;
     }
 
-    async function insertItem(kind,key){
+    async function insertItem(kind,key,trigger){
         if(busy) return;
         if(!editorReady()){
             alert('Elementor editörü hazır değil. Sayfayı yenileyip tekrar deneyin.');
@@ -750,6 +779,8 @@
         var insertData = adaptTemplateData(item.data);
         busy = true;
         modal.addClass('is-busy');
+        var button=trigger&&trigger.length?trigger:null;
+        if(button)button.prop('disabled',true).attr('aria-busy','true').data('label',button.text()).text('Ekleniyor...');
         try{
             var root = typeof elementor.getPreviewContainer === 'function' ? elementor.getPreviewContainer() : null;
             if(!root && elementor.getContainer) root = elementor.getContainer('document');
@@ -791,6 +822,7 @@
         }finally{
             busy = false;
             if(modal) modal.removeClass('is-busy');
+            if(button)button.prop('disabled',false).removeAttr('aria-busy').text(button.data('label')||'Ekle');
         }
     }
 

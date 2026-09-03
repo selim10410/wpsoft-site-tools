@@ -1326,3 +1326,18 @@
 .wpst-library-item[data-kind="sections"] .wpst-library-item__meta{gap:6px}
 .wpst-library-card[data-kind="sections"] [data-quality="Signature"],
 .wpst-library-item[data-kind="sections"] [data-quality="Signature"]{font-weight:700}
+
+/* Page marketplace layer: scoped so Sections/Header/Footer retain their UI. */
+.wpst-library-pages-intro{display:none;align-items:flex-end;justify-content:space-between;gap:18px;padding:15px 24px 8px;background:#fff}
+.wpst-library-overlay[data-active-library-kind="pages"] .wpst-library-pages-intro{display:flex}
+.wpst-library-pages-intro h2{margin:0 0 3px;font-size:18px;line-height:1.25;color:#0f172a}
+.wpst-library-pages-intro p{margin:0;color:#64748b;font-size:12px}
+.wpst-library-pages-count{flex:none;color:#475569;font-size:12px;font-weight:700}
+.wpst-library-preview{position:relative}
+.wpst-library-preview-fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:linear-gradient(135deg,#f1f5f9,#e2e8f0);color:#334155;font-size:18px;font-weight:900;letter-spacing:.08em}
+.wpst-library-preview-fallback.is-visible{display:flex}
+.wpst-lib-badge.is-featured{background:#eef2ff;color:#4338ca}
+.wpst-library-preview-img.is-broken{display:none!important}
+.wpst-library-insert[disabled]{cursor:wait;opacity:.72;box-shadow:none!important}
+.wpst-library-card :focus-visible,.wpst-library-modal button:focus-visible,.wpst-library-modal input:focus-visible,.wpst-library-modal select:focus-visible{outline:3px solid #93c5fd!important;outline-offset:2px}
+@media(max-width:700px){.wpst-library-pages-intro{align-items:flex-start;padding:12px 14px 6px}.wpst-library-pages-intro h2{font-size:16px}}
